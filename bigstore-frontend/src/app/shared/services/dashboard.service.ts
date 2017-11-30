@@ -29,5 +29,15 @@ private subject = new Subject<any>();
   getPath() {
     return this.subject;
   }
-
+  newUser(user){
+    var route='/users/createUser';
+  return this.apiService.post(route,user)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+  }
 }
+
+
