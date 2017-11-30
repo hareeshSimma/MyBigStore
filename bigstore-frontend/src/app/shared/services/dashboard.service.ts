@@ -30,13 +30,23 @@ private subject = new Subject<any>();
     return this.subject;
   }
   newUser(user){
-    var route='/users/createUser';
+    var route='/users/usercreation';
   return this.apiService.post(route,user)
                 .map(
                   data => {
                     return data;
                   }
                 );
+  }
+  authentUser(user){
+     var route='/users/login';
+  return this.apiService.post(route,user)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+
   }
 }
 

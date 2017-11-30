@@ -1,6 +1,6 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { DashboardService } from '../../../shared/services/Dashboard.service';
+import { DashboardService } from '../../../shared/services/dashboard.service';
 
 @Component({
   selector: 'app-productdetails',

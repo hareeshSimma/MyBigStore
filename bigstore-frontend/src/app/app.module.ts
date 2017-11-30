@@ -8,7 +8,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { JwtService } from './shared/services/jwt.service';
 import { ApiService } from './shared/services/api.service';
-import { DashboardService } from './shared/services/Dashboard.service';
+import { DashboardService } from './shared/services/dashboard.service';
 
 
 @NgModule({

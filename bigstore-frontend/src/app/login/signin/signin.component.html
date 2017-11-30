@@ -25,19 +25,19 @@
 
       <div class="form-group">
       <label for="form2">Your MobileNumber/E-mail</label>
-          <input type="text" id="form2" class="form-control input-lg">
+          <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="emailmobile" id="email" name="emailmobile">
           
       </div>
 
       <div class="form-group">
       <label for="form4">Your password</label>
-          <input type="password" id="form4" class="form-control input-lg">
+          <input type="password" id="form4" class="form-control input-lg" [(ngModel)]="password" name="password">
          
       </div>
 
       <div class="text-xs-center">
         <a>Forgot password</a>
-          <button class="btn btn-deep-purple">Login</button>
+          <button class="btn btn-deep-purple" (click)="authUser()">Login</button>
       </div>
 
 
