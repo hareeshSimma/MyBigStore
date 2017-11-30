@@ -3,5 +3,6 @@ export class User {
                 public  email: string,
                 public  mobile: string,
                 public  password:string,
+                public  confirmpass:string
                 ) {}
 }
