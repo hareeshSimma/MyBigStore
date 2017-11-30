@@ -6,8 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose=require('mongoose');
 var config=require('./config/database')
-var index = require('./routes/index');
-var users = require('./routes/users');
 var cors = require('cors');
 
 // connect to database 
@@ -16,6 +14,7 @@ mongoose.connect(config.database);
 // on connection
 mongoose.connection.on('connected', () => {
     console.log('Mongoose connected successfully ' + config.database);
+    console.log("connected successfully...")
 });
 
 // on error
@@ -23,6 +22,12 @@ mongoose.connection.on('error', (err) => {
     console.log('Database error ' + err);
 });
 
+//models imports
+require('./models/User');
+
+//configure routes here
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -43,6 +48,13 @@ app.use(cors());
 app.use('/', index);
 app.use('/users', users);
 
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+  next();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -61,4 +73,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//console.log("listning port is:" +app.listen(8000))
 module.exports = app;
