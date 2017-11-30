@@ -6,13 +6,13 @@ var jwt = require('jsonwebtoken');
 var secret = require('../config').secret;
 
 var UserSchema = new mongoose.Schema({
-    full_name: { type: String },
+    full_name: { type: String,required:true},
     email: { type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
     role: {
         type: String,
     },
     hash: String,
-    mobileno:String,
+    mobileno:{type:String,required:true,match:	[/^(\+\d{1,3}[- ]?)?\d{10}$/] },
     salt: String,
    // verifytoken: String,
    // twf: { type: Boolean, default: true },

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
-import { DashboardService } from '../../../shared/services/Dashboard.service';
+import { DashboardService } from '../../../shared/services/dashboard.service';
 import { Router } from '@angular/router';
 
 

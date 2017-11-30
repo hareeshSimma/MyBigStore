@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+// import { DashboardService } from '../shared/services/dashboard.service';
 
 @NgModule({
     imports : [
@@ -22,7 +23,7 @@ import { SigninComponent } from './signin/signin.component';
         
     ],
     providers :  [
-        
+        // DashboardService
     ]
 })
 export class LoginModule {}
