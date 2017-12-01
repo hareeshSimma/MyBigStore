@@ -15,9 +15,9 @@ router.post('/usercreation',function(req,res,next){
   
   var user=new User();
   console.log(req.body)
-  user.full_name=req.body.full_name;
+  user.full_name=req.body.fullname;
   user.email=req.body.email;
-  user.mobileno=req.body.mobileno;
+  user.mobileno=req.body.mobile;
   user.setPassword(req.body.password);
 
   user.save(function(err,data){
@@ -40,7 +40,8 @@ router.post('/login',function(req,res,next){
   console.log("Entered login module..")
   
   console.log(req.body)
-  User.findOne({$or:[{email:req.body.email},{mobileno:req.body.mobileno}]},function(err,data){
+  User.findOne({$or:[{email:req.body.email},{mobileno:req.body.email}]},function(err,data){
+    console.log(data)
     if (err) {
       return res.status(500).json({
           title: 'An error occurred',
@@ -68,6 +69,7 @@ router.post('/login',function(req,res,next){
   var token = data.generateJWT();
   var user = data.toAuthJSON();
   res.status(200).json({
+      success:true,
       message: 'Successfully logged in',
       token: token,
       user: user

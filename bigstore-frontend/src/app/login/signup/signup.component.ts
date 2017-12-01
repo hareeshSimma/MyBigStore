@@ -11,14 +11,12 @@ export class SignupComponent implements OnInit {
 
 user:User;
   constructor(private router:Router,private dashboardService:DashboardService) {
-    this.user={
+    this.user = {
       fullname:'',
       email:'',
       mobile:'',
       password:'',
       confirmpass:''
-
-
     }
    }
   cancel(){

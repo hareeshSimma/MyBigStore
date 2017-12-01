@@ -12,7 +12,7 @@ var UserSchema = new mongoose.Schema({
         type: String,
     },
     hash: String,
-    mobileno:{type:String,required:true,match:	[/^(\+\d{1,3}[- ]?)?\d{10}$/] },
+    mobileno:{type:String,required:true},
     salt: String,
    // verifytoken: String,
    // twf: { type: Boolean, default: true },
