@@ -1,5 +1,29 @@
 <div class="container">
+
+        <div class="alert alert-success alert-dismissable fade in" *ngIf="msg && msg.Success == true">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> {{msg.msg}}.
+        </div>
+
+        <div class="alert alert-danger alert-dismissable fade in" *ngIf="msg && !msg.Success == true">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Sorry!</strong> {{msg.msg}}.
+        </div>
+        <div class="alert alert-danger alert-dismissable fade in" *ngIf="errors">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Sorry!</strong> Invalid Data.
+        </div>
+
     
+    <!-- <div class="alert alert-success" *ngIf="msg && msg.Success == true">
+        <strong>Success!</strong> {{msg.msg}}
+      </div>
+      <div class="alert alert-danger" *ngIf="msg && !msg.Success == true ;else error">
+        <strong>Sorry!</strong> {{msg.msg}}
+      </div>
+      <div class="alert alert-danger" *ngIf="errors">
+            <strong>Sorry!</strong> Invalid Data..
+          </div> -->
   <div class="col-md-10 col-md-offset-1 main" >
   <div class="col-md-6 left-side" >
   <h2>Welcome To.... BigStore</h2>

@@ -139,6 +139,7 @@
 
 .profile-li{
     padding-top: 2px;
+    cursor: pointer;
 }
 
 .largenav {

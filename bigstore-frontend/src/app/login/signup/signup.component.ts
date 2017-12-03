@@ -10,6 +10,8 @@ import { DashboardService } from '../../shared/services/dashboard.service';
 export class SignupComponent implements OnInit {
 
 user:User;
+msg:any;
+errors:any;
   constructor(private router:Router,private dashboardService:DashboardService) {
     this.user = {
       fullname:'',
@@ -29,9 +31,19 @@ user:User;
   
   newUser(user){
      this.dashboardService.newUser(user).subscribe(res=>{
-       console.log(res);
-     console.log("hello",user);
-     })
+      
+       this.msg=res;
+       console.log(this.msg);
+  setTimeout(() => {
+    this.router.navigate(['/login']);
+  }, 3000);  
+    
+     },
+     err => {
+      this.errors = err;
+      console.log(this.errors)
+    }
+    )
 
     }
 

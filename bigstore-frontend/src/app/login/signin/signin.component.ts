@@ -11,10 +11,11 @@ import { DashboardService } from '../../shared/services/dashboard.service';
 export class SigninComponent implements OnInit {
 
  user:User;
-
+msg:any;
   constructor(
     private router:Router,
-    private dashboardService:DashboardService
+    private dashboardService:DashboardService,
+    
   ) { 
     this.user ={
       email:"",
@@ -30,13 +31,15 @@ cancel(){
 }
   ngOnInit() {
     
-
   }
   authUser(user){
     
      this.dashboardService.authentUser(user).subscribe(res=>{
-       console.log(res);
-  this.router.navigate(['']);
+       this.msg=res;
+
+       console.log(this.msg);
+       
+       this.router.navigate(['']);
   
     
      })

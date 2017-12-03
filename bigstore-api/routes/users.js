@@ -23,13 +23,22 @@ router.post('/usercreation',function(req,res,next){
   user.save(function(err,data){
     console.log(data)
     if (err) {
-      return res.status(500).json({
-          title: 'An error occurred',
-          error: err
+      return res(500).json({ 
+        "Success": false, 
+        "msg": "Registration Fail" 
       });
+
+  }
+    if (!data) {
+      return res(401).json({ 
+        "Success": false, 
+        "msg": "Registration Fail" 
+      });
+
   } else {
     return res.status(200).json({
-      "success":true, "msg":"registred successfully..."
+      "Success":true, 
+      "msg":"Registred successfully..."
     });
   }
   })
@@ -43,34 +52,39 @@ router.post('/login',function(req,res,next){
   User.findOne({$or:[{email:req.body.email},{mobileno:req.body.email}]},function(err,data){
     console.log(data)
     if (err) {
-      return res.status(500).json({
-          title: 'An error occurred',
-          error: err
+     
+      return res(500).json({ 
+        "Success": false, 
+        "msg": "Invalid login credentials" 
       });
+      
   }
-  // if (!data) {
-  //     return res.status(401).json({
-  //         title: 'Login failed',
-  //         error: { message: 'Invalid login credentials' }
-  //     });
-  // }
+  if (!data) {
+
+    return res(401).json({
+       "Success": false, 
+       "msg": "Invalid login credentials" 
+  });
+    
+}
+
   if (!data.validPassword(req.body.password)) {
-      return res.status(401).json({
-          title: 'Login failed',
-          error: { message: 'Invalid login credentials' }
+      // return res.status(401).json({
+      //     title: 'Login failed',
+      //     error: { message: 'Invalid login credentials' }
+      // });
+      return res(401).json({ 
+        "Success": false, 
+        "msg": "Invalid login credentials" 
       });
+      
   }
   else{
-  //   return res.status(200).json({
-  //     title: 'Login',
-  //     success: { message: 'login Successfully' }
-  // });
-
-  var token = data.generateJWT();
+ var token = data.generateJWT();
   var user = data.toAuthJSON();
   res.status(200).json({
-      success:true,
-      message: 'Successfully logged in',
+      "Success":true,
+      "msg": 'Successfully logged in',
       token: token,
       user: user
   });

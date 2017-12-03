@@ -14,7 +14,7 @@ import { SigninComponent } from './signin/signin.component';
     imports : [
         LoginRoutingModule,
         FormsModule,
-        CommonModule
+        CommonModule,
     ],
     declarations : [
         LoginComponent,
