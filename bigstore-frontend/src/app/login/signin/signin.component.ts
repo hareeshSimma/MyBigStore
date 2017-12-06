@@ -11,9 +11,11 @@ import { DashboardService } from '../../shared/services/dashboard.service';
 export class SigninComponent implements OnInit {
 
  user:User;
- emailPattren:String;
- mobilePattren:String;
- error:string;
+ emailPattren:any;
+ mobilePattren:any;
+ invalidEmail:boolean = false;
+ invalidMobile:boolean = false;
+ noUsername: boolean = false;
 
 msg:any;
   constructor(
@@ -29,18 +31,35 @@ msg:any;
     this.mobilePattren="^[789]\d{9}$";
     
   }
-
-  // pattren(e){
-  //   if (this.emailPattren && !e.match(this.user.email)) {
-  //     this.error = "email"
-  //     console.log(this.error)
-      
-  //   }
-  //   if (this.mobilePattren && !e.match(this.user.email)) {
-  //     this.error = "mobile"
-  //     console.log(this.error)
-  //   }
-  // }
+  pattren(e){
+    var firstChar = this.user.email.charAt(0);
+    if(this.user.email.length === 0) {
+      this.noUsername = true;
+      this.invalidEmail = false;
+      this.invalidMobile = false;   
+    }
+    if (firstChar.match(/[a-z]+$/)) {
+      if(!this.user.email.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)){
+        this.invalidEmail = true;
+        this.noUsername = false;
+        
+      }else{
+        this.invalidEmail = false;
+        this.invalidMobile = false;
+        this.noUsername = false;
+      }
+    }else if(firstChar.match(/[0-9]+$/)){
+      if(!this.user.email.match(/^[789]\d{9}$/)){
+        this.invalidMobile = true;
+        this.noUsername = false;
+        
+      }else{
+        this.invalidMobile = false;
+        this.invalidEmail = false; 
+        this.noUsername = false;      
+      }
+    }
+  }
 
 cancel(){
   this.router.navigate(['']);

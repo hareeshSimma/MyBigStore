@@ -26,11 +26,10 @@
 
                     <div class="form-group">
                         <label for="form2">Your MobileNumber/E-mail</label>
-                        <input type="text" id="form2" class="form-control input-lg " [(ngModel)]="user.email" id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" #email="ngModel" required (ngModelChange)="pattren($event)">
-                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="error">
-                            <div [hidden]="!email.errors.required">Please Enter Registred Email Id.</div>
-                            <div [hidden]="!email.errors.pattern">Please Enter proper Email correctly.</div>
-                        </div>
+                        <input type="text" id="form2" class="form-control input-lg " [(ngModel)]="user.email" id="email" name="email" #email="ngModel" required (ngModelChange)="pattren($event)">
+                        <div *ngIf="noUsername" class="error">Please Enter Registred Email Id/Mobile number.</div>
+                        <div [hidden]="!invalidEmail" class="error">Please Enter proper Email.</div>
+                        <div [hidden]="!invalidMobile" class="error">Please Enter proper mobile number.</div>
                     </div>
 
                     <div class="form-group">
