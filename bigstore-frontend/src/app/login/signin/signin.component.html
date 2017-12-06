@@ -1,44 +1,51 @@
 <div class="container">
-   
-  <div class="col-md-10 col-md-offset-1 main" >
-  <div class="col-md-6 left-side" >
-  <h2>Welcome To.... BigStore</h2>
-  <!-- <h2>BigSore</h2> -->
-  <br>
-<div class="createaccount">
-    <button class="btn"  routerLink="/login/signup" >Create New Account</button>
-    
-</div>
-<div class="createaccount">
-    <button class="btn"   (click)="cancel()">Cancel</button>
-    
-</div>
 
-  </div><!--col-sm-6-->
-  
-  <div class="col-md-6 right-side">
-  <h3>Login</h3>
-  
-<!--Form with header-->
-<div class="form">
+    <div class="col-md-10 col-md-offset-1 main">
+        <div class="col-md-6 left-side">
+            <h2>Welcome To.... BigStore</h2>
+            <!-- <h2>BigSore</h2> -->
+            <br>
+            <div class="createaccount">
+                <button class="btn" routerLink="/login/signup">Create New Account</button>
 
+            </div>
+            <div class="createaccount">
+                <button class="btn" (click)="cancel()">Cancel</button>
 
-      <div class="form-group">
-      <label for="form2">Your MobileNumber/E-mail</label>
-          <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.email" id="email" name="emailmobile">
-          
-      </div>
+            </div>
 
-      <div class="form-group">
-      <label for="form4">Your password</label>
-          <input type="password" id="form4" class="form-control input-lg" [(ngModel)]="user.password" name="password">
-         
-      </div>
+        </div>
+        <!--col-sm-6-->
 
-      <div class="text-xs-center">
-        <a>Forgot password</a>
-          <button class="btn btn-deep-purple" (click)="authUser(user)">Login</button>
-      </div>
+        <div class="col-md-6 right-side">
+            <h3>Login</h3>
 
+            <!--Form with header-->
+            <div class="form">
+                <form #myForm="ngForm">
 
-</div>
+                    <div class="form-group">
+                        <label for="form2">Your MobileNumber/E-mail</label>
+                        <input type="text" id="form2" class="form-control input-lg " [(ngModel)]="user.email" id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" #email="ngModel" required (ngModelChange)="pattren($event)">
+                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="error">
+                            <div [hidden]="!email.errors.required">Please Enter Registred Email Id.</div>
+                            <div [hidden]="!email.errors.pattern">Please Enter proper Email correctly.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form4">Your password</label>
+                        <input type="password" id="form4" class="form-control input-lg" [(ngModel)]="user.password" minlength="6" name="password" #password="ngModel" required>
+                        <div *ngIf="password.errors && (password.dirty || password.touched)" class="error">
+                            <div [hidden]="!password.errors.required">Please Enter Valid Password.</div>
+                            <div [hidden]="!password.errors.minlength">Password shuld be min 6 Charactors.</div>
+                        </div>
+                    </div>
+
+                    <div class="text-xs-center">
+                        <a>Forgot password</a>
+                        <button class="btn btn-deep-purple" type="submit" [disabled]="!myForm.form.valid" (click)="authUser(user)">Login</button>
+                    </div>
+                </form>
+
+            </div>

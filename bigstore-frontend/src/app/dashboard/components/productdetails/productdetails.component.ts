@@ -24,7 +24,7 @@ data:any;
 
   ngOnInit() {
 
-    console.log(this.dashboardservice.getCurrentUser());
+     console.log(this.dashboardservice.getCurrentUser());
     
   }
   

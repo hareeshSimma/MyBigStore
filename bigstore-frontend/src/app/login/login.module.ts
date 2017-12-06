@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
-
+import { CustomFormsModule } from 'ng2-validation'
+import { EqualValidator } from '../shared/directives/equal-validator.directive';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
@@ -15,12 +16,14 @@ import { SigninComponent } from './signin/signin.component';
         LoginRoutingModule,
         FormsModule,
         CommonModule,
+        CustomFormsModule,
+        
     ],
     declarations : [
         LoginComponent,
         SignupComponent,
         SigninComponent,
-        
+        EqualValidator
     ],
     providers :  [
         // DashboardService

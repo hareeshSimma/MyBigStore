@@ -1,20 +1,20 @@
 <div class="container">
 
-        <div class="alert alert-success alert-dismissable fade in" *ngIf="msg && msg.Success == true">
-                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> {{msg.msg}}.
-        </div>
+    <div class="alert alert-success alert-dismissable fade in" *ngIf="msg && msg.Success == true">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{msg.msg}}.
+    </div>
 
-        <div class="alert alert-danger alert-dismissable fade in" *ngIf="msg && !msg.Success == true">
-                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Sorry!</strong> {{msg.msg}}.
-        </div>
-        <div class="alert alert-danger alert-dismissable fade in" *ngIf="errors">
-                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Sorry!</strong> Invalid Data.
-        </div>
+    <div class="alert alert-danger alert-dismissable fade in" *ngIf="msg && !msg.Success == true">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Sorry!</strong> {{msg.msg}}.
+    </div>
+    <div class="alert alert-danger alert-dismissable fade in" *ngIf="errors">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Sorry!</strong> Invalid Data.
+    </div>
 
-    
+
     <!-- <div class="alert alert-success" *ngIf="msg && msg.Success == true">
         <strong>Success!</strong> {{msg.msg}}
       </div>
@@ -24,59 +24,79 @@
       <div class="alert alert-danger" *ngIf="errors">
             <strong>Sorry!</strong> Invalid Data..
           </div> -->
-  <div class="col-md-10 col-md-offset-1 main" >
-  <div class="col-md-6 left-side" >
-  <h2>Welcome To.... BigStore</h2>
-  <!-- <h2>BigSore</h2> -->
-  <br>
-<div class="createaccount">
-  <!-- <span>Already Member</span> -->
-    <button class="btn" routerLink="/login/signin">Login</button>
-    
-</div>
-<div class="createaccount">
-    <button class="btn"   (click)="cancel()">Cancel</button>
-    
-</div>
-  </div><!--col-sm-6-->
-  
-  <div class="col-md-6 right-side">
-  <h3>Create New Account</h3>
-  
-<!--Form with header-->
-<div class="form">
+    <div class="col-md-10 col-md-offset-1 main">
+        <div class="col-md-6 left-side">
+            <h2>Welcome To.... BigStore</h2>
+            <!-- <h2>BigSore</h2> -->
+            <br>
+            <div class="createaccount">
+                <!-- <span>Already Member</span> -->
+                <button class="btn" routerLink="/login/signin">Login</button>
 
-    <div class="form-group">
-        <label for="form2">Full Name</label>
-            <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.fullname" name="fullname" #fullname="ngModel" name="fullname">
-            
-        </div>
-        <div class="form-group">
-            <label for="form2"> E-mail ID</label>
-                <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.email" name="email" #email="ngModel" name="email">
-                
             </div>
-      <div class="form-group">
-      <label for="form2">Your Mobile Number</label>
-          <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.mobile" name="mobile" #mobile="ngModel" name="mobile">
-          
-      </div>
+            <div class="createaccount">
+                <button class="btn" (click)="cancel()">Cancel</button>
 
-      <div class="form-group">
-      <label for="form4">Your password</label>
-          <input type="password" id="form4" class="form-control input-lg" [(ngModel)]="user.password" name="password" #password="ngModel" name="password">
-         
-      </div>
+            </div>
+        </div>
+        <!--col-sm-6-->
 
-      <div class="form-group">
-          <label for="form4"> Confirm Your password</label>
-              <input type="password" id="form4" class="form-control input-lg"  [(ngModel)]="user.confirmpass" name="confirmpass" id="confpassword">
-             
-          </div>
+        <div class="col-md-6 right-side">
+            <h3>Create New Account</h3>
 
-      <div class="text-xs-center">
-          <button class="btn btn-deep-purple" (click)="newUser(user)">Create</button>
-      </div>
+            <!--Form with header-->
+            <div class="form">
+                <form #myForm="ngForm">
+                    <div class="form-group">
+                        <label for="form2">Full Name</label>
+                        <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.fullname" #fullname="ngModel" name="fullname" required>
+                        <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="error">
+                            <div [hidden]="!fullname.errors.required">Please Enter Your Full Name.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form2"> E-mail ID</label>
+                        <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" #email="ngModel" required>
+                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="error">
+                            <div [hidden]="!email.errors.required">Please Enter Your Valid Email Id.</div>
+                            <div [hidden]="!email.errors.pattern">Please Enter proper Email correctly.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form2">Your Mobile Number</label>
 
+                        <input type="text" id="form2" class="form-control input-lg" [(ngModel)]="user.mobile" pattern="^[789]\d{9}$" #mobile="ngModel" name="mobile" required>
+                        <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="error">
+                            <div [hidden]="!mobile.errors.required">Please Enter Your Mobile Number.</div>
+                            <div [hidden]="!mobile.errors.pattern">Please Enter valid Mobile Number.</div>
 
-</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form4">Your password</label>
+                        <input type="password" id="form4" class="form-control input-lg" [(ngModel)]="user.pass_word" minlength="6" #password="ngModel" name="password" required>
+                        <div *ngIf="password.errors && (password.dirty || password.touched)" class="error">
+                            <div [hidden]="!password.errors.required">Please Enter Password.</div>
+                            <div [hidden]="!password.errors.minlength">Password shuld be min 6 Charactors.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form4"> Confirm Your password</label>
+                        <input type="password" id="form4" class="form-control input-lg" [(ngModel)]="user.confirmpass" validateEqual="password" minlength="6" #confirmpass="ngModel" name="confirmpass" id="confpassword">
+                        <div *ngIf="confirmpass.errors && (confirmpass.dirty || confirmpass.touched)" class="error">
+                            <div [hidden]="!confirmpass.errors.required">Please Enter Password.</div>
+                            <div [hidden]="!confirmpass.errors.minlength">Password shuld be min 6 Charactors.</div>
+                            <div [hidden]="confirmpass.valid || (confirmpass.pristine && !myForm.submitted)">
+                                Password mismatch
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-xs-center">
+                        <button class="btn btn-deep-purple" type="submit" [disabled]="!myForm.form.valid" (click)="newUser(user)">Create</button>
+                    </div>
+
+                </form>
+            </div>

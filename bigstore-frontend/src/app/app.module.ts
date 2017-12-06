@@ -11,6 +11,7 @@ import { JwtService } from './shared/services/jwt.service';
 import { ApiService } from './shared/services/api.service';
 import { DashboardService } from './shared/services/dashboard.service';
 // import { NotificationBarModule } from 'angular2-notification-bar'
+import { CustomFormsModule } from 'ng2-validation'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DashboardService } from './shared/services/dashboard.service';
     HttpModule,
     JsonpModule,
     FormsModule,
+    CustomFormsModule,
     ReactiveFormsModule,
     // NotificationBarModule
   ],
