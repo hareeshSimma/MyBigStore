@@ -51,7 +51,9 @@ productdata:any;
   public imageSources: string[] = [
     './assets/images/img1.jpg',
     './assets/images/img2.jpg',
-    './assets/images/img3.jpg'
+    './assets/images/img3.jpg',
+    './assets/images/img5.jpg',
+    
  ];
  
  public config: ICarouselConfig = {

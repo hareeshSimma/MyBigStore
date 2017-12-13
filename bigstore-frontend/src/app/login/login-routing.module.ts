@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
   { path: '',
@@ -13,7 +14,7 @@ const routes: Routes = [
       { path:'', component:SigninComponent },
       { path:'signin', component:SigninComponent },
       { path:'signup', component:SignupComponent },
-      // { path:'forgotpassword', component:ForgotpasswordComponent },
+      { path:'forgotpassword', component:ForgotpasswordComponent },
       // otherwise redirect to home
       //{ path: '**', redirectTo: '' }
     ]

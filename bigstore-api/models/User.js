@@ -8,9 +8,7 @@ var secret = require('../config').secret;
 var UserSchema = new mongoose.Schema({
     full_name: { type: String, required: true },
     email: { type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
-    role: {
-        type: String,
-    },
+    role: { type: String,required:false },
     hash: String,
     mobileno: { type: String, required: true, match: [/^[789]\d{9}$/, 'is Invalid'], index: true },
     salt: String,
@@ -49,8 +47,10 @@ UserSchema.methods.generateJWT = function() {
 UserSchema.methods.toAuthJSON = function() {
     return {
         id: this._id,
+        full_name:this.full_name,
         email: this.email,
         mobileno: this.mobileno,
+        role:this.role
     };
 };
 

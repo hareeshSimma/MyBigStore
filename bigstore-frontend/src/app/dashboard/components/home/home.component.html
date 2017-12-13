@@ -8,7 +8,7 @@ Best Offers In All Rice Bags
 
   <div class="col-xs-12 col-sm-3 " *ngFor ="let img of images; let i=index;">
     <div class="myimg" (click)="show(img)">
-    <img [src]= "img.href" class="rounded" alt="Quality Rice" width="250" height="236">
+    <img [src]= "img.href" class="rounded " alt="Quality Rice" width="250" height="236">
     <h5>{{img.name }} ({{img.weight}} Kg)</h5>
     <h4><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{img.cost}}</h4>
     </div>

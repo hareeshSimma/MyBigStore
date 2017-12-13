@@ -2,17 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CarouselModule } from 'angular4-carousel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpModule, JsonpModule } from '@angular/http';
-
 import { JwtService } from './shared/services/jwt.service';
 import { ApiService } from './shared/services/api.service';
 import { DashboardService } from './shared/services/dashboard.service';
-// import { NotificationBarModule } from 'angular2-notification-bar'
-import { CustomFormsModule } from 'ng2-validation'
-
+import { AuthGuard } from './shared/services/authgaurd.service';
+import { CustomFormsModule } from 'ng2-validation';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +18,6 @@ import { CustomFormsModule } from 'ng2-validation'
   
   imports: [
     BrowserModule,
-    // BrowserAnimationsModule,
     AppRoutingModule,
     CarouselModule,
     HttpModule,
@@ -29,12 +25,12 @@ import { CustomFormsModule } from 'ng2-validation'
     FormsModule,
     CustomFormsModule,
     ReactiveFormsModule,
-    // NotificationBarModule
   ],
   providers: [
     JwtService,
     ApiService,
-    DashboardService
+    DashboardService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

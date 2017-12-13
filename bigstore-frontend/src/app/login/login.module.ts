@@ -9,6 +9,7 @@ import { EqualValidator } from '../shared/directives/equal-validator.directive';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 // import { DashboardService } from '../shared/services/dashboard.service';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SigninComponent } from './signin/signin.component';
         LoginComponent,
         SignupComponent,
         SigninComponent,
-        EqualValidator
+        EqualValidator,
+        ForgotpasswordComponent
     ],
     providers :  [
         // DashboardService

@@ -9,6 +9,8 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
     imports : [
@@ -21,7 +23,9 @@ import { ProductdetailsComponent } from './components/productdetails/productdeta
         DashboardComponent,
         HomeComponent,
         HeaderComponent,
-        ProductdetailsComponent
+        FooterComponent,
+        ProductdetailsComponent,
+        CartComponent
             ],
     providers :  [
         

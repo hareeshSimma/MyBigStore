@@ -6,8 +6,29 @@ var crypto = require('crypto');
 var auth = require('./auth');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/getuser',auth.required, function(req, res, next) {
+
+  User.findById(req.payload.id, function(err, user) {
+    if (err) {
+      return res(500).json({ 
+        "Success": false, 
+        "msg": "Fail" 
+      });
+    }
+    if (!user) {
+      return res(401).json({ 
+        "Success": false, 
+        "msg": "login Fail, please login again" 
+      });
+    } else {
+        var token = user.generateJWT();
+        var user = user.toAuthJSON();
+        res.status(200).json({
+            token: token,
+            user: user
+        });
+    }
+})
 });
 
 router.post('/usercreation',function(req,res,next){

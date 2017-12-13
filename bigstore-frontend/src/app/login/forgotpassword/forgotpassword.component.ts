@@ -1,34 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from '../../shared/models/user.model';
+import { Router } from '@angular/router';
 import { DashboardService } from '../../shared/services/dashboard.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  selector: 'app-forgotpassword',
+  templateUrl: './forgotpassword.component.html',
+  styleUrls: ['./forgotpassword.component.css']
 })
-export class SigninComponent implements OnInit {
-
- user:User;
- emailPattren:any;
- mobilePattren:any;
- invalidEmail:boolean = false;
- invalidMobile:boolean = false;
- noUsername: boolean = false;
-
-msg:any;
+export class ForgotpasswordComponent implements OnInit {
+  invalidEmail:boolean = false;
+  invalidMobile:boolean = false;
+  noUsername: boolean = false;
+  user:User;
+  count=0;
+  verifyotp:Otp;
+  newpswd:Newpassword;
   constructor(
     private router:Router,
     private dashboardService:DashboardService,
-    
   ) { 
     this.user ={
-      email:"",
+      email:""
+    }
+
+    this.verifyotp={
+      otp:""
+    }
+    this.newpswd={
       password:""
     }
-    this.emailPattren="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
-    this.mobilePattren="^[789]\d{9}$";
+  }
+
+  cancel(){
+    this.router.navigate(['']);
     
   }
   pattren(e){
@@ -60,28 +65,25 @@ msg:any;
       }
     }
   }
+  forgotpassword(user){
+    this.count++;
+    console.log(user)
+  }
+  verifyOtp(verifyotp){
+    this.count++;
+    console.log(verifyotp)
 
-cancel(){
-  this.router.navigate(['']);
-  
-}
+  }
+  newPswd(newpswd){
+console.log(newpswd)
+  }
   ngOnInit() {
-    
-  }
-  
-
-  authUser(user){
-    
-     this.dashboardService.authentUser(user).subscribe(res=>{
-       this.msg=res;
-
-      //  console.log(this.msg);
-
-       this.router.navigate(['']);
-  
-    
-     })
   }
 
-
+}
+class Otp{
+  otp:string;
+}
+class Newpassword{
+  password:string;
 }

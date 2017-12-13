@@ -30,7 +30,7 @@ export class DashboardService {
   populate() {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      this.apiService.get('user/auth')
+      this.apiService.get('/users/getuser')
         .subscribe(
         data => {
           this.setAuth(data)
