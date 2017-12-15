@@ -15,6 +15,7 @@ var UserSchema = new mongoose.Schema({
     // verifytoken: String,
     // twf: { type: Boolean, default: true },
     status: { type: Boolean, required: false },
+    items:{type:Array,required:false}
 }, { timestamps: true });
 
 

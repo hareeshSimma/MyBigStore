@@ -28,6 +28,8 @@ require('./models/User');
 //configure routes here
 var index = require('./routes/index');
 var users = require('./routes/users');
+var cart = require('./routes/cart');
+
 
 var app = express();
 
@@ -47,6 +49,8 @@ app.use(cors());
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/cart', cart);
+
 
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

@@ -67,9 +67,9 @@ export class DashboardService {
 
 // send path to main module
 private subject = new Subject<any>();
-
+caseNumber$ = this.subject.asObservable();
   sendPath(path: any) {
-    this.subject= path;
+    this.subject.next(path);
     //console.log(path)
   }
 
@@ -101,6 +101,24 @@ private subject = new Subject<any>();
                 );
 
   }
+  addCartitems(items){
+    var route='/cart/additems';
+  return this.apiService.post(route,items)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+  }
+  getItems(id):Observable<User>{
+    const route ='/cart/cartitems/'+id
+    return this.apiService.get(route)
+                .map(data =>{
+                  return data.result
+                })
+  }
+
+
 }
 
 
