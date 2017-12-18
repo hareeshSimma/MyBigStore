@@ -43,10 +43,14 @@ export class CartComponent implements OnInit {
       res => {
         this.items = res.items;
         this.length=this.items.length;
-        console.log(this.items)
+        console.log("hello",this.items)
 
       })
     }
+  }
+  deleteCart(item,i){
+   console.log(item+"............."+i)
+
   }
 
 
