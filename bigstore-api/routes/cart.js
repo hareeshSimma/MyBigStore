@@ -23,7 +23,9 @@ router.post('/additems', function(req, res, next) {
               }); 
         }
         else{
+            let orderId= "OD"+ Math.floor((Math.random() * 10000000000) + 1);
             var item = {
+            orderId:orderId,
             name:req.body.name,
             qty:req.body.qty,
             href:req.body.href,
