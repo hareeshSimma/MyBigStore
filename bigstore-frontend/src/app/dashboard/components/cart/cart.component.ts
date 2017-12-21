@@ -86,7 +86,7 @@ getTotal() {
                   setTimeout(()=>{this.dashboardservice.getItems(id).subscribe(resp=>{
                     console.log(resp.items);
                     this.items=resp.items;
-                    
+                    this.length=this.items.length;
                      this.dashboardservice.sendPath(this.items.length);
                      
                   })},1000);
