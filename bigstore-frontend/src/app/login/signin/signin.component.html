@@ -25,9 +25,9 @@
                 <form #myForm="ngForm">
 
                     <div class="form-group">
-                        <label for="form2">Your MobileNumber/E-mail</label>
+                        <label for="form2">Your E-mail/MobileNumber</label>
                         <input type="text" id="form2" class="form-control input-lg " [(ngModel)]="user.email" id="email" name="email" #email="ngModel" required (ngModelChange)="pattren($event)">
-                        <div *ngIf="noUsername" class="error">Please Enter Registred Email Id/Mobile number.</div>
+                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="error">Please Enter Registred Email Id/Mobile number.</div>
                         <div [hidden]="!invalidEmail" class="error">Please Enter proper Email.</div>
                         <div [hidden]="!invalidMobile" class="error">Please Enter proper mobile number.</div>
                     </div>
