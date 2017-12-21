@@ -38,17 +38,17 @@ itemslength:string;
     
     let id = currentUser.id;
     if(id){
-      // this.dashboardService.getItems(id)
-      // .subscribe(
-      // res => {
-      //   this.items = res.items;
-      //   this.itemslength=this.items.length;
-      //   // console.log(this.itemslength)
+      this.dashboardService.getItems(id)
+      .subscribe(
+      res => {
+        this.items = res.items;
+        this.itemslength=this.items.length;
+        // console.log(this.itemslength)
 
-      // })
-      // this.dashboardService.getPath().subscribe(res=>{
-      //   console.log(res);
-      // });
+      })
+      this.dashboardService.getPath().subscribe(res=>{
+        console.log(res);
+      });
       // this.itemslength=this.items.length;
 
 
