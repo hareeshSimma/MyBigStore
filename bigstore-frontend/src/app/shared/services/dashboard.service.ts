@@ -68,12 +68,13 @@ export class DashboardService {
 // send path to main module
 private subject = new Subject<any>();
 caseNumber$ = this.subject.asObservable();
+// item$=this.subject.asObservable();
   sendPath(path: any) {
     this.subject.next(path);
-    //console.log(path)
+    // console.log("dashboard",path)
   }
 
-  getPath() {
+  getPath() :Observable<any> {
     return this.subject;
   }
   newUser(user){
@@ -117,6 +118,14 @@ caseNumber$ = this.subject.asObservable();
                   return data.result
                 })
   }
+ deleteItem(id){
+    const route = '/cart/items/'+id
+    return this.apiService.delete(route)
+                .map(data =>{
+                  return data
+                  
+                })
+  }
 
   forgotPassword(data){
     var route='/users/forgotpassword';
@@ -147,5 +156,4 @@ caseNumber$ = this.subject.asObservable();
  }
 
 }
-
 

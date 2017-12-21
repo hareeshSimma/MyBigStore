@@ -46,26 +46,35 @@ itemslength:string;
       //   // console.log(this.itemslength)
 
       // })
+      // this.dashboardService.getPath().subscribe(res=>{
+      //   console.log(res);
+      // });
+      // this.itemslength=this.items.length;
 
 
-      this.zone.runOutsideAngular(() => {
+      // this.zone.runOutsideAngular(() => {
 
-    this.dashboardService.getItems(id)
-        .subscribe(
-        res => this.zone.run(() => {
+    // this.dashboardService.getItems(id)
+    //     .subscribe(
+    //     res => {
+    //     // this.zone.run(() => {
          
-          this.items = res.items;
+    //       this.items = res.items;
           
-          this.itemslength=this.items.length;
-          console.log(this.itemslength)
+    //       this.itemslength=this.items.length;
+    //       console.log("this is length",this.itemslength)
           
-        }))
+    //     // })
+    //     }
+    //     )
 
-      })
-    }
-   
+      // })
+        
+    
+    
     
   }
+   }
  
   logout(){
     

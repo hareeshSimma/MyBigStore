@@ -73,4 +73,30 @@ export class ApiService {
       return Observable.throw(error.json());
     });
   }
+
+  //  deleteitem(path,data): Observable<any> {
+  //   return this.http.delete(
+  //     `${environment.api_url}${path}`,
+      
+  //     { headers: this.setHeaders() }
+  //   )
+  //   .map((res: Response) => res.json())
+  //   .catch((error: Response) => {
+  //     return Observable.throw(error.json());
+  //   });
+  // }
+
+  deleteitem(path: string, body: Object = {}): Observable<any> {
+    return this.http.delete(
+      `${environment.api_url}${path}`,
+      
+      { headers: this.setHeaders() }
+    )
+    .map((res: Response) => res.json())
+    .catch((error: Response) => {
+      return Observable.throw(error.json());
+    });
+    //.catch(this.formatErrors)
+  }
+
 }

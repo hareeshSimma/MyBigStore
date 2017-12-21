@@ -8,9 +8,30 @@ var auth = require('./auth');
 router.get('/cartitems/:id', function(req, res, next) {
     console.log(req.params.id);
     User.findOne({_id: req.params.id }).then(function(result) {
+        console.log("hai",result);
         if (!result) { return res.sendStatus(401); }
         return res.json({ result });
     }).catch(next);
+});
+router.delete('/items/:id',auth.required, function (req, res, next) {
+//  var selectedIndex;
+console.log(req.params,req.payload.id);
+  User.find({_id:req.payload.id},function(err,user){
+       if (!user) { return res.sendStatus(401); }
+              if(user[0].items.length>0){
+               for(i=0;i<user[0].items.length;i++){
+                  if(user[0].items[i].orderId==req.params.id){
+                    user[0].items.splice(i,1);
+                    break;
+
+            }
+         }
+         user[0].save();
+          return res.json({ "success": true, "msg": "Item deleted successfully" });
+      }
+   
+   
+  })
 });
 
 router.post('/additems', function(req, res, next) {
