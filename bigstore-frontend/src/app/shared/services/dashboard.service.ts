@@ -118,6 +118,33 @@ caseNumber$ = this.subject.asObservable();
                 })
   }
 
+  forgotPassword(data){
+    var route='/users/forgotpassword';
+  return this.apiService.post(route,data)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+  }
+  verifyOtp(otp){
+    var route='/users/verifyotp';
+  return this.apiService.post(route,otp)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+  }
+  resetpassword(newpswd) {
+  
+  return this.apiService.put('/users/setpassword',newpswd)
+     .map(
+     data => {
+       return data;
+     }
+     );
+ }
 
 }
 

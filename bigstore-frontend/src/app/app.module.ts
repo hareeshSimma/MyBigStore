@@ -13,7 +13,6 @@ import { CustomFormsModule } from 'ng2-validation';
 @NgModule({
   declarations: [
     AppComponent,
-  
   ],
   
   imports: [

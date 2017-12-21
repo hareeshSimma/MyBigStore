@@ -16,6 +16,8 @@ export class ForgotpasswordComponent implements OnInit {
   count=0;
   verifyotp:Otp;
   newpswd:Newpassword;
+  errors:string;
+  msg:string;
   constructor(
     private router:Router,
     private dashboardService:DashboardService,
@@ -33,7 +35,7 @@ export class ForgotpasswordComponent implements OnInit {
   }
 
   cancel(){
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
     
   }
   pattren(e){
@@ -66,16 +68,51 @@ export class ForgotpasswordComponent implements OnInit {
     }
   }
   forgotpassword(user){
-    this.count++;
-    console.log(user)
+    this.dashboardService.forgotPassword(user).subscribe(res=>{
+      console.log(res);
+      if(res.Success==true){
+        this.msg=res.msg;
+        console.log(this.msg)
+      this.count++;
+      }
+     
+    },
+    err => {
+      this.errors = err.msg;
+    })
   }
   verifyOtp(verifyotp){
-    this.count++;
+    verifyotp["email"]=this.user.email;
+    this.dashboardService.verifyOtp(verifyotp).subscribe(res=>{
+      console.log(res)
+      if(res.Success==true){
+        this.msg=res.msg;
+        // console.log(this.msg)
+      this.count++;
+      }
+    },
+    err => {
+      this.errors = err.msg;
+    })
     console.log(verifyotp)
 
   }
   newPswd(newpswd){
+  newpswd["email"]=this.user.email;
 console.log(newpswd)
+this.dashboardService.resetpassword(newpswd).subscribe(res=>{
+  console.log(res);
+  if(res.Success==true){
+    this.msg=res.msg;
+    setTimeout(() => {
+    this.router.navigate(['/login']);
+      
+    }, 3000);
+  }
+},
+err => {
+  this.errors = err.msg;
+})
   }
   ngOnInit() {
   }

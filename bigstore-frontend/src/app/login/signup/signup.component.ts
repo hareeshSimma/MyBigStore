@@ -44,7 +44,7 @@ errors:any;
     
      },
      err => {
-      this.errors = err;
+      this.errors = err.msg;
       console.log(this.errors)
     }
     )

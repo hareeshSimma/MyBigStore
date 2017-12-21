@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../shared/models/user.model';
 import { DashboardService } from '../../shared/services/dashboard.service';
+import { JwtService } from '../../shared/services/jwt.service';
 
 @Component({
   selector: 'app-signin',
@@ -10,6 +11,7 @@ import { DashboardService } from '../../shared/services/dashboard.service';
 })
 export class SigninComponent implements OnInit {
 
+ token:String;  
  user:User;
  emailPattren:any;
  mobilePattren:any;
@@ -21,8 +23,11 @@ msg:any;
   constructor(
     private router:Router,
     private dashboardService:DashboardService,
-    
+        private jwtservice:JwtService,
+
   ) { 
+    this.token= this.jwtservice.getToken();    
+    
     this.user ={
       email:"",
       password:""

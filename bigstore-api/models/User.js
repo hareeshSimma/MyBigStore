@@ -15,7 +15,8 @@ var UserSchema = new mongoose.Schema({
     // verifytoken: String,
     // twf: { type: Boolean, default: true },
     status: { type: Boolean, required: false },
-    items:{type:Array,required:false}
+    items:{type:Array,required:false},
+    otp:{type:String,required:false,expireAfterSeconds: 120 }
 }, { timestamps: true });
 
 

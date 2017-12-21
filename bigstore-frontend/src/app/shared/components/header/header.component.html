@@ -6,7 +6,7 @@
                 <li class="upper-links" *ngIf="!token"><a class="links" routerLink="/login/signup">SignUp</a></li>
                 <li class="upper-links" *ngIf="!token"><a class="links" routerLink="/login">SignIn</a></li>
 
-                <li class="upper-links dropdown" *ngIf="token"><a class="links profile-li">Welcome to Bigstore</a>
+                <li class="upper-links dropdown" *ngIf="token"><a class="links profile-li">Welcome back :&nbsp;{{currentUser.full_name}}</a>
                     <ul class="dropdown-menu">
                         <li class="profile-li"><a class="profile-links">Account</a></li>
                         <li class="profile-li"><a class="profile-links">Orders</a></li>
