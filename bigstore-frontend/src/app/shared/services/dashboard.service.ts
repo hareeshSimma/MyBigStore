@@ -145,6 +145,15 @@ caseNumber$ = this.subject.asObservable();
                   }
                 );
   }
+  resendOtp(data){
+    var route='/users/resendotp';
+    return this.apiService.post(route,data)
+                  .map(
+                    data => {
+                      return data;
+                    }
+                  );
+  }
   resetpassword(newpswd) {
   
   return this.apiService.put('/users/setpassword',newpswd)
@@ -154,6 +163,16 @@ caseNumber$ = this.subject.asObservable();
      }
      );
  }
+ buyNow(data){
+  var route='/users/buynow';
+  return this.apiService.post(route,data)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+}
+
 
 }
 

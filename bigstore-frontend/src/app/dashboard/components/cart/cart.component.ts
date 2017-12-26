@@ -71,7 +71,7 @@ getTotal() {
            this.totalamount = total;
         }
     }
-    console.log(total)
+    // console.log(total)
     return total;
 }
   deleteCart(item){
@@ -81,7 +81,7 @@ getTotal() {
           .subscribe(
               res => {
                 
-                if(res.success){
+                if(res.Success){
                   console.log("updated view",res);
                   setTimeout(()=>{this.dashboardservice.getItems(id).subscribe(resp=>{
                     console.log(resp.items);

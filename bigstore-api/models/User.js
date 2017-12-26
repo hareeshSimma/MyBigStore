@@ -16,7 +16,9 @@ var UserSchema = new mongoose.Schema({
     // twf: { type: Boolean, default: true },
     status: { type: Boolean, required: false },
     items:{type:Array,required:false},
-    otp:{type:String,required:false,expireAfterSeconds: 120 }
+    otp:{type:String,required:false,expireAfterSeconds: 120 },
+    orders:{type:Array,required:false},
+    address:{type:Array,required:false}
 }, { timestamps: true });
 
 

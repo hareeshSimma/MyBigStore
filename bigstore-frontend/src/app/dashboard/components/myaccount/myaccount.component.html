@@ -1,0 +1,67 @@
+<div class="row row1">
+  <!-- <div class="col-xs-12 col-sm-2"> -->
+     <!-- I was motivated to create this after seeing BhaumikPatel's http://bootsnipp.com/snippets/featured/accordion-menu; I adapted it to a list format rather than a table so that it would be easy to create a nav toggle button when viewed on mobile devices -->
+  <div class=" col-xs-12 col-md-3">
+      <div id="sidenav1">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sideNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        </div>
+        <div class="collapse navbar-collapse" id="sideNavbar">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a routerLink="/myaccount" ><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Orders</a> </h4>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span><i class="fa fa-cogs" aria-hidden="true"></i></span>&nbsp;Account Settings<span class="caret"></span></a> </h4>
+              </div>
+              <!-- Note: By adding "in" after "collapse", it starts with that particular panel open by default; remove if you want them all collapsed by default --> 
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <ul class="list-group">
+                  <li><a routerLink="/myaccount/accountettings/personalinformation"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Personal Information</a></li>
+                  <li><a routerLink="/myaccount/accountettings/manageaddress" routerLinkActive="active"  >Manage Address</a></li>
+                  <!-- <li><a href="" class="navlink">Link 3</a></li>
+                  <li><a href="" class="navlink">Link 4</a></li> -->
+                </ul>
+              </div>
+            </div>
+            <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngIf="role">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a routerLink="/myaccount/uplodeproducts" ><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Uplode Product Detials</a> </h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title"><a (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;Logout</a> </h4>
+                  </div>
+                </div>
+
+
+           
+            <!-- This is in case you want to add additional links that will only show once the Nav button is engaged; delete if you don't need -->
+            <div class="menu-hide">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href=""><span class="glyphicon glyphicon-new-window"></span>External Link</a> </h4>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a href=""><span class="glyphicon glyphicon-new-window"></span>External Link</a> </h4>
+                </div>
+              </div>
+            </div>
+            <!-- end hidden Menu items --> 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- </div> -->
+    <div class="col-xs-12 col-md-9">
+        <router-outlet></router-outlet>
+      </div>
+      
+</div>

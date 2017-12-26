@@ -27,7 +27,7 @@ console.log(req.params,req.payload.id);
             }
          }
          user[0].save();
-          return res.json({ "success": true, "msg": "Item deleted successfully" });
+          return res.json({ "Success": true, "msg": "Item deleted successfully" });
       }
    
    
@@ -64,7 +64,7 @@ router.post('/additems', function(req, res, next) {
                   }); 
             })
 
-        console.log(data);
+        // console.log(data);
         }
     })
 

@@ -8,8 +8,8 @@
 
                 <li class="upper-links dropdown" *ngIf="token"><a class="links profile-li">Welcome back :&nbsp;{{currentUser.full_name}}</a>
                     <ul class="dropdown-menu">
-                        <li class="profile-li"><a class="profile-links">Account</a></li>
-                        <li class="profile-li"><a class="profile-links">Orders</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="/myaccount">Account</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="/orders">Orders</a></li>
                         <li class="profile-li"><a class="profile-links" (click)="logout()">Logout</a></li>
                         <!-- <li class="profile-li"><a class="profile-links" href="">Link</a></li>
                       <li class="profile-li"><a class="profile-links" href="">Link</a></li>
@@ -53,8 +53,8 @@
         <span class="sidenav-heading">Home</span>
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
     </div>
-    <a href="">Link</a>
-    <a href="">Link</a>
-    <a href="">Link</a>
+    <a routerLink="/myaccount">account</a>
+    <a routerLink="/orders">orders</a>
+    <a (click)="logout()">logout</a>
     <a href="">Link</a>
 </div>

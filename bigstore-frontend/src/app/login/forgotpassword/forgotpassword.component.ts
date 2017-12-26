@@ -18,6 +18,8 @@ export class ForgotpasswordComponent implements OnInit {
   newpswd:Newpassword;
   errors:string;
   msg:string;
+  otpcount=0;
+  resendotp:boolean=true;
   constructor(
     private router:Router,
     private dashboardService:DashboardService,
@@ -94,9 +96,26 @@ export class ForgotpasswordComponent implements OnInit {
     err => {
       this.errors = err.msg;
     })
-    console.log(verifyotp)
 
   }
+  resendOTP(user){
+if(this.otpcount <=2 ){
+  this.otpcount++;
+this.dashboardService.resendOtp(user).subscribe(res=>{
+  
+console.log(res);
+
+},
+err => {
+  this.errors = err.msg;
+})
+  }
+  else{
+this.resendotp= false;
+  }
+}
+
+
   newPswd(newpswd){
   newpswd["email"]=this.user.email;
 console.log(newpswd)

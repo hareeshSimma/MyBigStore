@@ -18,7 +18,8 @@ export class SigninComponent implements OnInit {
  invalidEmail:boolean = false;
  invalidMobile:boolean = false;
  noUsername: boolean = false;
-
+ errors:string;
+ 
 msg:any;
   constructor(
     private router:Router,
@@ -85,7 +86,11 @@ cancel(){
        this.router.navigate(['']);
   
     
-     })
+     },
+     err => {
+      this.errors = err.msg;
+    }
+    )
   }
 
 

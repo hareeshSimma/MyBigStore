@@ -88,8 +88,11 @@ if(!this.token){
   
     
   }
-  buyNow(){
+  buyNow(data){
+    console.log(data)
+this.dashboardservice.buyNow(data).subscribe(res=>{
 
+})
   }
   ngOnInit() {
     

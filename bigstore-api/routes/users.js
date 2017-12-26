@@ -148,14 +148,14 @@ router.post('/forgotpassword',function(req,res,next){
    data.otp=otp;
    let mailOptins = {
     "subject": "Forgot Password - OTP",
-    "html": '<b>Dear ' + req.body.fullname + '</b><p>Your One Time Password  is:'+ otp+'</p>'
+    "html": '<b>Dear ' + data.full_name + '</b><p>Your One Time Password  is:'+ otp+'</p>'
   
 }
 mail.Transport(mailOptins, req);
    data.save(function(err,data){
      if(err)
      throw err;
-     res.json({ 
+    return  res.status(200).json({ 
       "Success": true, 
       "msg": " OTP Send To Your Registred Email ID  Successfully." 
     }); 
@@ -199,6 +199,46 @@ else{
 });
 }
 
+  })    
+
+});
+
+router.post('/resendotp',function(req,res,next){
+  
+  console.log(req.body);
+  User.findOne({$or:[{email:req.body.email},{mobileno:req.body.email}]},function(err,data){
+    console.log(data)
+    if (err) {
+      
+     return  res.status(500).json({ 
+         "Success": false, 
+         "msg": "Invalid emailId/Mobile Number" 
+       });
+       
+   }
+   if (!data) {
+ 
+    return  res.status(401).json({
+        "Success": false, 
+        "msg": "Invalid Email Id/Mobile Number" 
+   });
+     
+ }
+
+ if(data){
+  let otp=data.otp;
+   let mailOptins = {
+    "subject": "Forgot Password - OTP",
+    "html": '<b>Dear ' + data.full_name + '</b><p>Your One Time Password  is:'+ otp+'</p>'
+  
+}
+mail.Transport(mailOptins, req);
+return  res.status(200).json({ 
+  "Success": true, 
+  "msg": " OTP Send To Your Registred Email ID  Successfully." 
+}); 
+   
+ }
   })    
 
 });
