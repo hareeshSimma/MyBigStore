@@ -10,9 +10,12 @@ import { ApiService } from './shared/services/api.service';
 import { DashboardService } from './shared/services/dashboard.service';
 import { AuthGuard } from './shared/services/authgaurd.service';
 import { CustomFormsModule } from 'ng2-validation';
+// import {AccordionModule} from 'primeng/primeng';  
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   
   imports: [
@@ -24,6 +27,8 @@ import { CustomFormsModule } from 'ng2-validation';
     FormsModule,
     CustomFormsModule,
     ReactiveFormsModule,
+    // AccordionModule,
+    // BrowserAnimationsModule,
   ],
   providers: [
     JwtService,

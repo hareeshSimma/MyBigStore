@@ -21,6 +21,7 @@ qty:string;
 items:any;
 errors:String;
 length:string;
+_dotLoder:boolean;
   constructor(
     private dashboardservice:DashboardService,
     private zone:NgZone,
@@ -59,12 +60,14 @@ if(!this.token){
   this.router.navigate(['/login']);
   
 }else{
+  this._dotLoder=true;
   this.dashboardservice.addCartitems(data).subscribe(items=>{
     console.log(items)
     if(items.Success == true){
       this.dashboardservice.getItems(id)
       .subscribe(
       res => {
+        this._dotLoder=false;
         this.items = res.items;
         this.length=this.items.length;
         console.log(this.items)
@@ -88,10 +91,12 @@ if(!this.token){
   
     
   }
-  buyNow(data){
+  buyNow(data,qty){
+    data["qty"]=qty;
+    data["id"]=this.currentUser.id;
     console.log(data)
 this.dashboardservice.buyNow(data).subscribe(res=>{
-
+console.log(res);
 })
   }
   ngOnInit() {

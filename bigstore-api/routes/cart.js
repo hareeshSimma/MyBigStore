@@ -48,7 +48,7 @@ router.post('/additems', function(req, res, next) {
             var item = {
             orderId:orderId,
             name:req.body.name,
-            qty:req.body.qty,
+            qty:req.body.qty, 
             href:req.body.href,
             weight:req.body.weight,
             cost:req.body.cost
@@ -69,4 +69,40 @@ router.post('/additems', function(req, res, next) {
     })
 
  });
+ router.post('/buynow', function(req, res, next) {
+    console.log(req.body)
+    User.findOne({_id:req.body.id},function(err,data){
+        if(!data){
+            res.json({ 
+                "Success": false, 
+                "msg": " No User found." 
+              }); 
+        }
+        else{
+            let orderId= "OD"+ Math.floor((Math.random() * 10000000000) + 1);
+            var order = {
+            orderId:orderId,
+            name:req.body.name,
+            qty:req.body.qty, 
+            href:req.body.href,
+            weight:req.body.weight,
+            cost:req.body.cost
+        }
+        data.orders.push(order);
+        //data.save();
+        data.save(function(err,data){
+                if(err)
+                throw err;
+                res.json({ 
+                    "Success": true, 
+                    "msg": " Item  Ordered Successfully ." 
+                  }); 
+            })
+
+        // console.log(data);
+        }
+    })
+
+ });
+
 module.exports = router;

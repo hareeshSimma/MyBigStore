@@ -164,7 +164,7 @@ caseNumber$ = this.subject.asObservable();
      );
  }
  buyNow(data){
-  var route='/users/buynow';
+  var route='/cart/buynow';
   return this.apiService.post(route,data)
                 .map(
                   data => {

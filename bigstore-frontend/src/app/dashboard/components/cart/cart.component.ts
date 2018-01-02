@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
   length:string;
   token:String;
   totalamount:number;
+  _isLoder:boolean=true;
+  _dotLoder:boolean;
   constructor(
     private dashboardservice:DashboardService,
     private router:Router,
@@ -42,6 +44,7 @@ export class CartComponent implements OnInit {
     this.dashboardservice.getItems(id)
       .subscribe(
       res => {
+        this._isLoder=false;
         this.items = res.items;
         this.length=this.items.length;
       //  this.dashboardservice.sendPath(this.length);
@@ -75,6 +78,8 @@ getTotal() {
     return total;
 }
   deleteCart(item){
+   this._dotLoder=true;
+  
     console.log(item);
       let id = this.currentUser.id;
     this.dashboardservice.deleteItem(item)
@@ -82,13 +87,15 @@ getTotal() {
               res => {
                 
                 if(res.Success){
-                  console.log("updated view",res);
+                  
+                  // console.log("updated view",res);
                   setTimeout(()=>{this.dashboardservice.getItems(id).subscribe(resp=>{
-                    console.log(resp.items);
+                    // console.log(resp.items);
                     this.items=resp.items;
                     this.length=this.items.length;
                      this.dashboardservice.sendPath(this.items.length);
-                     
+                   this._dotLoder=false;
+                   
                   })},1000);
                  
                 }
