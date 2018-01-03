@@ -103,6 +103,17 @@ getTotal() {
                 this.router.navigate(['/cart'])
           })
   }
+
+  checkout(i,j){
+  var k=JSON.stringify(i)
+  
+console.log(k +"-----"+j)
+  }
+
+
+
+
+
   // removeByAttr(arr, attr, value){
   //   var i = arr.length;
   //   while(i--){
