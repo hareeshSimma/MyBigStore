@@ -18,7 +18,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
         FormsModule,
         CommonModule,
         CustomFormsModule,
-        
+    
     ],
     declarations : [
         LoginComponent,

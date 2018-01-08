@@ -8,7 +8,7 @@ var auth = require('./auth');
 router.get('/cartitems/:id', function(req, res, next) {
     console.log(req.params.id);
     User.findOne({_id: req.params.id }).then(function(result) {
-        console.log("hai",result);
+        // console.log("hai",result);
         if (!result) { return res.sendStatus(401); }
         return res.json({ result });
     }).catch(next);
@@ -86,7 +86,8 @@ router.post('/additems', function(req, res, next) {
             qty:req.body.qty, 
             href:req.body.href,
             weight:req.body.weight,
-            cost:req.body.cost
+            cost:req.body.cost,
+            date:Date()
         }
         data.orders.push(order);
         //data.save();
@@ -104,5 +105,31 @@ router.post('/additems', function(req, res, next) {
     })
 
  });
+
+//  get Orders
+router.get('/getorders',auth.required, function(req, res, next) {
+
+    User.findById(req.payload.id, function(err, orders) {
+      if (err) {
+        return res.status(500).json({ 
+          "Success": false, 
+          "msg": "Fail to connection" 
+        });
+      }
+      if (!orders) {
+        return res.status(401).json({ 
+          "Success": false, 
+          "msg": "Not get any data! plz Login " 
+        });
+      } else {
+          var orders = orders.orders;
+          
+          res.status(200).json({
+            orders: orders
+          });
+      }
+  })
+  });
+  
 
 module.exports = router;

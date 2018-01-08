@@ -95,8 +95,8 @@ if(!this.token){
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
     console.log(data)
-this.dashboardservice.buyNow(data).subscribe(res=>{
-console.log(res);
+   this.dashboardservice.buyNow(data).subscribe(res=>{
+   console.log(res);
 })
   }
   ngOnInit() {

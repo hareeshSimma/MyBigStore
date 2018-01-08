@@ -1,9 +1,5 @@
 
-.mgtop{
-    margin-top: 19px;
-}
 ._isOrders{
-    /* box-shadow: 1px 0px 3px 2px #d6cbcb; */
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: 50px;
@@ -11,47 +7,32 @@
     color: grey;
     margin-bottom: 50px;
 }
-.panel-order .row {
-	border-bottom: 1px solid #ccc;
-}
-.panel-order .row:last-child {
-	border: 0px;
-}
-.panel-order .row .col-md-1  {
-	text-align: center;
-	padding-top: 15px;
-}
-.panel-order .row .col-md-1 img {
-	width: 50px;
-	max-height: 50px;
-}
-.panel-order .row .row {
-	border-bottom: 0;
-}
-.panel-order .row .col-md-11 {
-	border-left: 1px solid #ccc;
-}
-.panel-order .row .row .col-md-12 {
-	padding-top: 7px;
-	padding-bottom: 7px; 
-}
-.panel-order .row .row .col-md-12:last-child {
-	font-size: 11px; 
-	color: #555;  
-	background: #efefef;
-}
-.panel-order .btn-group {
-	margin: 0px;
-	padding: 0px;
-}
-.panel-order .panel-body {
-	padding-top: 0px;
-	padding-bottom: 0px;
-}
-.panel-order .panel-deading {
-	margin-bottom: 0;
-}                    
-
 .panel{
     margin-top: 15px;
+}
+._orderborder{
+	border: 1px solid #8b99a2;
+    padding-top: 1pc;
+    padding-bottom: 1pc;
+	border-radius: 3px;
+	margin-bottom: 1pc;
+	margin-top: 1pc;
+}
+._isorderImgborder{
+	border-bottom: 1px dotted #6b6363;
+    padding-bottom: 1pc;
+}
+.innerborder{
+	padding-top: 1pc;
+}
+.media-object{
+	height: 8pc;
+}
+.btn-primary{
+	margin-top: 20px !important;
+}
+#mycontainer{
+    /* width: auto; */
+    padding-left: 3pc;
+    padding-right: 3pc;
 }
