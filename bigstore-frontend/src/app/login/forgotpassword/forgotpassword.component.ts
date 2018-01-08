@@ -58,7 +58,7 @@ export class ForgotpasswordComponent implements OnInit {
         this.noUsername = false;
       }
     }else if(firstChar.match(/[0-9]+$/)){
-      if(!this.user.email.match(/^[789]\d{9}$/)){
+      if(!this.user.email.match(/^[6789]\d{9}$/)){
         this.invalidMobile = true;
         this.noUsername = false;
         

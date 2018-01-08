@@ -10,7 +10,7 @@ import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-// import { DashboardService } from '../shared/services/dashboard.service';
+// import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
     imports : [
@@ -25,10 +25,10 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
         SignupComponent,
         SigninComponent,
         EqualValidator,
-        ForgotpasswordComponent
+        ForgotpasswordComponent,
+        // ChangepasswordComponent
     ],
     providers :  [
-        // DashboardService
     ]
 })
 export class LoginModule {}

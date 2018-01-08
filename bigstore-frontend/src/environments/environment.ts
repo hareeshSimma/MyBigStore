@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
+  //api_url: '/',
   api_url: 'http://localhost:3000',
-  //socket_url : 'http://localhost:8000/'
 };

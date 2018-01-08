@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   currentUser: any;
   subscription: Subscription;
   items:any;
-  length:string;
+  length:number;
   token:String;
   totalamount:number;
   _isLoder:boolean=true;

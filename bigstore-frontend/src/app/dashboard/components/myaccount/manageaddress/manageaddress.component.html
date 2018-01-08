@@ -1,3 +1,92 @@
-<p>
-  manageaddress works!
-</p>
+             <h3>Manage Address</h3>
+              <div class="panel panel-default">
+                  <div class="panel-heading" [ngClass]="collapse" data-toggle="collapse"  data-parent="#accordion" href="#collapseTwo">
+                      <h4 class="panel-title">
+                          <a ><i class="fa fa-plus" aria-hidden="true"></i>
+                          &nbsp;Add Address</a>
+                      </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" [ngClass]="{'in': out}">
+                      <div class="panel-body">
+                          <div class="row">
+                            <form #myForm="ngForm" >
+                              <div class="col-md-offset-3 col-md-6">
+                                  <div class="form-group">
+                                   <span>Full Name:</span>  
+                                    <input type="text" class="form-control" [(ngModel)]="data.fullname" #fullname="ngModel" name="fullname" placeholder="" required />
+                                    <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="error">
+                                        <div [hidden]="!fullname.errors.required">Please fill out this field.</div>
+                                    </div>
+                                  
+                                  </div>
+                                  <div class="form-group">
+                                      <span>Mobile Number:</span>
+                                      <input type="text" class="form-control" [(ngModel)]="data.mobile" name="mobile" #mobile="ngModel" pattern="^[6789]\d{9}$"  maxlength="10"  placeholder="" required />
+                                 
+                                      <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="error">
+                                          <div [hidden]="!mobile.errors.required">Please fill out this field..</div>
+                                          <div [hidden]="!mobile.errors.pattern">Not a valid Mobile Number.</div>
+                                      </div>
+                                    </div>
+                                  <div class="form-group">
+                                      <span>Pincode:</span>
+                                      <input type="text" class="form-control" [(ngModel)]="data.pincode" name="pincode" #pincode="ngModel" placeholder="" pattern="^[1-9][0-9]{5}$"  maxlength="6"  required />
+                                      <div *ngIf="pincode.errors && (pincode.dirty || pincode.touched)" class="error">
+                                          <div [hidden]="!pincode.errors.required">Please fill out this field..</div>
+                                          <div [hidden]="!pincode.errors.pattern">Please Enter  Valid Pincode.</div>
+                                      </div>
+                                    </div>
+                                  <div class="form-group">
+                                      <span>Address (Area and Street) <i>max 250 characters  only</i>:</span>
+                                    
+                                      <textarea class="form-control"  [(ngModel)]="data.address" placeholder="" name="address" #address="ngModel" maxlength="250" required></textarea>
+                                      <div *ngIf="address.errors && (address.dirty || address.touched)" class="error">
+                                          <div [hidden]="!address.errors.required">Please fill out this field.</div>
+                                      </div>
+                                    </div>
+                                  <div class="form-group">
+                                      <span>City:</span>
+                                      <input type="text" class="form-control" [(ngModel)]="data.city" #city="ngModel" name="city" placeholder="" required />
+                                 
+                                      <div *ngIf="city.errors && (city.dirty || city.touched)" class="error">
+                                          <div [hidden]="!city.errors.required">Please fill out this field.</div>
+                                      </div>  
+                                     </div>
+                                  <div class="form-group">
+                                      <span>
+                                          State:</span>
+                                      <select class="form-control" [(ngModel)]="data.state"  #state="ngModel" name="state" required>
+                                          <option value="">Select State</option>
+                                          <option value="Andhara Predesh">AP</option>
+                                          <option value="Telangana">TS</option>
+                                          <!-- <option>Contact</option> -->
+                                      </select>
+                                      <div *ngIf="state.errors && (state.dirty || state.touched)" class="error">
+                                          <div [hidden]="!state.errors.required">Please fill out this field.</div>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="btn btn-info btn-md" [disabled]="!myForm.form.valid" (click)="save(data)">
+                                          <i class="fa fa-floppy-o" aria-hidden="true" ></i>&nbsp;Save</button>
+                                      <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+                                          <i class="fa fa-times" aria-hidden="true" ></i> &nbsp;Cancel</button>
+                                  </div>
+
+                              </div>
+                            </form>
+                          </div>
+                       
+                      </div>
+                  </div>
+              </div>
+ 
+
+              <div class="panel panel-default" *ngFor="let address of userAddress">
+                <div class="panel-body" >
+                  <span>{{address.fullname}}</span>
+                 &nbsp;&nbsp; <span>{{address.mobile}}</span>
+                  <p>{{address.address}}</p>
+                  
+                </div>
+
+              </div>

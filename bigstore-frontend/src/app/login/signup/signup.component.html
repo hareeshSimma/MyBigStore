@@ -15,15 +15,7 @@
     </div>
 
 
-    <!-- <div class="alert alert-success" *ngIf="msg && msg.Success == true">
-        <strong>Success!</strong> {{msg.msg}}
-      </div>
-      <div class="alert alert-danger" *ngIf="msg && !msg.Success == true ;else error">
-        <strong>Sorry!</strong> {{msg.msg}}
-      </div>
-      <div class="alert alert-danger" *ngIf="errors">
-            <strong>Sorry!</strong> Invalid Data..
-          </div> -->
+
     <div class="col-md-10 col-md-offset-1 main">
         <div class="col-md-6 left-side">
             <h2>Welcome To.... BigStore</h2>
@@ -65,10 +57,10 @@
                     <div class="form-group">
                         <label for="form2">Your Mobile Number</label>
 
-                        <input type="text" id="form3" class="form-control input-lg" [(ngModel)]="user.mobile" pattern="^[789]\d{9}$" #mobile="ngModel" name="mobile" required>
+                        <input type="text" id="form3" class="form-control input-lg" [(ngModel)]="user.mobile" pattern="^[6789]\d{9}$" #mobile="ngModel" name="mobile" required>
                         <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="error">
                             <div [hidden]="!mobile.errors.required">Please Enter Your Mobile Number.</div>
-                            <div [hidden]="!mobile.errors.pattern">Please Enter valid Mobile Number.</div>
+                            <div [hidden]="!mobile.errors.pattern">Not a valid Mobile Number.</div>
 
                         </div>
                     </div>

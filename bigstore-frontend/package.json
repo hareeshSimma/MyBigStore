@@ -27,7 +27,6 @@
     "angular4-carousel": "^3.1.8",
     "core-js": "^2.4.1",
     "ng2-validation": "^4.2.0",
-    "primeng": "^5.0.2",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

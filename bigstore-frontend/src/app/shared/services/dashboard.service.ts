@@ -172,7 +172,32 @@ caseNumber$ = this.subject.asObservable();
                   }
                 );
 }
+manageAddress(data){
+  var route='/users/manageaddress';
+  return this.apiService.post(route,data)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+}
+getAddress():Observable<User>{
+  const route ='/users/getaddress'
+  return this.apiService.get(route)
+              .map(data =>{
+                return data.address
+              })
+}
 
+updatePassword(data) {
+  
+  return this.apiService.put('/users/updateepassword',data)
+     .map(
+     data => {
+       return data;
+     }
+     );
+ }
 
 }
 

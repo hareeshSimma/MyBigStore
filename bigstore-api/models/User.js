@@ -10,7 +10,7 @@ var UserSchema = new mongoose.Schema({
     email: { type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
     role: { type: String,required:false },
     hash: String,
-    mobileno: { type: String, required: true, match: [/^[789]\d{9}$/, 'is Invalid'], index: true },
+    mobileno: { type: String, required: true, match: [/^[6789]\d{9}$/, 'is Invalid'], index: true },
     salt: String,
     // verifytoken: String,
     // twf: { type: Boolean, default: true },
@@ -18,7 +18,9 @@ var UserSchema = new mongoose.Schema({
     items:{type:Array,required:false},
     otp:{type:String,required:false,expireAfterSeconds: 120 },
     orders:{type:Array,required:false},
-    address:{type:Array,required:false}
+    address:{type:Array,required:false},
+    gender:{type:String,required:false}
+    
 }, { timestamps: true });
 
 

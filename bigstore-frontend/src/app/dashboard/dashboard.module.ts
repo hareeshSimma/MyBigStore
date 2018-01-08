@@ -16,6 +16,9 @@ import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { PersonalinformationComponent } from './components/myaccount/personalinformation/personalinformation.component';
 import { ManageaddressComponent } from './components/myaccount/manageaddress/manageaddress.component';
 import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/uplodeproducts.component';
+import { ChangepasswordComponent } from './components/myaccount/changepassword/changepassword.component';
+//import { EqualValidator } from '../shared/directives/equal-validator.directive';
+ //import { ChangepasswordComponent } from '../login/changepassword/changepassword.component';
 
 @NgModule({
     imports : [
@@ -36,7 +39,8 @@ import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/u
         PersonalinformationComponent,
         ManageaddressComponent,
         UplodeproductsComponent,
-        
+        ChangepasswordComponent,
+        //EqualValidator
             ],
     providers :  [
         

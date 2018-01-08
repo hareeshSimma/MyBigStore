@@ -5,6 +5,12 @@ export class User {
                 public  password?:string,
                 public  confirmpass?:string,
                 public  id?:string,
-                public  items?:any
+                public  items?:any,
+                public  pincode?:string,
+                public  address?:any,
+                public  city?:string,
+                public  state?:string,
+                public  gender?:string,
+                
                 ) {}
 }

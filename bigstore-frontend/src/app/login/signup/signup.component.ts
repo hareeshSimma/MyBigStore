@@ -40,7 +40,7 @@ errors:any;
        console.log(this.msg);
   setTimeout(() => {
     this.router.navigate(['/login']);
-  }, 3000);  
+  }, 2000);  
     
      },
      err => {
