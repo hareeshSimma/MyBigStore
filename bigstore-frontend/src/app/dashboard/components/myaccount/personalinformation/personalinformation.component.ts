@@ -16,20 +16,32 @@ export class PersonalinformationComponent implements OnInit {
   subscription: Subscription;
   user:User;
   errors:String;
+  isEdit:boolean=true;
 
   constructor(
     private dashboardservice:DashboardService,
     private router:Router,
     private jwtservice:JwtService,
   ) { 
-    this.user={
-      fullname:'',
-      gender:'',
-      mobile:'',
-      email:''   
-    }
+    this.subscription = dashboardservice.currentUser.subscribe(
+      user => {
+        this.user = user;   
+        console.log("hello",this.user);
+    })
   }
+  enableEdit(){
+    this.isEdit=false;
+  }
+  onSave(user){
+   this.user["gender"]=user.gender;
+   this.dashboardservice.updateUser(this.user).subscribe(
+        res => {
+          console.log(res.msg);
+    
+    })
+    this.isEdit=true;
 
+  }
   ngOnInit() {
   }
 
