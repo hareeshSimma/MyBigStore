@@ -243,6 +243,7 @@ return  res.status(200).json({
 
 });
 
+
 router.put('/setpassword',function(req,res,next){
   // var user = new User();
   User.findOne({$or:[{email:req.body.email},{mobileno:req.body.email}]},function(err,data){
@@ -381,5 +382,40 @@ console.log(req.body)
   }
 })
 });
+router.put('/updateUser',auth.required, function(req, res, next) {
+console.log(req.body);
+  User.findById(req.body.id, function(err, user) {
+    if(err){
+      return res.status(500).json({ 
+        "Success": false, 
+        "msg": "Fail to connection" 
+      });
+    }
+    
+    if (!user) {
+      return res.status(401).json({ 
+        "Success": false, 
+        "msg": "Invalid user" 
+      });
+    }
+    else{
+      user.full_name=req.body.full_name;
+      user.email=req.body.email;
+      user.mobileno=req.body.mobile;
+      user.gender=req.body.gender;
+      
+    user.save(function(err,data){
+    if (err)
+    throw err;
+    return  res.status(200).json({
+      "Success": true, 
+      "msg": "User update successfully." 
+    });
+    })
+    }
+    });
+})
+   
+
 
 module.exports = router;

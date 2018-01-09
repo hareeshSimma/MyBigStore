@@ -5,7 +5,7 @@
             <div class="col-md-offset-3 col-md-6">
                 <div class="form-group">
                  <span>Full Name:</span>  
-                  <input type="text" class="form-control" disabled [(ngModel)]="user.fullname" #fullname="ngModel" name="fullname" placeholder="" required />
+                  <input type="text" class="form-control" [disabled]="isEdit" [(ngModel)]="user.full_name" #fullname="ngModel"  name="fullname" placeholder="" required />
                   <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="error">
                       <div [hidden]="!fullname.errors.required">Please fill out this field.</div>
                   </div>
@@ -13,7 +13,7 @@
                   <div class="form-group">
                       <span>
                           Your Gender is:</span>
-                      <select class="form-control" [(ngModel)]="user.gender" disabled  #gender="ngModel" name="gender" required>
+                      <select class="form-control" [(ngModel)]="user.gender" [disabled]="isEdit"  #gender="ngModel"  name="gender" required>
                           <option value="">I am ...</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
@@ -26,7 +26,7 @@
 
                   <div class="form-group">
                       <span>Mobile Number:</span>
-                      <input type="text" class="form-control" [(ngModel)]="user.mobile" disabled name="mobile" #mobile="ngModel" pattern="^[6789]\d{9}$"  maxlength="10"  placeholder="" required />
+                      <input type="text" class="form-control" [(ngModel)]="user.mobile" [disabled]="isEdit" name="mobile" #mobile="ngModel"  pattern="^[6789]\d{9}$"  maxlength="10"  placeholder="" required />
                  
                       <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="error">
                           <div [hidden]="!mobile.errors.required">Please fill out this fiel..</div>
@@ -36,19 +36,19 @@
 
                     <div class="form-group">
                         <span>Your E-mail ID</span>
-                        <input type="text"  class="form-control" [(ngModel)]="user.email" disabled pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" #email="ngModel" required>
+                        <input type="text"  class="form-control" [(ngModel)]="user.email" [disabled]="isEdit" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  name="email" #email="ngModel" required>
                         <div *ngIf="email.errors && (email.dirty || email.touched)" class="error">
                             <div [hidden]="!email.errors.required">Please fill out this field.</div>
                             <div [hidden]="!email.errors.pattern">Please Enter proper Email correctly.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info btn-md"  >
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</button>
-                        <button type="submit" class="btn btn-info btn-md"  >
-                            <i class="fa fa-floppy-o" aria-hidden="true" ></i>&nbsp;Save</button>
-                        <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
-                            <i class="fa fa-times" aria-hidden="true" ></i> &nbsp;Cancel</button>
+                        <button type="submit" class="btn btn-info btn-md"  *ngIf=isEdit (click)="enableEdit()" >
+                            <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>
+                        <button type="submit" class="btn btn-info btn-md" *ngIf=!isEdit (click)="onSave(user)">
+                            <i class="fa fa-floppy-o"></i>&nbsp;Save</button>
+                        <button type="button" class="btn btn-danger btn-md" *ngIf=!isEdit (click)="cancel()">
+                            <i class="fa fa-times"></i> &nbsp;Cancel</button>
                     </div>
 
      </div>

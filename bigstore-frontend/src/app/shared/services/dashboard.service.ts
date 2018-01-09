@@ -90,7 +90,14 @@ caseNumber$ = this.subject.asObservable();
   getCurrentUser(): any {
     return this.currentUserSubject.value;
   }
-
+  updateUser(user)
+  {
+     const route = '/users/updateUser'   
+      return this.apiService.put(route,user)                
+      .map(data =>{                  
+        return data                
+      })  
+  }
   authentUser(user){
      var route='/users/login';
   return this.apiService.post(route,user)
