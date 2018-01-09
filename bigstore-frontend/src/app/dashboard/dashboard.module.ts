@@ -18,14 +18,15 @@ import { ManageaddressComponent } from './components/myaccount/manageaddress/man
 import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/uplodeproducts.component';
 import { ChangepasswordComponent } from './components/myaccount/changepassword/changepassword.component';
 //import { EqualValidator } from '../shared/directives/equal-validator.directive';
- //import { ChangepasswordComponent } from '../login/changepassword/changepassword.component';
+ import {validatorModule} from '../validator.module';
 
 @NgModule({
     imports : [
         dashboardRoutingModule,
         FormsModule, 
         CarouselModule,
-        CommonModule
+        CommonModule,
+        validatorModule
     ],
     declarations : [
         DashboardComponent,
@@ -42,7 +43,8 @@ import { ChangepasswordComponent } from './components/myaccount/changepassword/c
         ChangepasswordComponent,
         //EqualValidator
             ],
-    providers :  [
+       exports:   [  ],
+       providers :  [
         
     ]
 })

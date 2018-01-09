@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { User } from '../../../../shared/models/user.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
@@ -16,86 +16,85 @@ export class ManageaddressComponent implements OnInit {
 
   currentUser: any;
   subscription: Subscription;
-  data:User;
-  collapse:string;
-  out :boolean;
+  data: User;
+  collapse: string;
+  out: boolean;
   // myForm: FormGroup;
-  address:any;
-  userAddress:any;
-  errors:String;
+  address: any;
+  userAddress: any;
+  errors: String;
 
   constructor(
-    private dashboardservice:DashboardService,
-    private router:Router,
-    private jwtservice:JwtService,
-    
-  ) { 
-    this.data={
-      fullname:'',
-      pincode:'',
-      mobile:'',
-      address:'',
-      city:'',
-      state:''
-      
+    private dashboardservice: DashboardService,
+    private router: Router,
+    private jwtservice: JwtService,
+    private ngzone: NgZone
+  ) {
+    this.data = {
+      fullname: '',
+      pincode: '',
+      mobile: '',
+      address: '',
+      city: '',
+      state: ''
+
     }
 
-    
+
     this.subscription = dashboardservice.currentUser.subscribe(
       user => {
         this.currentUser = user;
-         this.initData(this.currentUser)
+        this.initData(this.currentUser)
       }
     );
   }
 
   initData(currentUser: any) {
-    
+
     let id = currentUser.id;
-    if(id){
+    if (id) {
       this.dashboardservice.getAddress().subscribe(
-        res=>{
+        res => {
 
-        this.userAddress=res;
+          this.userAddress = res;
 
-      })
+        })
     }
   }
 
-save(data){
-// console.log(data)
-this.address={
-  fullname:data.fullname,
-  mobile:data.mobile,
-  address:data.address+","+ data.city +","+ data.state +" "+"-"+" "+data.pincode
-}
-this.myForm.reset();
-this.collapse="collapsed";
-  this.out=false;
-console.log(this.address)
-this.dashboardservice.manageAddress(this.address).subscribe(res=>{
-  // console.log(res);
-  if(res){
-   // this.collapse="collapsed";
-    this.dashboardservice.getAddress().subscribe(
-      res=>{
+  save(data) {
+    this.address = {
+      fullname: data.fullname,
+      mobile: data.mobile,
+      address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
+    }
+    this.myForm.reset();
+    this.collapse = "collapsed";
+    this.out = false;
+    console.log(this.address)
+    this.dashboardservice.manageAddress(this.address).subscribe(res => {
+      if (res) {
+        this.dashboardservice.getAddress().subscribe(
+          res => {
 
-      this.userAddress=res;
+            this.userAddress = res;
 
+          })
+      }
+    },
+      err => {
+        this.errors = err.msg;
+        console.log(this.errors)
+      })
+
+  }
+  cancel() {
+    this.ngzone.run(() => {
+      this.collapse = "collapsed";
+      this.out = false;
+      console.log(this.collapse)
     })
   }
-},
-err => {
-  this.errors = err.msg;
-  console.log(this.errors)
-})
-
-}
-cancel(){
-  this.collapse="collapsed";
-  this.out=false;
-  console.log(this.collapse)
-}
   ngOnInit() {
   }
 

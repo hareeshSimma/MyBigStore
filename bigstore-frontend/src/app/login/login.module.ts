@@ -5,29 +5,29 @@ import { LoginRoutingModule } from './login-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomFormsModule } from 'ng2-validation'
-import { EqualValidator } from '../shared/directives/equal-validator.directive';
+//import { EqualValidator } from '../shared/directives/equal-validator.directive';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-// import { ChangepasswordComponent } from './changepassword/changepassword.component';
-
+import {validatorModule} from '../validator.module';
 @NgModule({
     imports : [
         LoginRoutingModule,
         FormsModule,
         CommonModule,
         CustomFormsModule,
-    
+        validatorModule
     ],
     declarations : [
         LoginComponent,
         SignupComponent,
         SigninComponent,
-        EqualValidator,
+       // EqualValidator,
         ForgotpasswordComponent,
-        // ChangepasswordComponent
     ],
+    exports:   [ ],
+
     providers :  [
     ]
 })

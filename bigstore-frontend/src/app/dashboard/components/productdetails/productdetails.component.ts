@@ -22,6 +22,8 @@ items:any;
 errors:String;
 length:string;
 _dotLoder:boolean;
+_isdotLoder:boolean;
+
   constructor(
     private dashboardservice:DashboardService,
     private zone:NgZone,
@@ -94,9 +96,14 @@ if(!this.token){
   buyNow(data,qty){
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
-    console.log(data)
+    data.cost=data.cost * qty;
+    this._isdotLoder=true;
+    
+    // console.log(data)
    this.dashboardservice.buyNow(data).subscribe(res=>{
    console.log(res);
+   this._isdotLoder=false;
+   
 })
   }
   ngOnInit() {
