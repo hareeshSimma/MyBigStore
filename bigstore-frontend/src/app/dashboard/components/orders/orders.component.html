@@ -11,11 +11,11 @@
 		<p>Placed On {{order.date | date:'medium'}} </p>
 		<h5>Total Amount :&nbsp;<i class="fa fa-inr" aria-hidden="true"></i>{{order.cost}}</h5>
 	</div>
-   <div class=" col-xs-7 col-md-2 innerborder">
+   <div class=" col-xs-12 col-sm-6  col-md-2 innerborder">
 		<img [src]="order.href"   class="media-object img-thumbnail">
 
 </div>
-<div class=" col-xs-5 col-md-8 innerborder">
+<div class=" col-xs-12 col-sm-6  col-md-7 innerborder">
 		<h5>{{order.name}}</h5>
 		<p><label>Qty :&nbsp;</label>{{order.qty}}</p>
 		<p><label>Weight :&nbsp;</label>{{order.weight}} Kg</p>

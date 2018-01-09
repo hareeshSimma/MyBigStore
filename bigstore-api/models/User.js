@@ -56,7 +56,8 @@ UserSchema.methods.toAuthJSON = function() {
         full_name:this.full_name,
         email: this.email,
         mobile: this.mobileno,
-        role:this.role
+        role:this.role,
+        gender:this.gender
     };
 };
 
