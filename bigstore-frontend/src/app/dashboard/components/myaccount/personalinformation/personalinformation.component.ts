@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../shared/models/user.model';
 import { Subscription } from 'rxjs/Subscription';
-import { Router } from '@angular/router';
+import { Router,NavigationEnd } from '@angular/router';
 import { DashboardService } from '../../../../shared/services/dashboard.service';
 import { JwtService } from '../../../../shared/services/jwt.service';
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
+import 'rxjs/add/operator/pairwise';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-personalinformation',
@@ -26,8 +28,15 @@ export class PersonalinformationComponent implements OnInit {
     this.subscription = dashboardservice.currentUser.subscribe(
       user => {
         this.user = user;   
-        console.log(this.user);
+        // console.log(this.user);
     })
+
+    // this.router.events
+    // .filter(e => e instanceof NavigationEnd)
+    // .pairwise().subscribe((e) => {
+    //     console.log(e);
+    // });
+    
   }
   enableEdit(){
     this.isEdit=false;
@@ -44,10 +53,17 @@ export class PersonalinformationComponent implements OnInit {
 
   }
   cancel(){
-    this.router.navigate(['/']);
+    this.isEdit=true;
+    
+    // this.router.navigate(['/']);
 
   }
   ngOnInit() {
+    // let currentUrl = this.router.url;
+    // console.log(currentUrl)
+
+    
+
   }
 
 }

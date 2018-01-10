@@ -1,12 +1,12 @@
              <h3>Manage Address</h3>
               <div class="panel panel-default">
-                  <div class="panel-heading" [ngClass]="collapse" data-toggle="collapse"  data-parent="#accordion" href="#collapseTwo">
+                  <div class="" (click)=" out = !out" [className]="out?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion">
                       <h4 class="panel-title">
                           <a ><i class="fa fa-plus" aria-hidden="true"></i>
                           &nbsp;Add Address</a>
                       </h4>
                   </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" [ngClass]="{'in': out}">
+                  <div id="collapseTwo"  [className]="out? 'panel-collapse collapse':'panel-collapse collapse in'">
                       <div class="panel-body">
                           <div class="row">
                             <form #myForm="ngForm" >

@@ -18,8 +18,7 @@ export class ManageaddressComponent implements OnInit {
   subscription: Subscription;
   data: User;
   collapse: string;
-  out: boolean;
-  // myForm: FormGroup;
+  out: boolean = true;
   address: any;
   userAddress: any;
   errors: String;
@@ -69,8 +68,8 @@ export class ManageaddressComponent implements OnInit {
       address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
     }
     this.myForm.reset();
-    this.collapse = "collapsed";
-    this.out = false;
+    // this.collapse = "collapsed";
+    this.out = true;
     console.log(this.address)
     this.dashboardservice.manageAddress(this.address).subscribe(res => {
       if (res) {
@@ -89,11 +88,9 @@ export class ManageaddressComponent implements OnInit {
 
   }
   cancel() {
-    this.ngzone.run(() => {
-      this.collapse = "collapsed";
-      this.out = false;
-      console.log(this.collapse)
-    })
+ 
+      this.out = true;
+    
   }
   ngOnInit() {
   }
