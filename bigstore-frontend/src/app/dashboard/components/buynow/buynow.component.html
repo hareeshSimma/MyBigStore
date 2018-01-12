@@ -32,13 +32,13 @@
             <!-- <input type="radio" class="myradiobtn"> -->
 
             <div class="panel panel-default marginleft" *ngFor="let address of userAddress;let idx=index;">
-            <input type="radio" class="myradiobtn" [value]="address" [name]="address" [(ngModel)]="data.address" (click)="myAddress(idx)">
+            <input type="radio" class="myradiobtn" [checked]="idx==index" [value]="address" [name]="address"  (click)="myAddress(idx)">
               
                 <div class="panel-body">
                   <span>{{address.fullname}}</span>
                  &nbsp;&nbsp; <span>{{address.mobile}}</span>
                   <p>{{address.address}}</p>
-                  <div>
+                  <div *ngIf="idx==index">
                       <button type="submit" class="btn btn-info btn-md"  (click)="deliver(address)">
                           Deliver to This Address</button>
                   </div>

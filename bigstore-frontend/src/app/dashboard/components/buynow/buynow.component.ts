@@ -23,6 +23,7 @@ export class BuynowComponent implements OnInit {
   out: boolean = true;
   address: any;
   errors: String;
+  index:number=0;
   constructor(
     private dashboardservice:DashboardService,
     private activeRouter:ActivatedRoute,
@@ -94,7 +95,7 @@ export class BuynowComponent implements OnInit {
 
   }
   myAddress(e){
-  console.log(e);
+this.index=e;
   }
   deliver(address){
   console.log(address)
