@@ -23,7 +23,7 @@ errors:String;
 length:string;
 _dotLoder:boolean;
 _isdotLoder:boolean;
-
+// productData:any;
   constructor(
     private dashboardservice:DashboardService,
     private zone:NgZone,
@@ -90,21 +90,50 @@ if(!this.token){
   }
 )
 }
-  
-    
+   
   }
   buyNow(data,qty){
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
-    data.cost=data.cost * qty;
-    this._isdotLoder=true;
+    //  data.cost=data.cost * qty;
+     let id = this.currentUser.id;
+  //  let productData=data;
+  this.dashboardservice.addCartitems(data).subscribe(items=>{
+    console.log(items)
+    if(items.Success == true){
+      this.dashboardservice.getItems(id)
+      .subscribe(
+      res => {
+        // this._dotLoder=false;
+        this.items = res.items;
+        this.length=this.items.length;
+        this.dashboardservice.sendPath(this.length);
+        
+      })      
+    }
+  },
+  err => {
+    this.errors = err;
+    console.log(this.errors)
+  }
+)
+
+
+    this.router.navigate(['buynow']);  
+
+
+//     data["qty"]=qty;
+//     data["id"]=this.currentUser.id;
+//     data.cost=data.cost * qty;
+//     this._isdotLoder=true;
     
-    // console.log(data)
-   this.dashboardservice.buyNow(data).subscribe(res=>{
-   console.log(res);
-   this._isdotLoder=false;
+//     // console.log(data)
+//    this.dashboardservice.buyNow(data).subscribe(res=>{
+//    console.log(res);
+//    this._isdotLoder=false;
    
-})
+// })
+
   }
   ngOnInit() {
     

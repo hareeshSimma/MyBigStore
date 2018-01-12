@@ -11,6 +11,7 @@ import { ManageaddressComponent } from './components/myaccount/manageaddress/man
 import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/uplodeproducts.component';
 import { ChangepasswordComponent } from './components/myaccount/changepassword/changepassword.component';
 //import { ChangepasswordComponent } from '../login/changepassword/changepassword.component';
+import { BuynowComponent } from './components/buynow/buynow.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path:'productdata', component:ProductdetailsComponent },
       { path:'cart', component:CartComponent },
       { path:'orders', component:OrdersComponent },
+      { path:'buynow', component:BuynowComponent },
       
       { path:'myaccount', component: MyaccountComponent,
       children:[

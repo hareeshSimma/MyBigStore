@@ -71,12 +71,22 @@ caseNumber$ = this.subject.asObservable();
 // item$=this.subject.asObservable();
   sendPath(path: any) {
     this.subject.next(path);
-    // console.log("dashboard",path)
   }
-
+ 
   getPath() :Observable<any> {
     return this.subject;
   }
+  
+  // private Subject = new Subject<any>();
+
+  // sendData(path: any) {
+  //   this.Subject.next(path);
+  // }
+
+  // getData(): Observable<any> {
+  //   return this.Subject.asObservable();
+  // }
+
   newUser(user){
     var route='/users/usercreation';
   return this.apiService.post(route,user)

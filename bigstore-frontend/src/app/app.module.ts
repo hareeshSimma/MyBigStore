@@ -10,6 +10,7 @@ import { ApiService } from './shared/services/api.service';
 import { DashboardService } from './shared/services/dashboard.service';
 import { AuthGuard } from './shared/services/authgaurd.service';
 import { CustomFormsModule } from 'ng2-validation';
+import { NgxTypeaheadModule } from 'ngx-typeahead';
 // import { EqualValidator } from '../shared/directives/equal-validator.directive';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { CustomFormsModule } from 'ng2-validation';
     FormsModule,
     CustomFormsModule,
     ReactiveFormsModule,
- 
+    NgxTypeaheadModule,
   ],
   providers: [
     JwtService,

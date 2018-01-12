@@ -19,6 +19,7 @@ import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/u
 import { ChangepasswordComponent } from './components/myaccount/changepassword/changepassword.component';
 //import { EqualValidator } from '../shared/directives/equal-validator.directive';
  import {validatorModule} from '../validator.module';
+import { BuynowComponent } from './components/buynow/buynow.component';
 
 @NgModule({
     imports : [
@@ -41,6 +42,7 @@ import { ChangepasswordComponent } from './components/myaccount/changepassword/c
         ManageaddressComponent,
         UplodeproductsComponent,
         ChangepasswordComponent,
+        BuynowComponent,
         //EqualValidator
             ],
        exports:   [  ],

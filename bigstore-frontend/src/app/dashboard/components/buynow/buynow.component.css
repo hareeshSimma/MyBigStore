@@ -1,0 +1,20 @@
+.panel{
+    margin-top: 15px;
+}
+.panel-default>.panel-heading {
+    color:white;
+    background-color: #256a95;
+     cursor: pointer;
+}
+.pbody{
+    padding-left: 2pc;
+    padding-right: 2pc;
+}
+.myradiobtn{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: -27px
+}
+.marginleft{
+    margin-left: 23px;
+}
