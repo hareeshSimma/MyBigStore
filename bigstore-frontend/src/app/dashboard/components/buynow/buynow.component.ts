@@ -21,6 +21,7 @@ export class BuynowComponent implements OnInit {
   userAddress: any;
   data: User;
   out: boolean = true;
+  addressopen:boolean=false;
   address: any;
   errors: String;
   index:number=0;
@@ -94,12 +95,16 @@ export class BuynowComponent implements OnInit {
       })
 
   }
+
   myAddress(e){
-this.index=e;
+  this.index=e;
   }
+
   deliver(address){
   console.log(address)
+  this.addressopen=true;
   }
+  
   cancel() {
  
       this.out = true;

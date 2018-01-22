@@ -120,6 +120,8 @@
         background-color: #a32638;
         border-radius: 0px;
     }
-    
+    #sidenav1{
+        min-height: 500px;
+    }
     /********** END NAVBAR TOGGLE *************/
     

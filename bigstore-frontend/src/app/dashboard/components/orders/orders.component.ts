@@ -14,7 +14,7 @@ export class OrdersComponent implements OnInit {
   currentUser: any;
   subscription: Subscription;
   orders:any;
-  ordercount:string;
+  ordercount:number;
   constructor(
     private dashboardservice:DashboardService,
     private router:Router,

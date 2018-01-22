@@ -80,8 +80,17 @@
                   </div>
               </div>
  
-
+              <div class="loading" *ngIf="_isAddressLoading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
               <div class="panel panel-default" *ngFor="let address of userAddress">
+                    
                 <div class="panel-body" >
                   <span>{{address.fullname}}</span>
                  &nbsp;&nbsp; <span>{{address.mobile}}</span>

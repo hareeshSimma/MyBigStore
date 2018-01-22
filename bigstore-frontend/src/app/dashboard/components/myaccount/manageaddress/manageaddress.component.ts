@@ -22,6 +22,7 @@ export class ManageaddressComponent implements OnInit {
   address: any;
   userAddress: any;
   errors: String;
+  _isAddressLoading:boolean=true;
 
   constructor(
     private dashboardservice: DashboardService,
@@ -54,8 +55,8 @@ export class ManageaddressComponent implements OnInit {
     if (id) {
       this.dashboardservice.getAddress().subscribe(
         res => {
-
           this.userAddress = res;
+          this._isAddressLoading=false;
 
         })
     }

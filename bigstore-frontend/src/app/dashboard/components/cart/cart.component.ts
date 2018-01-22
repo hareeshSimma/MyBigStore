@@ -52,20 +52,7 @@ export class CartComponent implements OnInit {
       })
     }
   }
-//   ngAfterContentChecked()  {
-//   //  let total = 0;
-//    this.totalamount = this.items.reduce(funtion(runningValue: number, this.items)=> {
-//       runningValue = runningValue + (item.cost * item.qty);
-//     }, 0);
 
-//     // for (var i = 0; i < this.items.length; i++) {
-//     //     if (this.items[i].amount) {
-//     //         total += this.items[i].amount;
-//     //         this.totalamount = total;
-//     //     }
-//     // }
-//     // return total;
-// }
 getTotal() {
     let total = 0;
     for (var i = 0; i < this.items.length; i++) {

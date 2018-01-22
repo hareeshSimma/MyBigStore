@@ -3,7 +3,7 @@
   <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                <a data-toggle="collapse"  href="#collapseOne">
                   <span class="glyphicon glyphicon-ok" *ngIf="token">
                 </span>&nbsp;&nbsp;&nbsp;1.&nbsp;Login Id {{currentUser.email}}</a>
             </h4>
@@ -13,20 +13,19 @@
             <div class="">
         <p> You are already logged in as {{currentUser.email}}</p>
             </div>
-
 </div>
 </div>
 </div>
 <!-- Select address fields -->
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div (click)="addressopen=!addressopen"  [className]="addressopen?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion">
         <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              <span class="glyphicon glyphicon-ok" *ngIf="token">
+            <a>
+              <span class="glyphicon glyphicon-ok" *ngIf="addressopen">
             </span>&nbsp;&nbsp;&nbsp;2.&nbsp;Select Address</a>
         </h4>
     </div>
-<div id="collapseTwo" class="panel-collapse collapse">
+<div id="collapseTwo" [className]="addressopen? 'panel-collapse collapse':'panel-collapse collapse in'" >
     <div class="panel-body pbody">
         <div class="">
             <!-- <input type="radio" class="myradiobtn"> -->
@@ -56,7 +55,7 @@
                     &nbsp;Add Address</a>
                 </h4>
             </div>
-            <div id="collapseTwo"  [className]="out? 'panel-collapse collapse':'panel-collapse collapse in'">
+            <div id="collapse11"  [className]="out? 'panel-collapse collapse':'panel-collapse collapse in'">
                 <div class="panel-body">
                     <div class="row">
                       <form #myForm="ngForm" >

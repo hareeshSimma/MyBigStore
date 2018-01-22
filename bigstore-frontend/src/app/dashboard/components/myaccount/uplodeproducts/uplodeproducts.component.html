@@ -1,3 +1,61 @@
-<p>
-  uplodeproducts works!
-</p>
+<h4>My Account > Upload Product Detials</h4>
+<div class="panel panel-default">
+    <div class="panel-body" >
+        <form #myForm="ngForm" >
+            <div class="col-md-offset-3 col-md-6">
+
+          <div class="form-group">
+            <span>Product Name:</span>  
+            <input type="text" class="form-control" [(ngModel)]="data.productname" #productname="ngModel" name="productname" placeholder="" required />
+            <div *ngIf="productname.errors && (productname.dirty || productname.touched)" class="error">
+                <div [hidden]="!productname.errors.required">Please fill out this field.</div>
+            </div>
+            </div>
+            <div class="form-group">
+                <span>Product Description <i>(max 250 characters  only)</i>:</span>
+              
+                <textarea class="form-control"  [(ngModel)]="data.description" placeholder="" name="description" #description="ngModel" maxlength="250" required></textarea>
+                <div *ngIf="description.errors && (description.dirty || description.touched)" class="error">
+                    <div [hidden]="!description.errors.required">Please fill out this field.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <span>Product Cost:</span>  
+                  <input type="text" class="form-control" [(ngModel)]="data.cost" #cost="ngModel" name="cost" placeholder="" required />
+                  <div *ngIf="cost.errors && (cost.dirty || cost.touched)" class="error">
+                      <div [hidden]="!cost.errors.required">Please fill out this field.</div>
+                  </div>
+                  </div>
+            <div class="form-group">
+                <span>Product Weight:</span>  
+                <input type="text" class="form-control" [(ngModel)]="data.weight" #weight="ngModel" name="weight" placeholder="" required />
+                <div *ngIf="weight.errors && (weight.dirty || weight.touched)" class="error">
+                    <div [hidden]="!weight.errors.required">Please fill out this field.</div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <span>Product Quantity:</span>  
+                    <input type="text" class="form-control" [(ngModel)]="data.quantity" #quantity="ngModel" name="quantity" placeholder="" required />
+                    <div *ngIf="quantity.errors && (quantity.dirty || quantity.touched)" class="error">
+                    <div [hidden]="!quantity.errors.required">Please fill out this field.</div>
+                </div>
+                </div>
+                    <div class="form-group">
+                        <span>Upload Image:</span>  
+                        <input type="file" class="form-control" [(ngModel)]="data.image" #image="ngModel" name="image" placeholder=""  />
+                        <div *ngIf="image.errors && (image.dirty || image.touched)" class="error">
+                        <div [hidden]="!image.valid">Please fill out this field.</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-info btn-md" [disabled]="!myForm.form.valid" (click)="uploadProducts(data)">
+                          <i class="fa fa-cloud-upload" aria-hidden="true" ></i>&nbsp;Upload Products</button>
+                      <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+                          <i class="fa fa-times" aria-hidden="true" ></i> &nbsp;Cancel</button>
+                  </div>
+
+          </div>
+              </form>
+</div>
+</div>

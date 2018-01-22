@@ -36,7 +36,9 @@
     box-shadow: 0px 1px 7px #e6e6e1;
     padding-top: 15px;
     padding-bottom: 15px;
-    font-family: fantasy;
+	font-family: fantasy;
+	/* margin-top: -6pc; */
+	margin: 13pc;
 }
 .loder{
 	margin-bottom: 20pc;
@@ -215,4 +217,7 @@
     -o-transform: translateY(-20px);
     transform: translateY(-20px);
   }
+}
+.minHeight{
+	min-height: 500px;
 }

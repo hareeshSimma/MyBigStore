@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
+// import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-productdetails',
@@ -76,8 +77,10 @@ if(!this.token){
         this.dashboardservice.sendPath(this.length);
         
       })
-
-      this.router.navigate(['/cart']);
+setTimeout(() => {
+  this.router.navigate(['/cart']);
+  
+}, 200);
       
     }
     else{
@@ -98,6 +101,10 @@ if(!this.token){
     //  data.cost=data.cost * qty;
      let id = this.currentUser.id;
   //  let productData=data;
+  if(!this.token){
+    this.router.navigate(['/login']);
+    
+  }else{
   this.dashboardservice.addCartitems(data).subscribe(items=>{
     console.log(items)
     if(items.Success == true){
@@ -135,6 +142,7 @@ if(!this.token){
 // })
 
   }
+}
   ngOnInit() {
     
   }

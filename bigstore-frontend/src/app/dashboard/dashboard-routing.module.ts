@@ -36,7 +36,7 @@ const routes: Routes = [
           { path:'changepassword', component:ChangepasswordComponent },
           
         ] },
-      { path:'uplodeproducts', component:UplodeproductsComponent },
+      { path:'uploadproducts', component:UplodeproductsComponent },
         
       ] },
       
