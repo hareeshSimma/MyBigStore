@@ -20,6 +20,7 @@ import { ChangepasswordComponent } from './components/myaccount/changepassword/c
 //import { EqualValidator } from '../shared/directives/equal-validator.directive';
  import {validatorModule} from '../validator.module';
 import { BuynowComponent } from './components/buynow/buynow.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
     imports : [
@@ -27,7 +28,7 @@ import { BuynowComponent } from './components/buynow/buynow.component';
         FormsModule, 
         CarouselModule,
         CommonModule,
-        validatorModule
+        validatorModule,
     ],
     declarations : [
         DashboardComponent,
@@ -43,6 +44,7 @@ import { BuynowComponent } from './components/buynow/buynow.component';
         UplodeproductsComponent,
         ChangepasswordComponent,
         BuynowComponent,
+        FileSelectDirective
         //EqualValidator
             ],
        exports:   [  ],

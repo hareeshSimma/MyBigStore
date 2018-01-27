@@ -6,32 +6,13 @@ Best Offers In All Rice Bags
 </h1>
 <div class="container mgTop">
 
-  <div class="col-xs-12 col-sm-3 " *ngFor ="let img of images; let i=index;">
+  <div class="col-xs-12 col-sm-3 " *ngFor ="let img of totalProducts; let i=index;">
     <div class="myimg" (click)="show(img)">
-    <img [src]= "img.href" class="rounded " alt="Quality Rice" width="250" height="236">
-    <h5>{{img.name }} ({{img.weight}} Kg)</h5>
+    <img src= "{{imgUrl+img.image}}" class="rounded " alt="Quality Rice" width="250" height="236">
+    <h5>{{img.productname }} ({{img.weight}} Kg)</h5>
     <h4><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{img.cost}}</h4>
     </div>
   </div>
+ 
 
-<!-- <div class="col-xs-12 col-sm-3 myimg">
-  <img src="assets/images/lalitha.jpg" class="rounded" alt="Cinque Terre" width="250" height="236">
-  <h5>Lalithabrand Rice</h5>
-  <h4><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;1000</h4>
-</div>
-<div class="col-xs-12 col-sm-3 myimg">
-  <img src="assets/images/lohitahbrand.jpg" class="rounded" alt="Lohitbrand" width="250" height="236">
-  <h5>Lohitha Brand Rice</h5>
-  <h4><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;1060</h4>
-  </div>
-  <div class="col-xs-12 col-sm-3 myimg">
-  <img src="assets/images/indiagate.jpg" class="rounded" alt="India Gate" width="250" height="236">
-  <h5>India Gate Rice</h5>
-  <h4><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;1100</h4>
-    </div>
-    <div class="col-xs-12 col-sm-3 myimg">
-  <img src="assets/images/bell.jpg" class="rounded" alt="Cinque Terre" width="250" height="236">
-  <h5>Bell Rice</h5>
-  <h4><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;1300</h4>
-      </div> -->
 </div>

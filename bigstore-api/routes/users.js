@@ -34,8 +34,7 @@ router.get('/getuser',auth.required, function(req, res, next) {
 });
 
 router.post('/usercreation',function(req,res,next){
-  console.log("Entered Registred module..")
-  
+
   var user=new User();
  // console.log(req.body)
   user.full_name=req.body.fullname;
@@ -44,11 +43,10 @@ router.post('/usercreation',function(req,res,next){
   user.setPassword(req.body.password);
 
   user.save(function(err,data){
-    //console.log(data)
     if (err) {
       return res.status(500).json({ 
         "Success": false, 
-        "msg": "Registration Fail" 
+        "msg": "User Email Id or Mobile Number already Existed" 
       });
 
   }
@@ -143,7 +141,7 @@ router.post('/forgotpassword',function(req,res,next){
  }
 
  if(data){
-   let otp=Math.floor(Math.random() * 2000000);
+   let otp= Math.floor(Math.random() * 2000000);
    console.log(otp);
    data.otp=otp;
    let mailOptins = {
@@ -399,7 +397,7 @@ console.log(req.body);
       });
     }
     else{
-      user.full_name=req.body.full_name;
+      user.full_name=req.body.fullname;
       user.email=req.body.email;
       user.mobileno=req.body.mobile;
       user.gender=req.body.gender;

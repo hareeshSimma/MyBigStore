@@ -224,5 +224,23 @@ updatePassword(data) {
               })
 }
 
+uploadProductDetials(data){
+  var route='/uploadproducts/uploadproducts';
+  return this.apiService.post(route,data)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+}
+getProducts():Observable<any>{
+  const route ='/uploadproducts/getproducts'
+  return this.apiService.get(route)
+              .map(data =>{
+                return data.products;
+              })
+}
+
+
 }
 

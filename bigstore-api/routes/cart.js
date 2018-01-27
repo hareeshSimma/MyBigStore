@@ -47,11 +47,12 @@ router.post('/additems', function(req, res, next) {
             let orderId= "OD"+ Math.floor((Math.random() * 10000000000) + 1);
             var item = {
             orderId:orderId,
-            name:req.body.name,
+            name:req.body.productname,
             qty:req.body.qty, 
-            href:req.body.href,
+            href:req.body.image,
             weight:req.body.weight,
-            cost:req.body.cost
+            cost:req.body.cost,
+            productId:req.body.productId
         }
         data.items.push(item);
         //data.save();
@@ -82,11 +83,12 @@ router.post('/additems', function(req, res, next) {
             let orderId= "OD"+ Math.floor((Math.random() * 10000000000) + 1);
             var order = {
             orderId:orderId,
-            name:req.body.name,
+            name:req.body.productname,
             qty:req.body.qty, 
-            href:req.body.href,
+            href:req.body.image,
             weight:req.body.weight,
             cost:req.body.cost,
+            productId:req.body.productId,            
             date:Date()
         }
         data.orders.push(order);

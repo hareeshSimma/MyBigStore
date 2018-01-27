@@ -42,10 +42,11 @@
                 </div>
                     <div class="form-group">
                         <span>Upload Image:</span>  
-                        <input type="file" class="form-control" [(ngModel)]="data.image" #image="ngModel" name="image" placeholder=""  />
-                        <div *ngIf="image.errors && (image.dirty || image.touched)" class="error">
+                        <input type="file"  #file class="form-control" ng2FileSelect [uploader]="uploader"   name="single" placeholder=""  />
+                       
+                        <!-- <div *ngIf="image.errors && (image.dirty || image.touched)" class="error">
                         <div [hidden]="!image.valid">Please fill out this field.</div>
-                    </div>
+                    </div> -->
                   </div>
 
                   <div class="form-group">

@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
-// import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-productdetails',
@@ -38,7 +37,6 @@ _isdotLoder:boolean;
     this.subscription = dashboardservice.currentUser.subscribe(
       user => {
         this.currentUser = user;
-        // console.log(this.currentUser)
         // this.initData(this.currentUser)
       }
     );
@@ -55,6 +53,7 @@ _isdotLoder:boolean;
   // }
 
 addcart(data,qty){
+  console.log(data)
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
     let id = this.currentUser.id;
@@ -111,7 +110,6 @@ setTimeout(() => {
       this.dashboardservice.getItems(id)
       .subscribe(
       res => {
-        // this._dotLoder=false;
         this.items = res.items;
         this.length=this.items.length;
         this.dashboardservice.sendPath(this.length);

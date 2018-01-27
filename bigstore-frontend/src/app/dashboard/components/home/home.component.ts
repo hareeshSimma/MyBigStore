@@ -12,39 +12,40 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 images:any;
 productdata:any;
+imgUrl:string;
+totalProducts:any[];
   constructor(
     private dashboardservice:DashboardService,
     private router:Router
   ) { 
 
-    this.images=[
-      {
-        "name":"Lalitha Brand ","href":"assets/images/lalitha.jpg","cost":1200,"weight":25
-      },
-      {
-        "name":"Lohitha Rice","href":"assets/images/lohitahbrand.jpg","cost":1300,"weight":25
-      },
-      {
-        "name":"India Gate","href":"assets/images/indiagate.jpg","cost":1000,"weight":25
-      },
-      {
-        "name":"Bell ","href":"assets/images/bell.jpg","cost":1350,"weight":25
-      },
-      {
-        "name":"Lohitha ","href":"assets/images/lohitha2.jpg","cost":1250,"weight":25
-      },
-      {
-        "name":"Daawat","href":"assets/images/daawath.jpg","cost":1350,"weight":25
-      },
-      {
-        "name":"Daawat ","href":"assets/images/daawath2.jpg","cost":1350,"weight":25
-      },
-      {
-        "name":"Lalitha Brand","href":"assets/images/lalithabrand.jpg","cost":1550,"weight":25
-      }
+    // this.images=[
+    //   {
+    //     "name":"Lalitha Brand ","href":"assets/images/lalitha.jpg","cost":1200,"weight":25
+    //   },
+    //   {
+    //     "name":"Lohitha Rice","href":"assets/images/lohitahbrand.jpg","cost":1300,"weight":25
+    //   },
+    //   {
+    //     "name":"India Gate","href":"assets/images/indiagate.jpg","cost":1000,"weight":25
+    //   },
+    //   {
+    //     "name":"Bell ","href":"assets/images/bell.jpg","cost":1350,"weight":25
+    //   },
+    //   {
+    //     "name":"Lohitha ","href":"assets/images/lohitha2.jpg","cost":1250,"weight":25
+    //   },
+    //   {
+    //     "name":"Daawat","href":"assets/images/daawath.jpg","cost":1350,"weight":25
+    //   },
+    //   {
+    //     "name":"Daawat ","href":"assets/images/daawath2.jpg","cost":1350,"weight":25
+    //   },
+    //   {
+    //     "name":"Lalitha Brand","href":"assets/images/lalithabrand.jpg","cost":1550,"weight":25
+    //   }
 
-    
-    ]
+    // ]
     
    
   }
@@ -52,7 +53,6 @@ productdata:any;
     './assets/images/img1.jpg',
     './assets/images/img2.jpg',
     './assets/images/img3.jpg',
-    // './assets/images/img5.jpg',
     
  ];
  
@@ -67,14 +67,19 @@ productdata:any;
  };
 
 show(data){
-  //console.log(data)
 this.productdata=localStorage.setItem("data",JSON.stringify(data));
-  // this.dashboardservice.sendPath(data);
-  this.router.navigate(['/productdata'])
+this.router.navigate(['/productdata'])
 
 }
   ngOnInit() {
-    //console.log(this.images)
+    this.dashboardservice.getProducts().subscribe(res=>{
+      console.log(res);
+      this.totalProducts = res;
+      (res).forEach(element => {
+        this.imgUrl="http://localhost:3000/images/"  
+        // console.log()     
+      });
+    })
   }
 
 }
