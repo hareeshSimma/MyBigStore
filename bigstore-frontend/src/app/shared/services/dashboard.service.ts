@@ -240,6 +240,14 @@ getProducts():Observable<any>{
                 return data.products;
               })
 }
+deleteCart(){
+  const route = '/cart/emptycart'
+  return this.apiService.delete(route)
+              .map(data =>{
+                return data
+                
+              })
+}
 
 
 }

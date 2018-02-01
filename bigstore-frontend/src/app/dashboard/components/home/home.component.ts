@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { DashboardService } from '../../../shared/services/dashboard.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -76,8 +77,9 @@ this.router.navigate(['/productdata'])
       console.log(res);
       this.totalProducts = res;
       (res).forEach(element => {
-        this.imgUrl="http://localhost:3000/images/"  
-        // console.log()     
+      // this.imgUrl="http://localhost:3000/images/"  ;
+     //this.imgUrl =  " https://mybigcart.herokuapp.com/images/"
+       this.imgUrl=environment.img_url;     
       });
     })
   }

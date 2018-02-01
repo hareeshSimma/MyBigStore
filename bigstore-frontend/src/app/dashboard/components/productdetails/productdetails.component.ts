@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-productdetails',
@@ -23,6 +24,9 @@ errors:String;
 length:string;
 _dotLoder:boolean;
 _isdotLoder:boolean;
+//url="https://mybigcart.herokuapp.com/images/";
+// url="http://localhost:3000/images/";
+url=environment.img_url;
 // productData:any;
   constructor(
     private dashboardservice:DashboardService,

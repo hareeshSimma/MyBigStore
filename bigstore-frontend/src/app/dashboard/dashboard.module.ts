@@ -18,9 +18,9 @@ import { ManageaddressComponent } from './components/myaccount/manageaddress/man
 import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/uplodeproducts.component';
 import { ChangepasswordComponent } from './components/myaccount/changepassword/changepassword.component';
 //import { EqualValidator } from '../shared/directives/equal-validator.directive';
- import {validatorModule} from '../validator.module';
+import {validatorModule} from '../validator.module';
 import { BuynowComponent } from './components/buynow/buynow.component';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
     imports : [
@@ -29,6 +29,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
         CarouselModule,
         CommonModule,
         validatorModule,
+        FileUploadModule
     ],
     declarations : [
         DashboardComponent,
@@ -44,10 +45,9 @@ import { FileSelectDirective } from 'ng2-file-upload';
         UplodeproductsComponent,
         ChangepasswordComponent,
         BuynowComponent,
-        FileSelectDirective
         //EqualValidator
             ],
-       exports:   [  ],
+       exports:   [],
        providers :  [
         
     ]

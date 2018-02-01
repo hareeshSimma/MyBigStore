@@ -92,6 +92,18 @@
               <div class="panel panel-default" *ngFor="let address of userAddress">
                     
                 <div class="panel-body" >
+
+                <!-- <li>
+                        <i class="fa fa-th-list _isEdit" aria-hidden="true"></i>
+
+                </li> -->
+                <li class="upper-links dropdown" ><a class="links profile-li"> <i class="fa fa-th-list" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="profile-li" (click)="Edit(address)"><a class="profile-links" >Edit</a></li>
+                        <li class="profile-li" (click)="Delete(address)"><a class="profile-links" >Delete</a></li>
+                       
+                    </ul>
+                </li>
                   <span>{{address.fullname}}</span>
                  &nbsp;&nbsp; <span>{{address.mobile}}</span>
                   <p>{{address.address}}</p>

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +20,9 @@ export class CartComponent implements OnInit {
   totalamount:number;
   _isLoder:boolean=true;
   _dotLoder:boolean;
+  //url="https://mybigcart.herokuapp.com/images/";
+  // url="http://localhost:3000/images/";
+  url=environment.img_url;
   constructor(
     private dashboardservice:DashboardService,
     private router:Router,
@@ -76,7 +80,8 @@ getTotal() {
                 if(res.Success){
                   
                   // console.log("updated view",res);
-                  setTimeout(()=>{this.dashboardservice.getItems(id).subscribe(resp=>{
+                  setTimeout(()=>{
+                    this.dashboardservice.getItems(id).subscribe(resp=>{
                     // console.log(resp.items);
                     this.items=resp.items;
                     this.length=this.items.length;

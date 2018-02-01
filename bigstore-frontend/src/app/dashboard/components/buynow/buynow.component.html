@@ -1,14 +1,16 @@
 <div class="container">
+    <div *ngIf="Orderprocess">
+    <div class="col-md-9">
    <!-- login fields -->
   <div class="panel panel-default">
-        <div class="panel-heading">
+        <div (click)="loginopen=!loginopen" [className]="loginopen?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion">
             <h4 class="panel-title">
-                <a data-toggle="collapse"  href="#collapseOne">
-                  <span class="glyphicon glyphicon-ok" *ngIf="token">
+                <a>
+                  <span class="glyphicon glyphicon-ok" *ngIf="loginopen">
                 </span>&nbsp;&nbsp;&nbsp;1.&nbsp;Login Id {{currentUser.email}}</a>
             </h4>
         </div>
-    <div id="collapseOne" class="panel-collapse collapse">
+    <div id="collapseOne" [className]="loginopen? 'panel-collapse collapse':'panel-collapse collapse in'">
         <div class="panel-body">
             <div class="">
         <p> You are already logged in as {{currentUser.email}}</p>
@@ -22,10 +24,11 @@
         <h4 class="panel-title">
             <a>
               <span class="glyphicon glyphicon-ok" *ngIf="addressopen">
-            </span>&nbsp;&nbsp;&nbsp;2.&nbsp;Select Address</a>
+            </span>&nbsp;&nbsp;&nbsp;2.&nbsp;Deliver Address</a>
+            
         </h4>
     </div>
-<div id="collapseTwo" [className]="addressopen? 'panel-collapse collapse':'panel-collapse collapse in'" >
+    <div id="collapseTwo" [className]="addressopen? 'panel-collapse collapse':'panel-collapse collapse in'" >
     <div class="panel-body pbody">
         <div class="">
             <!-- <input type="radio" class="myradiobtn"> -->
@@ -40,7 +43,8 @@
                   <div *ngIf="idx==index">
                       <button type="submit" class="btn btn-info btn-md"  (click)="deliver(address)">
                           Deliver to This Address</button>
-                  </div>
+                </div>
+
 
                 </div>
 
@@ -56,75 +60,75 @@
                 </h4>
             </div>
             <div id="collapse11"  [className]="out? 'panel-collapse collapse':'panel-collapse collapse in'">
-                <div class="panel-body">
-                    <div class="row">
-                      <form #myForm="ngForm" >
-                        <div class="col-md-offset-3 col-md-6">
-                            <div class="form-group">
-                             <span>Full Name:</span>  
-                              <input type="text" class="form-control" [(ngModel)]="data.fullname" #fullname="ngModel" name="fullname" placeholder="" required />
-                              <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="error">
-                                  <div [hidden]="!fullname.errors.required">Please fill out this field.</div>
-                              </div>
-                            
-                            </div>
-                            <div class="form-group">
-                                <span>Mobile Number:</span>
-                                <input type="text" class="form-control" [(ngModel)]="data.mobile" name="mobile" #mobile="ngModel" pattern="^[6789]\d{9}$"  maxlength="10"  placeholder="" required />
-                           
-                                <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="error">
-                                    <div [hidden]="!mobile.errors.required">Please fill out this field..</div>
-                                    <div [hidden]="!mobile.errors.pattern">Not a valid Mobile Number.</div>
-                                </div>
-                              </div>
-                            <div class="form-group">
-                                <span>Pincode:</span>
-                                <input type="text" class="form-control" [(ngModel)]="data.pincode" name="pincode" #pincode="ngModel" placeholder="" pattern="^[1-9][0-9]{5}$"  maxlength="6"  required />
-                                <div *ngIf="pincode.errors && (pincode.dirty || pincode.touched)" class="error">
-                                    <div [hidden]="!pincode.errors.required">Please fill out this field..</div>
-                                    <div [hidden]="!pincode.errors.pattern">Please Enter  Valid Pincode.</div>
-                                </div>
-                              </div>
-                            <div class="form-group">
-                                <span>Address (Area and Street) <i>max 250 characters  only</i>:</span>
-                              
-                                <textarea class="form-control"  [(ngModel)]="data.address" placeholder="" name="address" #address="ngModel" maxlength="250" required></textarea>
-                                <div *ngIf="address.errors && (address.dirty || address.touched)" class="error">
-                                    <div [hidden]="!address.errors.required">Please fill out this field.</div>
-                                </div>
-                              </div>
-                            <div class="form-group">
-                                <span>City:</span>
-                                <input type="text" class="form-control" [(ngModel)]="data.city" #city="ngModel" name="city" placeholder="" required />
-                           
-                                <div *ngIf="city.errors && (city.dirty || city.touched)" class="error">
-                                    <div [hidden]="!city.errors.required">Please fill out this field.</div>
-                                </div>  
-                               </div>
-                            <div class="form-group">
-                                <span>
-                                    State:</span>
-                                <select class="form-control" [(ngModel)]="data.state"  #state="ngModel" name="state" required>
-                                    <option value="">Select State</option>
-                                    <option value="Andhara Predesh">AP</option>
-                                    <option value="Telangana">TS</option>
-                                    <!-- <option>Contact</option> -->
-                                </select>
-                                <div *ngIf="state.errors && (state.dirty || state.touched)" class="error">
-                                    <div [hidden]="!state.errors.required">Please fill out this field.</div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-info btn-md" [disabled]="!myForm.form.valid" (click)="save(data)">
-                                    <i class="fa fa-floppy-o" aria-hidden="true" ></i>&nbsp;Save</button>
-                                <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
-                                    <i class="fa fa-times" aria-hidden="true" ></i> &nbsp;Cancel</button>
-                            </div>
-
-                        </div>
-                      </form>
+    <div class="panel-body">
+        <div class="row">
+            <form #myForm="ngForm" >
+            <div class="col-md-offset-3 col-md-6">
+                <div class="form-group">
+                    <span>Full Name:</span>  
+                    <input type="text" class="form-control" [(ngModel)]="data.fullname" #fullname="ngModel" name="fullname" placeholder="" required />
+                    <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="error">
+                        <div [hidden]="!fullname.errors.required">Please fill out this field.</div>
                     </div>
-                 
+                
+                </div>
+                <div class="form-group">
+                    <span>Mobile Number:</span>
+                    <input type="text" class="form-control" [(ngModel)]="data.mobile" name="mobile" #mobile="ngModel" pattern="^[6789]\d{9}$"  maxlength="10"  placeholder="" required />
+                
+                    <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="error">
+                        <div [hidden]="!mobile.errors.required">Please fill out this field..</div>
+                        <div [hidden]="!mobile.errors.pattern">Not a valid Mobile Number.</div>
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <span>Pincode:</span>
+                    <input type="text" class="form-control" [(ngModel)]="data.pincode" name="pincode" #pincode="ngModel" placeholder="" pattern="^[1-9][0-9]{5}$"  maxlength="6"  required />
+                    <div *ngIf="pincode.errors && (pincode.dirty || pincode.touched)" class="error">
+                        <div [hidden]="!pincode.errors.required">Please fill out this field..</div>
+                        <div [hidden]="!pincode.errors.pattern">Please Enter  Valid Pincode.</div>
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <span>Address (Area and Street) <i>max 250 characters  only</i>:</span>
+                    
+                    <textarea class="form-control"  [(ngModel)]="data.address" placeholder="" name="address" #address="ngModel" maxlength="250" required></textarea>
+                    <div *ngIf="address.errors && (address.dirty || address.touched)" class="error">
+                        <div [hidden]="!address.errors.required">Please fill out this field.</div>
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <span>City:</span>
+                    <input type="text" class="form-control" [(ngModel)]="data.city" #city="ngModel" name="city" placeholder="" required />
+                
+                    <div *ngIf="city.errors && (city.dirty || city.touched)" class="error">
+                        <div [hidden]="!city.errors.required">Please fill out this field.</div>
+                    </div>  
+                    </div>
+                <div class="form-group">
+                    <span>
+                        State:</span>
+                    <select class="form-control" [(ngModel)]="data.state"  #state="ngModel" name="state" required>
+                        <option value="">Select State</option>
+                        <option value="Andhara Predesh">AP</option>
+                        <option value="Telangana">TS</option>
+                        <!-- <option>Contact</option> -->
+                    </select>
+                    <div *ngIf="state.errors && (state.dirty || state.touched)" class="error">
+                        <div [hidden]="!state.errors.required">Please fill out this field.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info btn-md" [disabled]="!myForm.form.valid" (click)="save(data)">
+                        <i class="fa fa-floppy-o" aria-hidden="true" ></i>&nbsp;Save</button>
+                    <button type="button" class="btn btn-danger btn-md" (click)="cancel()">
+                        <i class="fa fa-times" aria-hidden="true" ></i> &nbsp;Cancel</button>
+                </div>
+
+            </div>
+            </form>
+        </div>
+        
                 </div>
             </div>
         </div>
@@ -134,21 +138,84 @@
 </div>
 </div>
 
+<!-- manage Orders -->
+
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div (click)="ordersopen=!ordersopen"  [className]="ordersopen?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion" >
         <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-              <span class="glyphicon glyphicon-ok" *ngIf="token">
+            <a>
+              <span class="glyphicon glyphicon-ok" *ngIf="ordersopen">
             </span>&nbsp;&nbsp;&nbsp;3.&nbsp;Manage Orders</a>
         </h4>
     </div>
-<div id="collapseThree" class="panel-collapse collapse">
+<div id="collapseThree" [className]="ordersopen? 'panel-collapse collapse':'panel-collapse collapse in'">
     <div class="panel-body">
-        <div class="">
-          
+            <div class="loader" *ngIf="_removeItem"></div>
+
+        <div class=" row _orderborder" *ngFor="let orders of items;">
+                <div class=" col-xs-12 col-sm-6  col-md-3 innerborder">
+                        <img src="{{url+orders.href}}"   class="media-object img-responsive">
+                
+                </div>
+                <div class=" col-xs-12 col-sm-6  col-md-7 innerborder">
+                        <h5>{{orders.name}}</h5>
+                        <p><label>Qty :&nbsp;</label>{{orders.qty}}</p>
+                        <p><label>Weight :&nbsp;</label>{{orders.weight}} Kg</p>
+                        <p><i class="fa fa-inr" aria-hidden="true">&nbsp;{{orders.cost}}</i></p>
+                        <p class="_remove" (click)="remove(orders.productId)" >Remove</p>
+                        
+                        
+                </div>
         </div>
+		<button type="button" class="btn btn-info myBtn" (click)="placeOrder()">Place Your Order</button>
 
 </div>
 </div>
 </div>
+
+<!-- Payment Options -->
+<div class="panel panel-default">
+        <div (click)="pamentoptions=!pamentoptions"  [className]="pamentoptions?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion" >
+            <h4 class="panel-title">
+                <a>
+                  <span class="glyphicon glyphicon-ok" *ngIf="pamentoptions">
+                </span>&nbsp;&nbsp;&nbsp;4.&nbsp;Payment Options</a>
+            </h4>
+        </div>
+    <div id="collapseThree" [className]="pamentoptions? 'panel-collapse collapse':'panel-collapse collapse in'">
+        <div class="panel-body">
+            <div class="">
+              <input type="radio" value="cash on delivery" name="payment" [(ngModel)]="cod" checked>&nbsp;Cash On Delivery.
+           <p>
+           <button type="button" class="btn btn-info myBtn" (click)="confirmOrder()">Confirm Your Order</button>
+               
+           </p>   
+        </div>
+    
+    </div>
+    </div>
+    </div>
+
+
+</div>
+<!-- price Details -->
+<div class="col-md-3 pricebox">
+<h4 class="text-center pricedetials">Price Details</h4>
+<div class="">
+<p class="" >Price ({{length}}&nbsp;{{itemcount}})<span class="priceHistory">200</span></p>
+<p class="pTop">Delivery Charges<span class="priceHistory">50</span></p>
+<p class="">Total Amount <span class="priceHistory">250</span></p>
+
+</div>
+</div>
+</div>
+<div class="Ordersuccess" *ngIf="msg && Ordersuccess">
+<div class="row borderBox">
+ <p *ngIf="msg.Success==true">Your <strong class="successmsg">{{msg.msg}}</strong></p>
+ <p *ngIf="msg.Success==false">Your <strong class="faildmsg">{{msg.msg}}</strong></p>
+ 
+ To continue the shopping Please <button type="button" class="btn btn-link">Click here</button>
+</div>
+</div>
+
 </div>

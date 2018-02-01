@@ -7,6 +7,7 @@ import { DashboardService } from '../../../../shared/services/dashboard.service'
 import { JwtService } from '../../../../shared/services/jwt.service';
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 import { FileUploader,ParsedResponseHeaders } from 'ng2-file-upload';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-uplodeproducts',
@@ -20,7 +21,7 @@ export class UplodeproductsComponent implements OnInit {
   currentUser: any;
   subscription: Subscription;
   data:Uplodeproducts;
-  private uploader: FileUploader;
+  uploader: FileUploader;
   options:any;
   constructor(
     private dashboardservice:DashboardService,
@@ -42,9 +43,10 @@ export class UplodeproductsComponent implements OnInit {
   uploadProducts(data){
     this.uploader.onAfterAddingFile = (file)=> { 
       console.log("called");
-      file.withCredentials = false; };
-  data.image=this.uploader.queue[0].file.name;
-  console.log(data,this.uploader.queue[0]);
+      file.withCredentials = false; 
+    };
+      data.image=this.uploader.queue[0].file.name;
+      console.log(data,this.uploader.queue[0]);
   
   this.uploader.queue[0].upload();
   this.dashboardservice.uploadProductDetials(data).subscribe(res=>{
@@ -67,7 +69,9 @@ export class UplodeproductsComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.options = { url:"http://localhost:3000/uploads" }
+    this.options = {
+       url:environment.url
+       }
     this.uploader = new FileUploader(this.options);
     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.uploader._onCompleteItem = (item: any, response: string, status: number,

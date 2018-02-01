@@ -13,7 +13,7 @@
 ._orderborder{
 	border: 1px solid #8b99a2;
     padding-top: 1pc;
-    padding-bottom: 1pc;
+    /* padding-bottom: 1pc; */
 	border-radius: 3px;
 	margin-bottom: 1pc;
 	margin-top: 1pc;
@@ -35,4 +35,8 @@
     /* width: auto; */
     padding-left: 3pc;
     padding-right: 3pc;
+}
+.inneritems{
+    margin: 0px;
+    border-bottom: 1px solid #f1e7e7;
 }

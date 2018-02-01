@@ -88,6 +88,12 @@ export class ManageaddressComponent implements OnInit {
       })
 
   }
+  Edit(address){
+console.log(address)
+  }
+  Delete(address){
+
+  }
   cancel() {
  
       this.out = true;

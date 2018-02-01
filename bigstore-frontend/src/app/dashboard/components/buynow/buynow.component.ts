@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
 import { JwtService } from '../../../shared/services/jwt.service';
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-buynow',
@@ -22,9 +23,22 @@ export class BuynowComponent implements OnInit {
   data: User;
   out: boolean = true;
   addressopen:boolean=false;
+  ordersopen:boolean=true;
+  pamentoptions:boolean=true;
+  loginopen:boolean=true;
   address: any;
   errors: String;
   index:number=0;
+  items:any;
+  length:number;
+  url=environment.img_url;
+  itemcount:string;
+  orderDetials:any;
+  cod:string;
+  _removeItem:boolean=false;
+  Orderprocess:boolean=true;
+  Ordersuccess:boolean=false;
+  msg:any;
   constructor(
     private dashboardservice:DashboardService,
     private activeRouter:ActivatedRoute,
@@ -32,6 +46,7 @@ export class BuynowComponent implements OnInit {
     private jwtservice:JwtService,
   ) { 
 
+    this.cod="";
     this.data = {
       fullname: '',
       pincode: '',
@@ -51,9 +66,7 @@ export class BuynowComponent implements OnInit {
 
       })
 
-
     }
-
 
   initData(currentUser: any) {
 
@@ -67,6 +80,22 @@ export class BuynowComponent implements OnInit {
 
         })
     }
+
+    if(id){
+      setTimeout(()=>{
+     this.dashboardservice.getItems(id).subscribe(
+  res => { 
+    this.items = res.items;
+    this.length=this.items.length;
+    if(this.length==1){
+      this.itemcount="item";
+    }else{
+      this.itemcount="items";
+    }
+    console.log(res)
+  })},2000)
+}
+
   }
 
   save(data) {
@@ -76,7 +105,6 @@ export class BuynowComponent implements OnInit {
       address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
     }
     this.myForm.reset();
-    // this.collapse = "collapsed";
     this.out = true;
     console.log(this.address)
     this.dashboardservice.manageAddress(this.address).subscribe(res => {
@@ -101,10 +129,93 @@ export class BuynowComponent implements OnInit {
   }
 
   deliver(address){
-  console.log(address)
+  // console.log(address)
+  this.address=address;
   this.addressopen=true;
-  }
+  this.ordersopen=false;
   
+  }
+
+// Remove Items for orders
+
+  remove(productid){
+  // console.log(productid)
+  let id = this.currentUser.id;
+  this._removeItem=true;
+  this.dashboardservice.deleteItem(productid) .subscribe(
+      res => { 
+        if(res.Success){
+          
+          setTimeout(()=>{
+            this.dashboardservice.getItems(id).subscribe(resp=>{
+            this.items=resp.items;
+            this.length=this.items.length;
+            this.dashboardservice.sendPath(this.items.length);
+          this._removeItem=false;
+             
+             setTimeout(() => {
+              if(resp){
+                if(this.length==0){
+                 window.alert("Your Cart is empty! plz add items to the cart. ");
+                 this.router.navigate(['/']);
+                }
+               } 
+             }, 300);
+          
+          })},1000);
+       
+         
+        }
+      
+  })
+
+  }
+  placeOrder(){
+    this.ordersopen=true;    
+    this.pamentoptions=false;
+  }
+
+  confirmOrder(){
+    this.orderDetials={
+      address:this.address,
+      items:this.items,  
+      paymentMethod:this.cod
+    }
+    console.log(this.orderDetials)
+    this.dashboardservice.buyNow(this.orderDetials).subscribe(res=>{
+    console.log(res);
+   this.msg=res;
+   if(this.msg.Success==true){
+    this.Orderprocess=false;
+    this.Ordersuccess=true;
+    this.dashboardservice.deleteCart().subscribe(res=>{
+      console.log(res);
+
+      if(res.Success==true){
+       let id = this.currentUser.id;        
+        this.dashboardservice.getItems(id).subscribe(resp=>{
+        this.items=resp.items;
+        this.length=this.items.length;
+        this.dashboardservice.sendPath(this.items.length);
+         
+        })
+      }
+
+    },
+    err => {
+      this.errors = err.msg;
+      console.log(this.errors)
+    })
+    
+  }
+},
+err => {
+  this.errors = err.msg;
+  console.log(this.errors)
+})
+
+
+  }
   cancel() {
  
       this.out = true;

@@ -5,26 +5,30 @@
 
 <div class="" id="mycontainer" *ngIf="ordercount">
 	<h4>My Account > Orders</h4>
-<div class="row _orderborder" *ngFor="let order of orders">
+<div class="row _orderborder" *ngFor="let order of orders;">
 	<div class="col-xs-12 _isorderImgborder">
 		<label>Order Id </label>&nbsp;<span>{{order.orderId}}</span>
 		<p>Placed On {{order.date | date:'medium'}} </p>
 		<h5>Total Amount :&nbsp;<i class="fa fa-inr" aria-hidden="true"></i>{{order.cost}}</h5>
-	</div>
-   <div class=" col-xs-12 col-sm-6  col-md-2 innerborder">
-		<img [src]="order.href"   class="media-object img-thumbnail">
+        </div>
+		<div class="row inneritems" *ngFor="let items of order.items">
+         <div class=" col-xs-12 col-sm-6  col-md-2 innerborder">
+		<img src="{{url+items.href}}"   class="media-object img-responsive">
 
-</div>
+ </div>
 <div class=" col-xs-12 col-sm-6  col-md-7 innerborder">
-		<h5>{{order.name}}</h5>
-		<p><label>Qty :&nbsp;</label>{{order.qty}}</p>
-		<p><label>Weight :&nbsp;</label>{{order.weight}} Kg</p>
+		<h5>{{items.name}}</h5>
+		<p><label>Qty :&nbsp;</label>{{items.qty}}</p>
+		<p><label>Weight :&nbsp;</label>{{items.weight}} Kg</p>
+		<p><i class="fa fa-inr" aria-hidden="true">&nbsp;{{items.cost}}</i></p>
+		
 </div>
 <div class="col-md-2 innerborder">
 		<button type="button" class="btn btn-primary ">Cancel Your Order</button>
 		<button type="button" class="btn btn-primary ">Return Your Order</button>
 
-	</div>
+</div>
+</div>
 </div>
 
 </div>

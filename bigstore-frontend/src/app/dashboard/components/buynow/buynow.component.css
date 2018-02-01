@@ -19,3 +19,86 @@
 .marginleft{
     margin-left: 23px;
 }
+
+.pricebox{
+    box-shadow: 1px 1px 10px 2px #b7bdc1;
+    margin-top: 1pc;
+    padding-bottom: 10px;
+}
+.pricedetials{
+    border-bottom: 1px dotted;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.priceHistory{
+    float: right
+}
+.pTop{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px double #d5d7de;
+}
+._orderborder{
+	/* border: 1px solid #8b99a2;
+    padding-top: 1pc;
+    padding-bottom: 1pc;
+	border-radius: 3px;
+	margin-bottom: 1pc;
+    margin-top: 1pc; */
+    
+    border-bottom: 1px solid #e0d9d9;
+    margin-bottom: 10px;
+}
+.media-object{
+	height: 8pc;
+}
+.myBtn{
+    float: right
+}
+._remove{
+    color: #256a95;
+    cursor: pointer;
+}
+
+/* loaders */
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 1s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .Ordersuccess{
+      min-height: 450px;
+      margin-top: 5pc;
+  }
+  .successmsg{
+      color:green;
+  }
+  .borderBox{
+    border: 1px solid;
+    /* padding-top: 3pc; */
+    /* padding-bottom: 3pc; */
+    padding: 30px;
+    border-radius: 5px;
+  }
+  .faildmsg{
+      color: red;
+  }

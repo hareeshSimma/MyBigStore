@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { DashboardService } from '../../../shared/services/dashboard.service';
 import { JwtService } from '../../../shared/services/jwt.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-orders',
@@ -15,6 +16,9 @@ export class OrdersComponent implements OnInit {
   subscription: Subscription;
   orders:any;
   ordercount:number;
+  orderItems:any;
+  url=environment.img_url;
+
   constructor(
     private dashboardservice:DashboardService,
     private router:Router,
@@ -36,7 +40,7 @@ export class OrdersComponent implements OnInit {
         res=>{
         this.orders=res;
        this.ordercount= this.orders.length;
-       console.log(this.ordercount);
+       console.log(this.orders);
 
       })
     }
