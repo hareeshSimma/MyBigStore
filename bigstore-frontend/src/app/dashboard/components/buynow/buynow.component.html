@@ -212,7 +212,7 @@
 <div class="Ordersuccess" *ngIf="msg && Ordersuccess">
 <div class="row borderBox">
  <p *ngIf="msg.Success==true">Your <strong class="successmsg">{{msg.msg}}</strong></p>
- <p *ngIf="msg.Success==false">Your <strong class="faildmsg">{{msg.msg}}</strong></p>
+ <p *ngIf="errors">Your <strong class="faildmsg">{{errors}}</strong></p>
  
  To continue the shopping Please <button type="button" class="btn btn-link">Click here</button>
 </div>
