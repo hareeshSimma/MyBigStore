@@ -93,13 +93,17 @@ export class BuynowComponent implements OnInit {
       this.itemcount="items";
     }
     console.log(res)
-  })},2000)
+  })},1000)
 }
 
   }
+// add address field
 
   save(data) {
+    let AddressId= "AD"+ Math.floor((Math.random() * 10000000) + 1);
+
     this.address = {
+      addressid:AddressId,
       fullname: data.fullname,
       mobile: data.mobile,
       address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode

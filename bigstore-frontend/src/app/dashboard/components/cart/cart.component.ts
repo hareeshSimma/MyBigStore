@@ -92,14 +92,16 @@ getTotal() {
                  
                 }
                 // this.removeByAttr(this.items,"orderId",itemId);
-                this.router.navigate(['/cart'])
+                this.router.navigate(['/cart']);
           })
   }
 
-  checkout(i,j){
-  var k=JSON.stringify(i)
+  checkout(){
+    setTimeout(() => {
+    this.router.navigate(['/buynow']);
+      
+    }, 1000);
   
-console.log(k +"-----"+j)
   }
 
 

@@ -8,6 +8,7 @@ export const environment = {
   api_url: 'http://localhost:3000',
   img_url:'http://localhost:3000/images/',
   url:'http://localhost:3000/uploads',  
+  
   //  img_url:'https://mybigcart.herokuapp.com/images/',
   //  url:'https://mybigcart.herokuapp.com/uploads'
 };

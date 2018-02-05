@@ -83,7 +83,7 @@ if(!this.token){
 setTimeout(() => {
   this.router.navigate(['/cart']);
   
-}, 200);
+}, 100);
       
     }
     else{
@@ -101,6 +101,7 @@ setTimeout(() => {
   buyNow(data,qty){
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
+    this._isdotLoder=true;
     //  data.cost=data.cost * qty;
      let id = this.currentUser.id;
   //  let productData=data;
@@ -111,6 +112,7 @@ setTimeout(() => {
   this.dashboardservice.addCartitems(data).subscribe(items=>{
     console.log(items)
     if(items.Success == true){
+      this._isdotLoder=false;
       this.dashboardservice.getItems(id)
       .subscribe(
       res => {
@@ -126,9 +128,11 @@ setTimeout(() => {
     console.log(this.errors)
   }
 )
+setTimeout(() => {
+  this.router.navigate(['buynow']);  
+  
+}, 1000);
 
-
-    this.router.navigate(['buynow']);  
 
 
 //     data["qty"]=qty;

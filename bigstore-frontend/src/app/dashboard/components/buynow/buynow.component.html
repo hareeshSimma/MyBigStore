@@ -81,14 +81,7 @@
                         <div [hidden]="!mobile.errors.pattern">Not a valid Mobile Number.</div>
                     </div>
                     </div>
-                <div class="form-group">
-                    <span>Pincode:</span>
-                    <input type="text" class="form-control" [(ngModel)]="data.pincode" name="pincode" #pincode="ngModel" placeholder="" pattern="^[1-9][0-9]{5}$"  maxlength="6"  required />
-                    <div *ngIf="pincode.errors && (pincode.dirty || pincode.touched)" class="error">
-                        <div [hidden]="!pincode.errors.required">Please fill out this field..</div>
-                        <div [hidden]="!pincode.errors.pattern">Please Enter  Valid Pincode.</div>
-                    </div>
-                    </div>
+               
                 <div class="form-group">
                     <span>Address (Area and Street) <i>max 250 characters  only</i>:</span>
                     
@@ -97,6 +90,14 @@
                         <div [hidden]="!address.errors.required">Please fill out this field.</div>
                     </div>
                     </div>
+                    <div class="form-group">
+                            <span>Pincode:</span>
+                            <input type="text" class="form-control" [(ngModel)]="data.pincode" name="pincode" #pincode="ngModel" placeholder="" pattern="^[1-9][0-9]{5}$"  maxlength="6"  required />
+                            <div *ngIf="pincode.errors && (pincode.dirty || pincode.touched)" class="error">
+                                <div [hidden]="!pincode.errors.required">Please fill out this field..</div>
+                                <div [hidden]="!pincode.errors.pattern">Please Enter  Valid Pincode.</div>
+                            </div>
+                            </div>
                 <div class="form-group">
                     <span>City:</span>
                     <input type="text" class="form-control" [(ngModel)]="data.city" #city="ngModel" name="city" placeholder="" required />
@@ -184,14 +185,18 @@
         </div>
     <div id="collapseThree" [className]="pamentoptions? 'panel-collapse collapse':'panel-collapse collapse in'">
         <div class="panel-body">
+            <form #myForm1="ngForm">
             <div class="">
-              <input type="radio" value="cash on delivery" name="payment" [(ngModel)]="cod" checked>&nbsp;Cash On Delivery.
-           <p>
-           <button type="button" class="btn btn-info myBtn" (click)="confirmOrder()">Confirm Your Order</button>
+              <input type="radio" value="cash on delivery" name="payment" #payment="ngModel" [(ngModel)]="cod"  required> &nbsp;Cash On Delivery.
+              <div *ngIf="payment.errors && (payment.dirty || payment.touched)" class="error">
+                    <div [hidden]="!payment.errors.required">Please select payment option.</div>
+                </div> 
+              <p>
+           <button type="button" class="btn btn-info myBtn" (click)="confirmOrder()"[disabled]="!myForm1.form.valid" >Confirm Your Order</button>
                
            </p>   
         </div>
-    
+    </form>
     </div>
     </div>
     </div>
@@ -212,9 +217,9 @@
 <div class="Ordersuccess" *ngIf="msg && Ordersuccess">
 <div class="row borderBox">
  <p *ngIf="msg.Success==true">Your <strong class="successmsg">{{msg.msg}}</strong></p>
- <p *ngIf="msg.Success==false">Your <strong class="faildmsg">{{msg.msg}}</strong></p>
+ <p *ngIf="errors">Your <strong class="faildmsg">{{errors}}</strong></p>
  
- To continue the shopping Please <button type="button" class="btn btn-link">Click here</button>
+ To continue the shopping Please <button type="button" class="btn btn-link" routerLink="/">Click here</button>
 </div>
 </div>
 

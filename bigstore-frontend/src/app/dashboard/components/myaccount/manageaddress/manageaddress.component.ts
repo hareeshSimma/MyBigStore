@@ -61,9 +61,13 @@ export class ManageaddressComponent implements OnInit {
         })
     }
   }
+// add address foeld
 
   save(data) {
+    let AddressId= "AD"+ Math.floor((Math.random() * 10000000) + 1);
+
     this.address = {
+      addressid:AddressId,
       fullname: data.fullname,
       mobile: data.mobile,
       address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode

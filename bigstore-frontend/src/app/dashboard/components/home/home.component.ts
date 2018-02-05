@@ -74,7 +74,7 @@ this.router.navigate(['/productdata'])
 }
   ngOnInit() {
     this.dashboardservice.getProducts().subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.totalProducts = res;
       (res).forEach(element => {
       // this.imgUrl="http://localhost:3000/images/"  ;
