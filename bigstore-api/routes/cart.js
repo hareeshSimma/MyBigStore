@@ -34,6 +34,7 @@ console.log(req.params,req.payload.id);
   })
 });
 
+
 router.post('/additems', function(req, res, next) {
     console.log(req.body)
     User.findOne({_id:req.body.id},function(err,data){
@@ -43,6 +44,7 @@ router.post('/additems', function(req, res, next) {
                 "msg": " Invalid data." 
               }); 
         }
+
         else{
             // let orderId= "OD"+ Math.floor((Math.random() * 10000000000) + 1);
             var item = {
@@ -53,21 +55,48 @@ router.post('/additems', function(req, res, next) {
             weight:req.body.weight,
             cost:req.body.cost,
             productId:req.body.productId
+        } 
+        var  count = 0;
+        data.items && (data.items).forEach((ele,i)=>{
+       if(ele.productId == req.body.productId){
+        count = 1;
+        var qty = parseInt(ele.qty) + 1;
+        ele.qty = qty.toString();
+User.update({"items.productId" : req.body.productId}, {"$set" : {"items.$.qty" : ele.qty}},function(err,item){
+  if(err)
+    {
+      return res.status(500).json({
+        "Success": false, "msg": "In valid data entered" 
+     });
+    }
+  return  res.status(200).json({ 
+        "Success": true, 
+        "msg": " Qty Successfully added." 
+      }); 
+  })
+
+
+  }
+        })
+
+        // console.log(data.items)
+        if(!count){
+          data.items.push(item);
+          data.save(function(err,data){
+            if(err)
+            {
+              return res.status(500).json({
+                "Success": false, "msg": "In valid data" 
+             });
+            }
+          return  res.status(200).json({ 
+                "Success": true, 
+                "msg": " Item Successfully added." 
+              }); 
+        })
         }
-        data.items.push(item);
         //data.save();
-        data.save(function(err,data){
-                if(err)
-                {
-                  return res.status(500).json({
-                    "Success": false, "msg": "In valid data" 
-                 });
-                }
-              return  res.status(200).json({ 
-                    "Success": true, 
-                    "msg": " Item Successfully added." 
-                  }); 
-            })
+       
 
         }
     })
@@ -91,15 +120,10 @@ router.post('/additems', function(req, res, next) {
         else{
             let orderId= "OD"+ Math.floor((Math.random() * 10000000000) + 1);
             var order = {
-            orderId:orderId,
-            // name:req.body.productname,
-            // qty:req.body.qty, 
-            // href:req.body.image,
-            // weight:req.body.weight,
-            // cost:req.body.cost,
-           // productId:req.body.productId,  
+           orderId:orderId, 
            address:req.body.address,
-           items:req.body.items,      
+           items:req.body.items, 
+           totalAmount:req.body.PayableAmount,     
            date:Date()
         }
         data.orders.push(order);
@@ -184,5 +208,8 @@ router.get('/getorders',auth.required, function(req, res, next) {
        
       })
     });
+
+
+
 
 module.exports = router;

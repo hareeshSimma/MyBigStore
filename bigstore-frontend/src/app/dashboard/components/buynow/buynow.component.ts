@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute,Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DashboardService } from '../../../shared/services/dashboard.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -39,10 +39,12 @@ export class BuynowComponent implements OnInit {
   Orderprocess:boolean=true;
   Ordersuccess:boolean=false;
   msg:any;
+  totalPrice:number;
   constructor(
     private dashboardservice:DashboardService,
     private activeRouter:ActivatedRoute,
     private router:Router,
+    private activatedRoute: ActivatedRoute,
     private jwtservice:JwtService,
   ) { 
 
@@ -79,6 +81,11 @@ export class BuynowComponent implements OnInit {
           console.log(this.userAddress)
 
         })
+
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+          this.totalPrice = params['total'];
+          console.log(this.totalPrice)
+        });
     }
 
     if(id){
@@ -151,14 +158,14 @@ export class BuynowComponent implements OnInit {
         if(res.Success){
           
           setTimeout(()=>{
-            this.dashboardservice.getItems(id).subscribe(resp=>{
-            this.items=resp.items;
+            this.dashboardservice.getItems(id).subscribe(res=>{
+            this.items=res.items;
             this.length=this.items.length;
             this.dashboardservice.sendPath(this.items.length);
-          this._removeItem=false;
+            this._removeItem=false;
              
              setTimeout(() => {
-              if(resp){
+              if(res){
                 if(this.length==0){
                  window.alert("Your Cart is empty! plz add items to the cart. ");
                  this.router.navigate(['/']);
@@ -183,7 +190,8 @@ export class BuynowComponent implements OnInit {
     this.orderDetials={
       address:this.address,
       items:this.items,  
-      paymentMethod:this.cod
+      paymentMethod:this.cod,
+      PayableAmount:this.totalPrice
     }
     console.log(this.orderDetials)
     this.dashboardservice.buyNow(this.orderDetials).subscribe(res=>{

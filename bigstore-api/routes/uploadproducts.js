@@ -47,6 +47,7 @@ User.findById(req.payload.id, function(err, user) {
         uploadproduct.image=req.body.image;
 
         var productName=req.body.productname.substring(0,4);
+        productName.toUpperCase();
         var productId=productName+ Math.floor(Math.random() * 3000000);
         uploadproduct.productId=productId;
 

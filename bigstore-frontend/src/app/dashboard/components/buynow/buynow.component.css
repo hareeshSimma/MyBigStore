@@ -31,7 +31,11 @@
     padding-top: 10px;
 }
 .priceHistory{
-    float: right
+    float: right;
+}
+.priceHistorycolor{
+    color:green;
+
 }
 .pTop{
     padding-top: 10px;

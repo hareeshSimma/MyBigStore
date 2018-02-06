@@ -27,7 +27,6 @@ _isdotLoder:boolean;
 //url="https://mybigcart.herokuapp.com/images/";
 // url="http://localhost:3000/images/";
 url=environment.img_url;
-// productData:any;
   constructor(
     private dashboardservice:DashboardService,
     private zone:NgZone,
@@ -41,7 +40,7 @@ url=environment.img_url;
     this.subscription = dashboardservice.currentUser.subscribe(
       user => {
         this.currentUser = user;
-        // this.initData(this.currentUser)
+        this.initData(this.currentUser)
       }
     );
     // this.productDetials = this.dashboardservice.getPath();
@@ -50,23 +49,38 @@ url=environment.img_url;
       console.log(this.data)
   }
 
-  // initData(currentUser: User) {
+  initData(currentUser: any) {
     
-  //   console.log(currentUser)
-    
-  // }
+    let id = currentUser.id;
+    if(id){
+    this.dashboardservice.getItems(id)
+      .subscribe(
+      res => {
+        this.items = res.items;
+       // console.log(this.items);
+(this.items).forEach(element => {
+  console.log(element.productId)
+});
+
+      })
+    }
+  }
 
 addcart(data,qty){
   console.log(data)
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
     let id = this.currentUser.id;
+
+
     
 if(!this.token){
   this.router.navigate(['/login']);
   
 }else{
   this._dotLoder=true;
+
+
   this.dashboardservice.addCartitems(data).subscribe(items=>{
     console.log(items)
     if(items.Success == true){

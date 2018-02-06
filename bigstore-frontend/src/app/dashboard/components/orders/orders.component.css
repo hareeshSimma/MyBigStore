@@ -40,3 +40,6 @@
     margin: 0px;
     border-bottom: 1px solid #f1e7e7;
 }
+.btnwidth{
+    width: 44% !important;
+}

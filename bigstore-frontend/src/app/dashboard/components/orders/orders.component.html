@@ -6,10 +6,15 @@
 <div class="" id="mycontainer" *ngIf="ordercount">
 	<h4>My Account > Orders</h4>
 <div class="row _orderborder" *ngFor="let order of orders;">
-	<div class="col-xs-12 _isorderImgborder">
+	<div class="col-xs-12  _isorderImgborder">
+		<div class="col-xs-12 col-md-9" >
 		<label>Order Id </label>&nbsp;<span>{{order.orderId}}</span>
 		<p>Placed On {{order.date | date:'medium'}} </p>
 		<h5>Total Amount :&nbsp;<i class="fa fa-inr" aria-hidden="true"></i>{{order.cost}}</h5>
+		</div>
+		<div class="col-xs-12 col-md-3">
+		<button type="button" class="btn btn-primary btnwidth"> Order Detials</button>
+		</div>
         </div>
 		<div class="row inneritems" *ngFor="let items of order.items">
          <div class=" col-xs-12 col-sm-6  col-md-2 innerborder">
@@ -24,8 +29,8 @@
 		
 </div>
 <div class="col-md-2 innerborder">
-		<button type="button" class="btn btn-primary ">Cancel Your Order</button>
-		<button type="button" class="btn btn-primary ">Return Your Order</button>
+		<button type="button" class="btn btn-primary ">Cancel This Item</button>
+		<button type="button" class="btn btn-primary " *ngIf="">Return This Item</button>
 
 </div>
 </div>

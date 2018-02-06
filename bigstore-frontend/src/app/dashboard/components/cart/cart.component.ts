@@ -96,9 +96,10 @@ getTotal() {
           })
   }
 
-  checkout(){
+  checkout(total){
+    // console.log(total)
     setTimeout(() => {
-    this.router.navigate(['/buynow']);
+    this.router.navigate(['/buynow'],{ queryParams: { total: total } });
       
     }, 1000);
   
