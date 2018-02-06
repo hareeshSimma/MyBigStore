@@ -56,6 +56,25 @@ export class CartComponent implements OnInit {
       })
     }
   }
+  subtotal(items)
+  { var item=[];
+      
+      for (var i=0;i<items.length;i++)
+      {
+       item.push({
+         pid:this.items[i].productId,
+         qty:this.items[i].qty,
+         cost:this.items[i].qty*this.items[i].cost
+       })
+    }
+   
+     this.dashboardservice.updateCartData(item).subscribe(
+      res=>{
+        console.log(res);
+      }
+    )
+  }
+
 
 getTotal() {
     let total = 0;
@@ -121,6 +140,11 @@ getTotal() {
   //   }
   //   return arr;
   // }
+
+   ngOnDestroy()
+  {
+    this.subtotal(this.items);
+  }
 
   ngOnInit() {
 

@@ -33,7 +33,41 @@ console.log(req.params,req.payload.id);
    
   })
 });
-
+router.put('/updateCart', auth.required, function (req, res, next) {
+    console.log(req.body);
+    User.findById({ _id: req.payload.id }, function (err, data) {
+        if (!data) {
+            res.json({
+                "Success": false,
+                "msg": " No User found."
+            });
+        }
+        else {
+            var dataToUpdate = [];
+            for (var i = 0; i < data.items.length; i++) {
+                dataToUpdate.push(data.items[i]);
+                for (var j = 0; j < req.body.length; j++) {
+                    if (data.items[i].productId == req.body[j].pid) {
+                        dataToUpdate[i].qty = req.body[j].qty.toString();
+                         dataToUpdate[i]["subtotal"]=req.body[j].cost;
+                    }
+                }
+            }
+            data.items = [];
+            data.items=dataToUpdate;
+            data.save(function (err, dat) {
+                if(err){
+                    res.status(401).json({
+                        data : err
+                    })
+                }
+                res.status(200).json({
+                    data: dat
+                });
+            })
+        }
+    })
+})
 router.post('/additems', function(req, res, next) {
     console.log(req.body)
     User.findOne({_id:req.body.id},function(err,data){

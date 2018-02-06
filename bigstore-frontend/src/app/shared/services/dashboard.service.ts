@@ -128,6 +128,16 @@ caseNumber$ = this.subject.asObservable();
                   }
                 );
   }
+  updateCartData(items)
+  {
+    // console.log("fronend service",items);
+    return this.apiService.put('/cart/updateCart',items)
+     .map(
+     data => {
+       return data;
+     }
+     );
+  }
   getItems(id):Observable<User>{
     const route ='/cart/cartitems/'+id
     return this.apiService.get(route)
