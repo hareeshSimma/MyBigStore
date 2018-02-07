@@ -22,7 +22,7 @@
     
     .panel-default>.panel-heading {
         color: #fff;
-        background-color: #256a95;
+        background-color: #44a716;
         border-color: #ddd;
         cursor: pointer;
     }
@@ -64,7 +64,7 @@
     
     ul.list-group  li a:hover, ul li a:focus {
      color:#fff;
-     background-color: #00436a;
+     background-color: #44a716;
     }
     
     .panel-title a:hover,

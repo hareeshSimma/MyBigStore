@@ -1,5 +1,5 @@
 #bigstore-navbar {
-    background-color: #006b96;
+    background-color: #357119;
     color: #FFFFFF;
     position: sticky;
     top: 0;
@@ -34,7 +34,7 @@
 }
 
 .cart-button {
-    background-color: #0c80c7;
+    background-color: #51841e;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .23), inset 1px 1px 0 0 hsla(0, 0%, 100%, .2);
     padding: 10px 0;
     text-align: center;

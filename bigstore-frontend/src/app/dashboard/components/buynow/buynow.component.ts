@@ -82,10 +82,10 @@ export class BuynowComponent implements OnInit {
 
         })
 
-        this.activatedRoute.queryParams.subscribe((params: Params) => {
-          this.totalPrice = params['total'];
-          console.log(this.totalPrice)
-        });
+        // this.activatedRoute.queryParams.subscribe((params: Params) => {
+        //   this.totalPrice = params['total'];
+        //   console.log(this.totalPrice)
+        // });
     }
 
     if(id){
@@ -93,6 +93,12 @@ export class BuynowComponent implements OnInit {
      this.dashboardservice.getItems(id).subscribe(
   res => { 
     this.items = res.items;
+    this.totalPrice=0;
+    
+    (this.items).forEach(element => {
+            
+      this.totalPrice += parseInt(element.cost) * parseInt(element.qty)
+         });
     this.length=this.items.length;
     if(this.length==1){
       this.itemcount="item";
@@ -160,7 +166,18 @@ export class BuynowComponent implements OnInit {
           setTimeout(()=>{
             this.dashboardservice.getItems(id).subscribe(res=>{
             this.items=res.items;
+            console.log(this.items)            
             this.length=this.items.length;
+
+
+            this.totalPrice=0;
+
+            (this.items).forEach(element => {
+            
+         this.totalPrice += parseInt(element.cost) * parseInt(element.qty)
+            });
+
+            console.log(this.totalPrice);
             this.dashboardservice.sendPath(this.items.length);
             this._removeItem=false;
              

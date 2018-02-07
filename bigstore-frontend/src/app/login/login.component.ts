@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor() { }
-
+  onActivate(e, outlet){
+    outlet.scrollTop = 0;
+    // window.scrollTo(0, 0)
+  }
   ngOnInit() {
   }
 

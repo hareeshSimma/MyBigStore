@@ -51,11 +51,31 @@ export class CartComponent implements OnInit {
         this._isLoder=false;
         this.items = res.items;
         this.length=this.items.length;
-      //  this.dashboardservice.sendPath(this.length);
 
       })
     }
   }
+
+  subtotal(items)
+  { 
+    var item=[];
+      
+      for (var i=0;i<items.length;i++)
+      {
+       item.push({
+         pid:this.items[i].productId,
+         qty:this.items[i].qty,
+         cost:this.items[i].qty*this.items[i].cost
+       })
+    }
+   
+     this.dashboardservice.updateCartData(item).subscribe(
+      res=>{
+        console.log(res);
+      }
+    )
+  }
+
 
 getTotal() {
     let total = 0;
@@ -79,7 +99,6 @@ getTotal() {
                 
                 if(res.Success){
                   
-                  // console.log("updated view",res);
                   setTimeout(()=>{
                     this.dashboardservice.getItems(id).subscribe(resp=>{
                     // console.log(resp.items);
@@ -99,7 +118,7 @@ getTotal() {
   checkout(total){
     // console.log(total)
     setTimeout(() => {
-    this.router.navigate(['/buynow'],{ queryParams: { total: total } });
+    this.router.navigate(['/buynow']);
       
     }, 1000);
   
@@ -122,6 +141,11 @@ getTotal() {
   //   }
   //   return arr;
   // }
+
+   ngOnDestroy()
+  {
+    this.subtotal(this.items);
+  }
 
   ngOnInit() {
 

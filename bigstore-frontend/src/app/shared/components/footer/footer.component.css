@@ -4,7 +4,7 @@
 }
 
 #footer-main{
-    background-color: #012b72;
+    background-color: #419c16;
     padding:15px 0 10px 0;
     height: 50px;
     color: white;
@@ -44,6 +44,7 @@ margin-left: -38px;
 #footer-sub a:hover {
     text-decoration: none;
     color: blue;
+    cursor: pointer;
 }
 
 

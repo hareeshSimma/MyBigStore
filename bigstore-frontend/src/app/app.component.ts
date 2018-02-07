@@ -12,7 +12,10 @@ export class AppComponent implements OnInit{
   constructor(
     private dashboardService: DashboardService
   ) { }
-
+  onActivate(e, outlet){
+    outlet.scrollTop = 0;
+    // window.scrollTo(0, 0)
+  }
   ngOnInit() {
     this.dashboardService.populate();
     this.dashboardService.isAuthenticated.take(1).map(bool => {

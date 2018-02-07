@@ -128,6 +128,16 @@ caseNumber$ = this.subject.asObservable();
                   }
                 );
   }
+  updateCartData(items)
+  {
+    var route='/cart/updateCart';    
+    return this.apiService.put(route,items)
+     .map(
+     data => {
+       return data;
+     }
+     );
+  }
   getItems(id):Observable<User>{
     const route ='/cart/cartitems/'+id
     return this.apiService.get(route)

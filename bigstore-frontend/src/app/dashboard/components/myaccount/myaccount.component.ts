@@ -26,7 +26,10 @@ export class MyaccountComponent implements OnInit {
       }
     );
   }
-
+  onActivate(e, outlet){
+    outlet.scrollTop = 0;
+    // window.scrollTo(0, 0)
+  }
   logout(){
     
     this.dashboardService.purgeAuth();

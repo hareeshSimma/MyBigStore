@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { DashboardService } from '../../../shared/services/dashboard.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
-import { Router } from '@angular/router';
+import { Router,NavigationEnd } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
 import { environment } from '../../../../environments/environment';
 
@@ -70,6 +70,8 @@ addcart(data,qty){
   console.log(data)
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
+    data["subtotal"]=data.cost * qty;
+    
     let id = this.currentUser.id;
 
 
@@ -116,7 +118,7 @@ setTimeout(() => {
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
     this._isdotLoder=true;
-    //  data.cost=data.cost * qty;
+    data["subtotal"]=data.cost * qty;
      let id = this.currentUser.id;
   //  let productData=data;
   if(!this.token){
@@ -147,24 +149,16 @@ setTimeout(() => {
   
 }, 1000);
 
-
-
-//     data["qty"]=qty;
-//     data["id"]=this.currentUser.id;
-//     data.cost=data.cost * qty;
-//     this._isdotLoder=true;
-    
-//     // console.log(data)
-//    this.dashboardservice.buyNow(data).subscribe(res=>{
-//    console.log(res);
-//    this._isdotLoder=false;
-   
-// })
-
   }
 }
   ngOnInit() {
     
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+  });
   }
   
 

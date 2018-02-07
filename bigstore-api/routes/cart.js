@@ -35,6 +35,45 @@ console.log(req.params,req.payload.id);
 });
 
 
+router.put('/updateCart', auth.required, function (req, res, next) {
+    console.log(req.body);
+    User.findById({ _id: req.payload.id }, function (err, data) {
+        if (!data) {
+            res.json({
+                "Success": false,
+                "msg": " No User found."
+            });
+        }
+        else {
+            var dataToUpdate = [];
+            for (var i = 0; i < data.items.length; i++) {
+                dataToUpdate.push(data.items[i]);
+                for (var j = 0; j < req.body.length; j++) {
+                    if (data.items[i].productId == req.body[j].pid) {
+                        dataToUpdate[i].qty = req.body[j].qty.toString();
+                         dataToUpdate[i].subtotal=req.body[j].cost;
+                        //  dataToUpdate[i]["subtotal"]=req.body[j].cost;
+                          
+                    }
+                }
+            }
+            data.items = [];
+            data.items=dataToUpdate;
+            data.save(function (err, dat) {
+                if(err){
+                  return  res.status(401).json({ 
+                    "Success": false, 
+                    "msg": " Invalid data." 
+                  }); 
+                }
+                return  res.status(200).json({ 
+                  "Success": true, 
+                  "msg": "cart updated" 
+                }); 
+            })
+        }
+    })
+})
 router.post('/additems', function(req, res, next) {
     console.log(req.body)
     User.findOne({_id:req.body.id},function(err,data){
@@ -54,7 +93,8 @@ router.post('/additems', function(req, res, next) {
             href:req.body.image,
             weight:req.body.weight,
             cost:req.body.cost,
-            productId:req.body.productId
+            productId:req.body.productId,
+            subtotal:req.body.subtotal
         } 
         var  count = 0;
         data.items && (data.items).forEach((ele,i)=>{
@@ -62,9 +102,10 @@ router.post('/additems', function(req, res, next) {
         count = 1;
         var qty = parseInt(ele.qty) + 1;
         ele.qty = qty.toString();
-User.update({"items.productId" : req.body.productId}, {"$set" : {"items.$.qty" : ele.qty}},function(err,item){
-  if(err)
-    {
+  
+   User.update({"items.productId" : req.body.productId}, {"$set" : {"items.$.qty" : ele.qty}},function(err,item){
+       if(err)
+       {
       return res.status(500).json({
         "Success": false, "msg": "In valid data entered" 
      });
