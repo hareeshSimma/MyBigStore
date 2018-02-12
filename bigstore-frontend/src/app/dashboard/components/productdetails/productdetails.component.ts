@@ -67,15 +67,17 @@ url=environment.img_url;
   }
 
 addcart(data,qty){
-  console.log(data)
+  console.log(qty)
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
     data["subtotal"]=data.cost * qty;
     
     let id = this.currentUser.id;
 
-
-    
+if(qty==0 || qty==null){
+  window.alert("Please select Quantity...! minimum 1 Bag")
+}
+    else{
 if(!this.token){
   this.router.navigate(['/login']);
   
@@ -112,15 +114,17 @@ setTimeout(() => {
   }
 )
 }
-   
+}
   }
+
+
   buyNow(data,qty){
     data["qty"]=qty;
     data["id"]=this.currentUser.id;
     this._isdotLoder=true;
     data["subtotal"]=data.cost * qty;
      let id = this.currentUser.id;
-  //  let productData=data;
+
   if(!this.token){
     this.router.navigate(['/login']);
     

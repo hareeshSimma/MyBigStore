@@ -6,6 +6,7 @@
     font-family: fantasy;
     color: grey;
     margin-bottom: 50px;
+    min-height: 500px;
 }
 .panel{
     margin-top: 15px;

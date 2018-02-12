@@ -82,10 +82,6 @@ export class BuynowComponent implements OnInit {
 
         })
 
-        // this.activatedRoute.queryParams.subscribe((params: Params) => {
-        //   this.totalPrice = params['total'];
-        //   console.log(this.totalPrice)
-        // });
     }
 
     if(id){

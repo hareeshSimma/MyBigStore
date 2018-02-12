@@ -259,6 +259,15 @@ deleteCart(){
               })
 }
 
+cancelItem(data){
+  var route='/cart/cancelitem';
+  return this.apiService.post(route,data)
+                .map(
+                  data => {
+                    return data;
+                  }
+                );
+}
 
 }
 

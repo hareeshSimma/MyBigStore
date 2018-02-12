@@ -3,8 +3,9 @@ import { DashboardService } from '../../../shared/services/dashboard.service';
 import { JwtService } from '../../../shared/services/jwt.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
-import { Router } from '@angular/router';
-
+import { Router,NavigationEnd } from '@angular/router';
+// import {trigger, state, style, transition, animate} from '@angular/core';
+import {trigger, state, style, transition, animate} from '@angular/animations';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,6 +17,8 @@ currentUser: any;
 subscription: Subscription;
 items:any;
 itemslength:string;
+mySidenav:string;
+
   constructor(
     private router:Router,
     private dashboardService:DashboardService,
@@ -33,6 +36,13 @@ itemslength:string;
       }
     );
   }
+ 
+  openNav() {
+   this.mySidenav="mySidenav"
+  }
+  closeNav() {
+    this.mySidenav="mySidenav1"
+   }
 
    initData(currentUser: any) {
     
@@ -87,6 +97,12 @@ itemslength:string;
     this.dashboardService.caseNumber$.subscribe(res=>{
       this.itemslength=res;
     });
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+  });
   }
 
 }

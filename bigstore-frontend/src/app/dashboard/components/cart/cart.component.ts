@@ -5,6 +5,7 @@ import { User } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
 import { environment } from '../../../../environments/environment';
+import { window } from 'rxjs/operator/window';
 
 @Component({
   selector: 'app-cart',
@@ -22,6 +23,7 @@ export class CartComponent implements OnInit {
   _dotLoder:boolean;
   //url="https://mybigcart.herokuapp.com/images/";
   // url="http://localhost:3000/images/";
+  
   url=environment.img_url;
   constructor(
     private dashboardservice:DashboardService,
@@ -58,6 +60,7 @@ export class CartComponent implements OnInit {
 
   subtotal(items)
   { 
+    
     var item=[];
       
       for (var i=0;i<items.length;i++)
@@ -144,7 +147,13 @@ getTotal() {
 
    ngOnDestroy()
   {
-    this.subtotal(this.items);
+    if(!this.token){
+      this.router.navigate(['/login']);
+
+    }else{
+      this.subtotal(this.items);
+
+    }
   }
 
   ngOnInit() {

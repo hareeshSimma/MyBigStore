@@ -201,10 +201,11 @@
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 3px;
     font-size: 36px;
-    margin-left: 50px;
-    color: #fff;        
+    margin-top: -7px;
+    /* margin-left: 50px; */
+    color: rgb(243, 13, 13);        
 }
 
 @media screen and (max-height: 450px) {
@@ -212,6 +213,18 @@
 }
 
 .sidenav-heading{
-    font-size: 36px;
+    font-size: 20px;
     color: #fff;
 }
+
+  #mySidenav{
+width: 90%;
+  }
+  .mysidenav{
+    background-color: #4bab1e;
+     padding-top: 15px;
+     padding-bottom: 15px;
+  }
+  #mySidenav1{
+      width: 0px;
+  }
