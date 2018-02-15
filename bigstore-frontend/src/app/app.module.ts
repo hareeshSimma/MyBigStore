@@ -13,6 +13,8 @@ import { CustomFormsModule } from 'ng2-validation';
 // import { NgxTypeaheadModule } from 'ngx-typeahead';
 // import { EqualValidator } from '../shared/directives/equal-validator.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NgxTypeaheadModule } from 'ngx-typeahead';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     CustomFormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     // NgxTypeaheadModule,
   ],
   providers: [

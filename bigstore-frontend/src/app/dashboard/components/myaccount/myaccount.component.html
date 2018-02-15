@@ -29,17 +29,35 @@
                 </ul>
               </div>
             </div>
-            <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngIf="role">
+            <div *ngIf="role">
+            <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >
                 <div class="panel-heading">
                   <h4 class="panel-title"><a routerLink="/myaccount/uploadproducts" ><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Upload Product Detials</a> </h4>
                 </div>
               </div>
+              <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >
+                  <div class="panel-heading">
+                    <h4 class="panel-title"><a routerLink="/myaccount/totalorders" ><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Total Orders List</a> </h4>
+                  </div>
+                </div>
+                <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >
+                    <div class="panel-heading">
+                      <h4 class="panel-title"><a routerLink="/myaccount/cancelorders" ><i class="fa fa-window-close" aria-hidden="true"></i>&nbsp;Canceled Orders</a> </h4>               
+                    </div>
+                  </div>
+                  <div class="panel panel-default" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >
+                      <div class="panel-heading">
+                        <h4 class="panel-title"><a routerLink="/myaccount/totalitemslist" ><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Upload Items List</a> </h4>               
+                      </div>
+                    </div>
+
+                </div>
+                  
               <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title"><a (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;Logout</a> </h4>
                   </div>
                 </div>
-
 
            
             <!-- This is in case you want to add additional links that will only show once the Nav button is engaged; delete if you don't need -->

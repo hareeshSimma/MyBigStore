@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var router = require('express').Router();
 var User = mongoose.model('User');
 var auth = require('./auth');
-
+var mailer = require('../config/mailer');
+var mailConfig = require("../config/config.json").mailer;
+var mail = new mailer();
 
 router.get('/cartitems/:id', function (req, res, next) {
   User.findOne({ _id: req.params.id }).then(function (result) {
@@ -171,7 +173,7 @@ router.post('/buynow', auth.required, function (req, res, next) {
         if (err) {
           return res.status(500).json({
             "Success": false,
-            "msg": "Order Failde"
+            "msg": "Order Failed"
           });
         }
         if (!data) {
@@ -179,11 +181,22 @@ router.post('/buynow', auth.required, function (req, res, next) {
             "Success": false,
             "msg": "In valid data"
           });
+        }else{
+
+          let mailOptins = {
+            "subject": "Your Mill to Meal Order  (" +orderId+ ") Confirmation",
+            "html": '<b>Hello ' + data.full_name + '</b><p>Your Orders Placed  Successfully.</p>'+
+            ' <p>Your Order Id is:'+orderId+'</p>'
+          
         }
+
+        mail.Transport(mailOptins, req);
+
         return res.status(200).json({
           "Success": true,
           "msg": "Ordered Successfully Placed."
         });
+      }
       })
 
     }

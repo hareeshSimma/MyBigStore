@@ -25,16 +25,26 @@
                 <h2 style="margin:0px;"  ><span class="smallnav menu" (click)="openNav()">☰ Mill to Meal</span></h2>
                 <h2 style="margin:0px; cursor:pointer;" routerLink="/"><span class="largenav">Mill to Meal</span></h2>
             </div>
-            <div class="bigstore-navbar-search smallsearch col-sm-8 col-xs-11">
-                <div class="row">
-                    <input class="bigstore-navbar-input col-xs-11" type="text" placeholder="Search for Products, Brands and more" name="" >
-                    <button class="bigstore-navbar-button col-xs-1">
+           
+            <div class="bigstore-navbar-search smallsearch col-sm-8 col-xs-11 ">
+                <div class="row" >
+                    <input class="bigstore-navbar-input col-xs-11" type="text" placeholder="Search for Products, Brands and more"  name="search" 
+                    [value]="search"
+                    ngxTypeahead
+                    [taUrl]="url"
+                    [taParams]="params"
+                    (taSelected)="handleResultSelected($event)"
+                    >
+                    
+                    <button class="bigstore-navbar-button col-xs-1" >
+                        <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
                       <svg width="15px" height="15px">
                           <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
                       </svg>
                   </button>
                 </div>
             </div>
+           
             <div class="cart largenav col-sm-2" >
                 <a class="cart-button" routerLink="/cart" >
                     <svg class="cart-svg " width="16 " height="16 " viewBox="0 0 16 16 ">
@@ -60,9 +70,10 @@
     </div>
 
     <div *ngIf="token" id={{mySidenav}}>
-        <a routerLink="/myaccount" (click)="closeNav()">account</a>
-        <a routerLink="/orders" (click)="closeNav()">orders</a>
-        <a (click)="logout()" (click)="closeNav()">logout</a>
+         <a routerLink="/" (click)="closeNav()">Home</a>        
+        <a routerLink="/myaccount" (click)="closeNav()">Account</a>
+        <a routerLink="/orders" (click)="closeNav()">Orders</a>
+        <a (click)="logout()" (click)="closeNav()">Logout</a>
     </div>
     
 </div>

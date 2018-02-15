@@ -74,11 +74,8 @@ this.router.navigate(['/productdata'])
 }
   ngOnInit() {
     this.dashboardservice.getProducts().subscribe(res=>{
-      // console.log(res);
       this.totalProducts = res;
       (res).forEach(element => {
-      // this.imgUrl="http://localhost:3000/images/"  ;
-     //this.imgUrl =  " https://mybigcart.herokuapp.com/images/"
        this.imgUrl=environment.img_url;     
       });
     })

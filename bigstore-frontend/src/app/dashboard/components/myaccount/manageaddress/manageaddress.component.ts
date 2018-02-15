@@ -70,7 +70,11 @@ export class ManageaddressComponent implements OnInit {
       addressid:AddressId,
       fullname: data.fullname,
       mobile: data.mobile,
-      address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
+      address:data.address,
+      city:data.city,
+      state:data.state,
+      pincode:data.pincode
+      // address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
     }
     this.myForm.reset();
     // this.collapse = "collapsed";

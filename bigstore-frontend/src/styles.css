@@ -5,3 +5,11 @@
     margin-top: 4px;
 }
 
+.list-group.results {
+    width: 100% !important;
+    top: 44px; 
+    position: absolute;
+}
+.results .fa-search::before {
+     display: none !important;
+    }

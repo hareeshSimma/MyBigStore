@@ -1,12 +1,12 @@
-import { Component, OnInit,ChangeDetectorRef,NgZone } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef,NgZone} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { DashboardService } from '../../../shared/services/dashboard.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
-import { Router,NavigationEnd } from '@angular/router';
+import { Router,NavigationEnd,Event,NavigationStart } from '@angular/router';
 import { JwtService } from '../../../shared/services/jwt.service';
 import { environment } from '../../../../environments/environment';
-
+import 'rxjs/add/operator/pairwise';
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
@@ -24,6 +24,7 @@ errors:String;
 length:string;
 _dotLoder:boolean;
 _isdotLoder:boolean;
+previousUrl:string;
 //url="https://mybigcart.herokuapp.com/images/";
 // url="http://localhost:3000/images/";
 url=environment.img_url;
@@ -35,18 +36,32 @@ url=environment.img_url;
     
     
   ) { 
+    
     this.token= this.jwtservice.getToken();    
     this.qty="1"
     this.subscription = dashboardservice.currentUser.subscribe(
       user => {
         this.currentUser = user;
         this.initData(this.currentUser)
-      }
-    );
+      });
+    //   this.router.events.pairwise().subscribe((e) => {
+    //     console.log(e);
+    //     sessionStorage.setItem("previousroute",e[0]['url'])
+       
+    // })
     // this.productDetials = this.dashboardservice.getPath();
     this.productDetials= localStorage.getItem('data');
     this.data=JSON.parse(this.productDetials);
       console.log(this.data)
+    
+      // router.events
+      // .filter(event => event instanceof NavigationEnd)
+      // .subscribe(e => {
+      //   this.previousUrl = e[0].url;
+      //   console.log(this.previousUrl);
+        
+      // });
+    
   }
 
   initData(currentUser: any) {
@@ -58,8 +73,8 @@ url=environment.img_url;
       res => {
         this.items = res.items;
        // console.log(this.items);
-(this.items).forEach(element => {
-  console.log(element.productId)
+       (this.items).forEach(element => {
+       console.log(element.productId)
 });
 
       })
@@ -163,6 +178,8 @@ setTimeout(() => {
       }
       window.scrollTo(0, 0);
   });
+
+
   }
   
 

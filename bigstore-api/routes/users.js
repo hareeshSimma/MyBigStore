@@ -59,7 +59,7 @@ router.post('/usercreation',function(req,res,next){
   } else {
 
     let mailOptins = {
-      "subject": "Welcome to Bigstore",
+      "subject": "Welcome to Mill to Meal",
       "html": '<b>Dear ' + req.body.fullname + '</b><p>Your Registration is Successfully Done.</p>'
     
   }
@@ -298,7 +298,10 @@ var address={
         addressid:req.body.addressid,
         fullname:req.body.fullname,
         mobile:req.body.mobile,
-        address:req.body.address
+        address:req.body.address,
+        city:req.body.city,
+        state:req.body.state,
+        pincode:req.body.pincode
 }
 user.address.push(address);
 user.save(function(err,data){

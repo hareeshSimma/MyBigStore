@@ -12,6 +12,9 @@ import { UplodeproductsComponent } from './components/myaccount/uplodeproducts/u
 import { ChangepasswordComponent } from './components/myaccount/changepassword/changepassword.component';
 //import { ChangepasswordComponent } from '../login/changepassword/changepassword.component';
 import { BuynowComponent } from './components/buynow/buynow.component';
+import { OrdereditemsComponent } from './components/myaccount/ordereditems/ordereditems.component';
+import { CanceleditemsComponent } from './components/myaccount/canceleditems/canceleditems.component';
+import { TotalitemslistComponent } from './components/myaccount/totalitemslist/totalitemslist.component';
 
 
 const routes: Routes = [
@@ -37,6 +40,10 @@ const routes: Routes = [
           
         ] },
       { path:'uploadproducts', component:UplodeproductsComponent },
+      { path:'totalorders', component:OrdereditemsComponent },
+      { path:'cancelorders', component:CanceleditemsComponent },
+      { path:'totalitemslist', component:TotalitemslistComponent },
+      
         
       ] },
       

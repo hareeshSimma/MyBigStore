@@ -4,8 +4,8 @@ import { JwtService } from '../../../shared/services/jwt.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../../shared/models/user.model';
 import { Router,NavigationEnd } from '@angular/router';
-// import {trigger, state, style, transition, animate} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,6 +18,7 @@ subscription: Subscription;
 items:any;
 itemslength:string;
 mySidenav:string;
+totalProducts:any;
 
   constructor(
     private router:Router,
@@ -36,7 +37,23 @@ mySidenav:string;
       }
     );
   }
+
+
+  public url = 'http://suggestqueries.google.com/complete/search';
+  public params = {
+    hl: 'en',
+    ds: 'yt',
+    xhr: 't',
+    client: 'youtube'
+  };
+  public api = 'http';
+  public search = '';
  
+  handleResultSelected (result) {
+    this.search = result;
+  }
+
+
   openNav() {
    this.mySidenav="mySidenav"
   }
@@ -59,28 +76,9 @@ mySidenav:string;
       this.dashboardService.getPath().subscribe(res=>{
         console.log(res);
       });
-      // this.itemslength=this.items.length;
-
-
-      // this.zone.runOutsideAngular(() => {
-
-    // this.dashboardService.getItems(id)
-    //     .subscribe(
-    //     res => {
-    //     // this.zone.run(() => {
-         
-    //       this.items = res.items;
-          
-    //       this.itemslength=this.items.length;
-    //       console.log("this is length",this.itemslength)
-          
-    //     // })
-    //     }
-    //     )
-
-      // })
+      
         
-    
+
     
     
   }
@@ -94,6 +92,12 @@ mySidenav:string;
 
 
   ngOnInit() {
+    // console.log()
+    this.dashboardService.getProducts().subscribe(res=>{
+      this.totalProducts = res;
+      
+    })
+
     this.dashboardService.caseNumber$.subscribe(res=>{
       this.itemslength=res;
     });

@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { Router,ActivatedRoute,Params } from '@angular/router';
+import { Router,ActivatedRoute,Params,NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DashboardService } from '../../../shared/services/dashboard.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -201,6 +201,7 @@ export class BuynowComponent implements OnInit {
 
   confirmOrder(){
     this.orderDetials={
+      email:this.currentUser.email,
       address:this.address,
       items:this.items,  
       paymentMethod:this.cod,
@@ -248,7 +249,12 @@ err => {
   }
 
   ngOnInit() {
-  
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+  });
   }
 
 }
