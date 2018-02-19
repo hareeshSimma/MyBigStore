@@ -18,12 +18,15 @@ export class ManageaddressComponent implements OnInit {
   subscription: Subscription;
   data: User;
   collapse: string;
-  out: boolean = true;
-  address: any;
+  out:boolean = true;
+  show:boolean=false;
+  address:any;
+  index:number;
+  editForm:boolean=false;
   userAddress: any;
   errors: String;
   _isAddressLoading:boolean=true;
-
+  myAddress:User;
   constructor(
     private dashboardservice: DashboardService,
     private router: Router,
@@ -36,10 +39,10 @@ export class ManageaddressComponent implements OnInit {
       mobile: '',
       address: '',
       city: '',
-      state: ''
-
+      state: '',
+      addressid:''
     }
-
+ 
 
     this.subscription = dashboardservice.currentUser.subscribe(
       user => {
@@ -61,26 +64,29 @@ export class ManageaddressComponent implements OnInit {
         })
     }
   }
+
 // add address foeld
 
   save(data) {
-    let AddressId= "AD"+ Math.floor((Math.random() * 10000000) + 1);
 
-    this.address = {
-      addressid:AddressId,
-      fullname: data.fullname,
-      mobile: data.mobile,
-      address:data.address,
-      city:data.city,
-      state:data.state,
-      pincode:data.pincode
-      // address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
-    }
-    this.myForm.reset();
+    let AddressId= "AD"+ Math.floor((Math.random() * 10000000) + 1);
+    data.addressid=AddressId;
+    // this.address = {
+    //   addressid:AddressId,
+    //   fullname: data.fullname,
+    //   mobile: data.mobile,
+    //   address:data.address,
+    //   city:data.city,
+    //   state:data.state,
+    //   pincode:data.pincode
+    //   // address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
+    // }
+    
     // this.collapse = "collapsed";
     this.out = true;
-    console.log(this.address)
-    this.dashboardservice.manageAddress(this.address).subscribe(res => {
+    console.log(data);
+
+    this.dashboardservice.manageAddress(data).subscribe(res => {
       if (res) {
         this.dashboardservice.getAddress().subscribe(
           res => {
@@ -89,23 +95,68 @@ export class ManageaddressComponent implements OnInit {
 
           })
       }
+     
     },
       err => {
         this.errors = err.msg;
         console.log(this.errors)
       })
+      this.myForm.reset();
 
   }
-  Edit(address){
-console.log(address)
+
+  editaddress(address,i){
+     console.log("helloo....",address);
+     this.out = true;     
+      this.editForm=true;
+      this.show=false;
+      this.index=i;
+      this.myAddress=address;
+     
   }
-  Delete(address){
+  updateAddress(data)
+  {
+    console.log("hari",data);
+     this.dashboardservice.updateAddress(data).subscribe(
+          res => {
+          
+            console.log(res);
+            if (res) {
+        this.dashboardservice.getAddress().subscribe(
+          res => {
+
+            this.userAddress = res;
+
+          })
+      }
+            
+       })
+
+       this.index=-1;
+
+  }
+
+  deleteaddress(id){
+     this.dashboardservice.deleteAddress(id).subscribe(res=>{
+       console.log(res);
+       if (res.Success) {
+        setTimeout(() => {
+          this.dashboardservice.getAddress().subscribe(
+            res => {
+              this.userAddress = res;
+  
+            })
+        }, 1000);
+      
+      }
+     })
 
   }
   cancel() {
  
       this.out = true;
-    
+      this.index=-1;
+        
   }
   ngOnInit() {
   }

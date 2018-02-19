@@ -11,6 +11,7 @@ export class User {
                 public  city?:string,
                 public  state?:string,
                 public  gender?:string,
+                public  addressid?:string,
                 
                 ) {}
 }

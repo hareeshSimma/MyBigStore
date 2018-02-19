@@ -96,8 +96,8 @@ router.post('/additems', function (req, res, next) {
         cost: req.body.cost,
         productId: req.body.productId,
         subtotal: req.body.subtotal,
-        cancel: false,
-        return: false
+        // cancel: false,
+        // return: false
       }
       var count = 0;
       data.items && (data.items).forEach((ele, i) => {
@@ -166,6 +166,8 @@ router.post('/buynow', auth.required, function (req, res, next) {
         address: req.body.address,
         items: req.body.items,
         totalAmount: req.body.PayableAmount,
+        cancel: false,
+        return: false,
         date: Date()
       }
       data.orders.push(order);
@@ -260,64 +262,66 @@ router.delete('/emptycart', auth.required, function (req, res, next) {
   })
 });
 
-router.post('/cancelitem', auth.required, function (req, res, next) {
-  console.log(req.body)
-  User.findOne({ _id: req.payload.id }, function (err, items) {
+router.post('/cancelitem/:id', auth.required, function (req, res, next) {
+  User.findOne({ _id: req.payload.id }, function (err, orders) {
     if (err) {
       return res.status(500).json({
-        "Success": false, "msg": "In valid data"
+        "Success": false, "msg": "In valid user"
       });
     }
-    if (!items) {
+    if (!orders) {
       return res.status(401).json({
-        "Success": false, "msg": "In valid data"
+        "Success": false, "msg": "In valid user"
       });
     } else {
 
-      var cancelItems = (items.orders).filter(ele => {
-        return ele.orderId == req.body.oid
-      })
-      console.log(cancelItems);
-      cancelItems[0].items && (cancelItems[0].items).forEach((ele, i) => {
-        if (ele.productId == req.body.item.productId) {
+      // var cancelItems = (items.orders).filter(ele => {
+      //   return ele.orderId == req.body.oId
+      // })
+      // console.log(cancelItems);
+      // cancelItems[0].items && (cancelItems[0].items).forEach((ele, i) => {
+      //   if (ele.productId == req.body.item.productId) {
 
-          User.update({
-            "orders": {
-              "$elemMatch": {
-                "orderId": req.body.oid, "items.productId": req.body.item.productId
-              }
-            }
-          }, { $set: { "orders.$.items.$.cancel": true } }, {multi: true},
-        function (err, item) {
-            console.log("@@@@@@@@@@", item)
+        //   User.update({
+        //     "orders": {
+        //       "$elemMatch": {
+        //         "orderId": req.body.oid, "items.productId": req.body.item.productId
+        //       }
+        //     }
+        //   }, { $set: { "orders.$.items.$.cancel": true } }, {multi: true},
+        // function (err, item) {
+        //     console.log("@@@@@@@@@@", item)
+        //     if (err) {
+        //       return res.status(500).json({
+        //         "Success": false, "msg": err
+        //       });
+        //     }
+        //     return res.status(200).json({
+        //       "Success": true,
+        //       "msg": item
+        //     });
+        //   })
+
+        orders.orders && (orders.orders).forEach((ele, i) => {
+          console.log(ele);
+          if (ele.orderId == req.params.id) {
+      
+          User.update({ "orders.orderId": req.params.id}, { "$set": { "orders.$.cancel": true } }, function (err, order) {
             if (err) {
               return res.status(500).json({
-                "Success": false, "msg": err
+                "Success": false, "msg": "In valid data entered"
               });
             }
             return res.status(200).json({
               "Success": true,
-              "msg": item
+              "msg": "Order Cancled "
             });
           })
 
-          // User.update({ "orders.orderId:": req.body.oid, "orders.items.productId": req.body.item.productId }, { "$set": { "orders.items.$.cancel": true } }, function (err, item) {
-          //   if (err) {
-          //   console.log("@@@@@@@@@@@@")              
-          //     return res.status(500).json({
-          //       "Success": false, "msg": "In valid data entered"
-          //     });
-          //   }
-          //   return res.status(200).json({
-          //     "Success": true,
-          //     "msg": item
-          //   });
-          // })
 
 
-
-        }
-      })
+         }
+       })
 
     }
 

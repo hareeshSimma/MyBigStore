@@ -216,6 +216,24 @@ getAddress():Observable<User>{
               })
 }
 
+updateAddress(data){
+  const route='/users/editaddress'
+   return this.apiService.put(route,data)
+     .map(
+     data => {
+       return data;
+     });
+}
+
+deleteAddress(id)
+{  
+   const route = '/users/deleteAddress/'+id;
+  return this.apiService.delete(route)
+              .map(data =>{
+                return data
+     })
+}
+
 updatePassword(data) {
   
   return this.apiService.put('/users/updateepassword',data)
@@ -259,9 +277,9 @@ deleteCart(){
               })
 }
 
-cancelItem(data){
-  var route='/cart/cancelitem';
-  return this.apiService.post(route,data)
+cancelItem(orderId){
+  var route='/cart/cancelitem/'+orderId;
+  return this.apiService.post(route)
                 .map(
                   data => {
                     return data;

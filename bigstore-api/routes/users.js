@@ -279,7 +279,6 @@ return  res.status(200).json({
 });
 // user manage address
 router.post('/manageaddress',auth.required, function(req, res, next) {
-// console.log(req.body)
   User.findById(req.payload.id, function(err, user) {
     if (err) {
       return res.status(500).json({ 
@@ -312,8 +311,6 @@ user.save(function(err,data){
       "msg": " Address save successfully." 
     }); 
 })
-
-
     }
 })
 });
@@ -343,6 +340,81 @@ router.get('/getaddress',auth.required, function(req, res, next) {
     }
 })
 });
+
+router.put('/editaddress',auth.required, function(req, res, next) {
+   User.findById(req.payload.id, function(err,address) {
+     if(err){
+       return res.status(500).json({ 
+         "Success": false, 
+         "msg": "Fail to connection" 
+       });
+     }
+     
+     if (!address) {
+       return res.status(401).json({ 
+         "Success": false, 
+         "msg": "Invalid user" 
+       });
+     }
+     else{
+        var addressToUpdate = [];
+       for (var i = 0; i < address.address.length; i++) {
+         addressToUpdate.push(address.address[i]);
+         
+           if (address.address[i].addressid == req.body.addressid) {
+                addressToUpdate[i].fullname = req.body.fullname;
+                addressToUpdate[i].mobile = req.body.mobile;
+                addressToUpdate[i].city=req.body.city
+                addressToUpdate[i].pincode=req.body.pincode
+                addressToUpdate[i].state=req.body.state
+                addressToUpdate[i].address=req.body.address
+           }
+         
+       }
+       address.address = [];
+      address.address = addressToUpdate;
+       
+     address.save(function(err,data){
+     if (err)
+     throw err;
+     return  res.status(200).json({
+       "Success": true, 
+       "msg": "User update successfully." 
+     });
+
+   })
+
+     }
+
+   });
+ })
+     
+ //Delete address
+
+ router.delete('/deleteAddress/:id', auth.required, function (req, res, next) {
+   console.log(req.params, req.payload.id);
+   User.find({ _id: req.payload.id }, function (err, address) {
+     if (!address) { 
+       return res.sendStatus(401);
+       }
+     if (address[0].address.length > 0) {
+       for (i = 0; i < address[0].address.length; i++) {
+         if (address[0].address[i].addressid == req.params.id) {
+           address[0].address.splice(i, 1);
+           break;
+ 
+         }
+       }
+       address[0].save();
+       return res.status(200).json({ 
+         "Success": true,
+         "msg": "Address deleted successfully" });
+     }
+ 
+ 
+   })
+ });
+ 
 
 // Update Password
 
@@ -412,8 +484,10 @@ console.log(req.body);
       "Success": true, 
       "msg": "User update successfully." 
     });
+
     })
-    }
+   
+  }
     });
 })
    

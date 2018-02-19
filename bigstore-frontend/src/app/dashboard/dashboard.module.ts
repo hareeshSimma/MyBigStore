@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { dashboardRoutingModule } from './dashboard-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { CarouselModule } from 'angular4-carousel';
- import { NgxTypeaheadModule } from 'ngx-typeahead';
- import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+//  import { NgxTypeaheadModule } from 'ngx-typeahead';
+//  import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,9 +35,9 @@ import { TotalitemslistComponent } from './components/myaccount/totalitemslist/t
         CommonModule,
         validatorModule,
         FileUploadModule,
-         NgxTypeaheadModule,
-        HttpClientModule,
-        HttpClientJsonpModule
+        //  NgxTypeaheadModule,
+        // HttpClientModule,
+        // HttpClientJsonpModule
     ],
     declarations : [
         DashboardComponent,

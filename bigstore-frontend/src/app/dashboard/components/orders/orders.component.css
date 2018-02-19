@@ -41,6 +41,10 @@
     margin: 0px;
     border-bottom: 1px solid #f1e7e7;
 }
-.btnwidth{
-    width: 135px !important;
+.btn-primary[_ngcontent-c6] {
+    margin-top: 5px !important;
+}
+._iscancel{
+    margin-top: 3pc!important;
+    color: red !important;
 }

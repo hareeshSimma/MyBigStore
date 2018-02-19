@@ -39,19 +39,19 @@ totalProducts:any;
   }
 
 
-  public url = 'http://suggestqueries.google.com/complete/search';
-  public params = {
-    hl: 'en',
-    ds: 'yt',
-    xhr: 't',
-    client: 'youtube'
-  };
-  public api = 'http';
-  public search = '';
+  // public url = 'http://suggestqueries.google.com/complete/search';
+  // public params = {
+  //   hl: 'en',
+  //   ds: 'yt',
+  //   xhr: 't',
+  //   client: 'youtube'
+  // };
+  // public api = 'http';
+  // public search = '';
  
-  handleResultSelected (result) {
-    this.search = result;
-  }
+  // handleResultSelected (result) {
+  //   this.search = result;
+  // }
 
 
   openNav() {

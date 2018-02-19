@@ -13,7 +13,9 @@
 		<h5>Total Amount :&nbsp;<i class="fa fa-inr" aria-hidden="true"></i>{{order.totalAmount}}</h5>
 		</div>
 		<div class="col-xs-12 col-md-3">
-		<button type="button" class="btn btn-primary btnwidth"> Order Detials</button>
+		<button type="button" class="btn btn-primary"> Your Order Details</button>
+		<button type="button" class="btn btn-primary" *ngIf="order.cancel==false" (click)="cancelItem(order.orderId)" >Cancel Your Order</button>
+		<button type="button" class="btn btn-primary " *ngIf="">Return Your Order</button>
 		</div>
         </div>
 		<div class="row inneritems" *ngFor="let items of order.items">
@@ -29,8 +31,10 @@
 		
 </div>
 <div class="col-md-2 innerborder">
-		<button type="button" class="btn btn-primary" (click)="cancelItem(items,order.orderId)" >Cancel This Item</button>
-		<button type="button" class="btn btn-primary " *ngIf="">Return This Item</button>
+		<!-- <button type="button" class="btn btn-primary" (click)="cancelItem(items,order.orderId)" >Cancel This Item</button>
+		<button type="button" class="btn btn-primary " *ngIf="">Return This Item</button> -->
+<p *ngIf="!order.cancel==false" class="_iscancel" > CANCELLED</p>
+<p *ngIf="!order.return==false" class="_iscancel" > RETURNED</p>
 
 </div>
 </div>

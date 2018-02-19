@@ -45,15 +45,11 @@ export class OrdersComponent implements OnInit {
       })
     }
   }
-  cancelItem(item,oId){
-console.log(item)
-// var cancelItem={
-// item:item,
-// oid:oId
-// }
-// this.dashboardservice.cancelItem(cancelItem).subscribe(res=>{
-//   console.log(res)
-// })
+  cancelItem(oId){
+    console.log(oId)
+this.dashboardservice.cancelItem(oId).subscribe(res=>{
+  console.log(res)
+})
   }
   ngOnInit() {
   }
