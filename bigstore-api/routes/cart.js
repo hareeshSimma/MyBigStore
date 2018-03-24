@@ -166,8 +166,10 @@ router.post('/buynow', auth.required, function (req, res, next) {
         address: req.body.address,
         items: req.body.items,
         totalAmount: req.body.PayableAmount,
+        paymentMethod:req.body.paymentMethod,
         cancel: false,
         return: false,
+        cancellationId:false,
         date: Date()
       }
       data.orders.push(order);
@@ -264,6 +266,7 @@ router.delete('/emptycart', auth.required, function (req, res, next) {
 
 router.post('/cancelitem/:id', auth.required, function (req, res, next) {
   User.findOne({ _id: req.payload.id }, function (err, orders) {
+    // console.log(req.payload)
     if (err) {
       return res.status(500).json({
         "Success": false, "msg": "In valid user"
@@ -305,12 +308,22 @@ router.post('/cancelitem/:id', auth.required, function (req, res, next) {
         orders.orders && (orders.orders).forEach((ele, i) => {
           console.log(ele);
           if (ele.orderId == req.params.id) {
+            let cancelId = "CN" + Math.floor((Math.random() * 10000000000) + 100);
       
-          User.update({ "orders.orderId": req.params.id}, { "$set": { "orders.$.cancel": true } }, function (err, order) {
+          User.update({ "orders.orderId": req.params.id}, { "$set": { "orders.$.cancel": true ,"orders.$.cancellationId":cancelId} }, function (err, order) {
             if (err) {
               return res.status(500).json({
                 "Success": false, "msg": "In valid data entered"
               });
+            }else{
+              let mailOptins = {
+                "subject": "Your Mill to Meal Order  (" +req.params.id+ ") Cancellation",
+                "html": '<b>Hello ' + orders.full_name + '</b><p>Your Order Cancelled  Successfully.</p>'+
+                ' <p>Your Order Cancellation Id is:'+cancelId+'</p>'
+              
+            }
+    
+            mail.Transport2(mailOptins, req);
             }
             return res.status(200).json({
               "Success": true,

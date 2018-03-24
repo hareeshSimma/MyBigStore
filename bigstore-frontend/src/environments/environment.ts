@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   api_url: 'http://localhost:3000',
+ 
   img_url:'http://localhost:3000/images/',
   url:'http://localhost:3000/uploads',  
   

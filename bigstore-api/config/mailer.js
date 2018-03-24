@@ -37,4 +37,30 @@ console.log(req.body);
 
 }
 
+Mailer.prototype.Transport2 = function(options,req)
+{
+console.log(req.body);
+	console.log(options)
+	let mailOption = {
+	        from: mailConfig.username, // sender address
+	        to: req.payload.email, // list of receivers
+	        subject : options.subject,
+	        text: '', // plain text body
+	        html : options.html
+	   };
+	var mailObj = nodemailer.createTransport(MailerConf);	
+	return mailObj.sendMail(mailOption, (error, info) => {
+		if(error) {   
+			console.log(error)      
+			return false;
+		}	else	{
+			console.log("Mail Send Successfully..")
+			return true;
+		}
+	});
+
+}
+
+
+
  module.exports = Mailer;

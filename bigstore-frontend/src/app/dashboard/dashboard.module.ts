@@ -26,6 +26,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { OrdereditemsComponent } from './components/myaccount/ordereditems/ordereditems.component';
 import { CanceleditemsComponent } from './components/myaccount/canceleditems/canceleditems.component';
 import { TotalitemslistComponent } from './components/myaccount/totalitemslist/totalitemslist.component';
+import { OrderdetialsComponent } from './components/orderdetials/orderdetials.component';
 
 @NgModule({
     imports : [
@@ -56,6 +57,7 @@ import { TotalitemslistComponent } from './components/myaccount/totalitemslist/t
         OrdereditemsComponent,
         CanceleditemsComponent,
         TotalitemslistComponent,
+        OrderdetialsComponent,
         //EqualValidator
             ],
        exports:   [],

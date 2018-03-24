@@ -40,15 +40,27 @@ export class OrdersComponent implements OnInit {
         res=>{
         this.orders=res;
        this.ordercount= this.orders.length;
-       console.log(this.orders);
+      //  console.log(this.orders);
 
       })
     }
   }
+
+  orderDetials(order){
+    console.log(order)
+    sessionStorage.setItem('viewOrder', JSON.stringify(order));
+  }
+
   cancelItem(oId){
-    console.log(oId)
-this.dashboardservice.cancelItem(oId).subscribe(res=>{
+    // console.log(oId)
+  this.dashboardservice.cancelItem(oId).subscribe(res=>{
   console.log(res)
+  if(res.Success){
+    this.dashboardservice.getOrders().subscribe(
+      res=>{
+      this.orders=res;
+    })
+  }
 })
   }
   ngOnInit() {

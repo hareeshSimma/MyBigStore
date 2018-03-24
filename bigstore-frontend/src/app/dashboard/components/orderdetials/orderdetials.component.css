@@ -1,0 +1,37 @@
+.container{
+    min-height: 500px;
+}
+._isOrders{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 50px;
+    font-family: fantasy;
+    color: grey;
+    margin-bottom: 50px;
+    min-height: 500px;
+}
+.panel{
+    margin-top: 15px;
+}
+._orderborder{
+	border: 1px solid #8b99a2;
+    padding-top: 1pc;
+    /* padding-bottom: 1pc; */
+	border-radius: 3px;
+	margin-bottom: 1pc;
+	margin-top: 1pc;
+}
+._isorderImgborder{
+	border-bottom: 1px dotted #6b6363;
+    padding-bottom: 1pc;
+}
+.innerborder{
+	padding-top: 1pc;
+}
+.media-object{
+	height: 6pc;
+}
+.inneritems{
+    margin: 0px;
+    border-bottom: 1px solid #f1e7e7;
+}

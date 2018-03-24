@@ -38,6 +38,8 @@ export class BuynowComponent implements OnInit {
   _removeItem:boolean=false;
   Orderprocess:boolean=true;
   Ordersuccess:boolean=false;
+  manageOrders:boolean=true;
+  paymentOptions:boolean=true;
   msg:any;
   totalPrice:number;
   constructor(
@@ -55,7 +57,8 @@ export class BuynowComponent implements OnInit {
       mobile: '',
       address: '',
       city: '',
-      state: ''
+      state: '',
+      addressid:''
 
     }
 
@@ -110,17 +113,17 @@ export class BuynowComponent implements OnInit {
 
   save(data) {
     let AddressId= "AD"+ Math.floor((Math.random() * 10000000) + 1);
+    data.addressid=AddressId;
 
-    this.address = {
-      addressid:AddressId,
-      fullname: data.fullname,
-      mobile: data.mobile,
-      address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
-    }
-    this.myForm.reset();
+    // this.address = {
+    //   addressid:AddressId,
+    //   fullname: data.fullname,
+    //   mobile: data.mobile,
+    //   address: data.address + "," + data.city + "," + data.state + " " + "-" + " " + data.pincode
+    // }
     this.out = true;
-    console.log(this.address)
-    this.dashboardservice.manageAddress(this.address).subscribe(res => {
+    console.log(data)
+    this.dashboardservice.manageAddress(data).subscribe(res => {
       if (res) {
         this.dashboardservice.getAddress().subscribe(
           res => {
@@ -134,6 +137,7 @@ export class BuynowComponent implements OnInit {
         this.errors = err.msg;
         console.log(this.errors)
       })
+      this.myForm.reset();
 
   }
 
@@ -146,7 +150,7 @@ export class BuynowComponent implements OnInit {
   this.address=address;
   this.addressopen=true;
   this.ordersopen=false;
-  
+  this.manageOrders=false;
   }
 
 // Remove Items for orders
@@ -197,6 +201,7 @@ export class BuynowComponent implements OnInit {
   placeOrder(){
     this.ordersopen=true;    
     this.pamentoptions=false;
+    this.paymentOptions=false;
   }
 
   confirmOrder(){

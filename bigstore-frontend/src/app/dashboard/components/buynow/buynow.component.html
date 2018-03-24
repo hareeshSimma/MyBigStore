@@ -18,7 +18,9 @@
 </div>
 </div>
 </div>
+
 <!-- Select address fields -->
+
 <div class="panel panel-default">
     <div (click)="addressopen=!addressopen"  [className]="addressopen?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion">
         <h4 class="panel-title">
@@ -39,7 +41,9 @@
                 <div class="panel-body">
                   <span>{{address.fullname}}</span>
                  &nbsp;&nbsp; <span>{{address.mobile}}</span>
-                  <p>{{address.address}}</p>
+                 <p>{{address.address+","+address.city+","+address.state+" "+ "-"+" "+address.pincode+"."}}</p>
+
+                 <!-- <p>{{address.address}}</p> -->
                   <div *ngIf="idx==index">
                       <button type="submit" class="btn btn-info btn-md"  (click)="deliver(address)">
                           Deliver to This Address</button>
@@ -51,7 +55,9 @@
               </div>
       
         </div>
+
 <!-- add address -->
+
         <div class="panel panel-default">
             <div class="" (click)=" out = !out" [className]="out?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion">
                 <h4 class="panel-title">
@@ -139,9 +145,13 @@
 </div>
 </div>
 
+<div *ngIf="manageOrders">
+<h4 class="commonCss">&nbsp;&nbsp; 3.&nbsp;Manage Orders</h4>
+</div>
+
 <!-- manage Orders -->
 
-<div class="panel panel-default">
+<div class="panel panel-default"  *ngIf="!manageOrders">
     <div (click)="ordersopen=!ordersopen"  [className]="ordersopen?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion" >
         <h4 class="panel-title">
             <a>
@@ -174,8 +184,12 @@
 </div>
 </div>
 
+<div *ngIf="paymentOptions">
+<h4 class="commonCss">&nbsp;&nbsp; 4.&nbsp;Payment Options</h4>
+</div>
+
 <!-- Payment Options -->
-<div class="panel panel-default">
+<div class="panel panel-default" *ngIf="!paymentOptions">
         <div (click)="pamentoptions=!pamentoptions"  [className]="pamentoptions?'panel-heading collapsed':'panel-heading'" data-toggle="collapse"  data-parent="#accordion" >
             <h4 class="panel-title">
                 <a>
@@ -214,6 +228,9 @@
 </div>
 </div>
 </div>
+
+<!-- Order Confirmation Message -->
+
 <div class="Ordersuccess" *ngIf="msg && Ordersuccess">
 <div class="row borderBox">
  <p *ngIf="msg.Success==true">Your <strong class="successmsg">{{msg.msg}}</strong></p>

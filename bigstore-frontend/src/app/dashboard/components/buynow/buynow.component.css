@@ -106,3 +106,10 @@
   .faildmsg{
       color: red;
   }
+  .commonCss{
+    box-shadow: 1px 1px 4px 0px #c5cec1;
+    padding-top: 1pc;
+    padding-bottom: 1pc;
+    color: #565454;
+    margin-bottom: 1pc;
+  }

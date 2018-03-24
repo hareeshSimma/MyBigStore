@@ -15,6 +15,7 @@ import { BuynowComponent } from './components/buynow/buynow.component';
 import { OrdereditemsComponent } from './components/myaccount/ordereditems/ordereditems.component';
 import { CanceleditemsComponent } from './components/myaccount/canceleditems/canceleditems.component';
 import { TotalitemslistComponent } from './components/myaccount/totalitemslist/totalitemslist.component';
+import { OrderdetialsComponent } from './components/orderdetials/orderdetials.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path:'cart', component:CartComponent },
       { path:'orders', component:OrdersComponent },
       { path:'buynow', component:BuynowComponent },
+      { path:'orderdetials', component:OrderdetialsComponent },
       
       { path:'myaccount', component: MyaccountComponent,
       children:[
